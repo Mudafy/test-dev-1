@@ -1,0 +1,20 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "quotes": [2, "single"],
+    "global-strict": [2, "always"],
+    "no-underscore-dangle": false,
+    "indent": [2, 2],
+    "max-len": [2, 120],
+    "no-bitwise": [2],
+    "wrap-iife": [2],
+    "complexity": [2, 10],
+    "max-depth": [2, 3],
+    "max-params": [2, 5],
+    "no-undefined": [1],
+    "no-console": [1]
+  }
+}

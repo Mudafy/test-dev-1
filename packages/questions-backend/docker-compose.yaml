@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  api:
+    build: .
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+      - 3000:3000
+    restart: on-failure
+    command: run
+    env_file: .env

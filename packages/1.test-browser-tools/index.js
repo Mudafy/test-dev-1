@@ -40,9 +40,6 @@
   }
 
   function setupAutocomplete(selector) {
-    // const autocompleteInput = document.querySelector('.' + selector + ' input');
-    // const autocompleteOutput = document.querySelector('.' + selector + ' .results');
-
     const autocompleteInput = document.querySelector(selector + ' input');
     const autocompleteOutput = document.querySelector(selector + ' .results');
 

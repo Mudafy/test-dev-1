@@ -40,8 +40,11 @@
   }
 
   function setupAutocomplete(selector) {
-    const autocompleteInput = document.querySelector(`${selector} input`);
-    const autocompleteOutput = document.querySelector(`${selector} .results`);
+    // const autocompleteInput = document.querySelector('.' + selector + ' input');
+    // const autocompleteOutput = document.querySelector('.' + selector + ' .results');
+
+    const autocompleteInput = document.querySelector(selector + ' input');
+    const autocompleteOutput = document.querySelector(selector + ' .results');
 
     function showResults(data) {
       autocompleteOutput.innerHTML = "";
@@ -54,14 +57,21 @@
       "keyup",
       debounce(key => {
         const text = key.target.value;
-        fetchData(text).then(showResults);
+
+        if(text != "")
+        {
+          fetchData(text).then(showResults);
+        }
+        else
+        {
+          autocompleteOutput.innerHTML = "";
+        }
       }, 50)
     );
-    fetchData("").then(showResults);
   }
 
   function init() {
-    setupAutocomplete("autocomplete");
+    setupAutocomplete(".autocomplete");
   }
 
   init();

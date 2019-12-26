@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container > * {
+    width: 100%;
+  }
+
+  #btn{
+    justify-content: center;
+    display: flex;
+  }
+
+mat-dialog-title{
+  justify-content: center;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+mat-dialog-content{
+  justify-content: center;
+}
+
+ng-template{
+  li{
+    text-align: center;
+  }
+}

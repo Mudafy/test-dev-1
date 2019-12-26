@@ -35,4 +35,20 @@ Necesitás NodeJs 9 o más nuevo, Yarn, Angular CLI y seguir estos pasos:
 - `yarn start` para correrlo.
 - `ng generate` para generar componentes y otros.
 
+## Realizado:
+- Los datos se encuentran en una tabla, mostrando su nombre, email y telefono.
+- Se puede Eliminar consultas.
+- Se puede Agregar nuevas consultas.
+- Se puede Seleccionar la cantidad de registros que quieren verse (Paginado).
+- Se pueden ordenar las columnas de manera ascendente y descendente.
+- Se pueden filtrar las consultas segun Nombre, Telefono y Email.
+- Se utilizan los metodos provistos en el services para realizar el borrado y agregado de consultas.
+
+## Detalles que me hubiera gustado agregar
+- Filtrado por Broker.
+- Modificar el icono que muestra la pestaña en el navegador.
+- Trabajar un poco mas con lo responsive.
+
+
+
 

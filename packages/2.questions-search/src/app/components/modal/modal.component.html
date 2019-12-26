@@ -1,0 +1,48 @@
+<h1 mat-dialog-title><strong>{{action}} Consulta </strong> </h1>
+
+  <div mat-dialog-content class="container">
+    
+    <mat-form-field *ngIf="action != 'Borrar'; else borrarTemplate" >
+      <input placeholder="Nombre" matInput [(ngModel)]="localData.name" required
+      pattern="[a-zA-Z ]{1,32}">
+    </mat-form-field>
+    
+    <mat-form-field *ngIf="action != 'Borrar';">
+      <input placeholder="Email" matInput [(ngModel)]="localData.email" required 
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="action != 'Borrar' && action !='Editar';">
+      <mat-label>Broker</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let broker of brokerList" [value]="broker.id">
+          {{broker.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field *ngIf="action != 'Borrar';">
+      <input placeholder="Telefono" matInput [(ngModel)]="localData.phone" 
+      pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[x\-\s\./0-9]*$">
+    </mat-form-field>
+
+    <mat-form-field *ngIf="action != 'Borrar';">
+      <textarea  placeholder="Mensaje" matInput [(ngModel)]="localData.message"></textarea>
+    </mat-form-field>
+    <ng-template #borrarTemplate>
+      <p>Está a punto de eliminar la consulta:</p>
+      <li>Nombre: <b>{{localData.name}}</b></li>
+      <li>Telefono: <b>{{localData.phone}}</b></li>
+      <li>Email: <b>{{localData.email}}</b></li>
+      <!-- <li>Mensaje: <b>{{localData.message}}</b></li> -->
+      <p>¿Desea continuar?</p>
+    </ng-template>
+  </div>
+
+
+  <div mat-dialog-actions id="btn">
+    <button mat-button (click)="accept()" mat-stroked-button color="primary" >{{action}}</button>
+    <button mat-button (click)="cancel()" mat-flat-button color="warn">Cancelar</button>
+  </div>

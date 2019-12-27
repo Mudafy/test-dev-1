@@ -25,23 +25,23 @@ export class ModalComponent implements OnInit {
   }
 
   brokerList: Broker[] = [
-    {name: 'Juan Moreno', id: 1},
-    {name: 'Marcela Gomez', id: 2},
-    {name: 'Jose Herrera', id: 3},
-    {name: 'Ariana Lopez', id: 6},
-    {name: 'Maria Gonzalez', id: 40}
+    {name: 'Faralla', id: 1},
+    {name: 'Fasebonne', id: 2},
+    {name: 'Icortese', id: 3},
+    {name: 'Perez', id: 6},
+    {name: 'Gonzalez', id: 40}
   ];
  
   ngOnInit() {
   }
 
   //Realizamos la accion que corresponda
-  accept(){
+  acceptAction(){
     this.modalRef.close({event:this.action,data:this.localData});
   }
 
   //Cerramos el modal.
-  cancel(){
+  cancelAction(){
     this.modalRef.close({event:'Cancel'});
   }
 

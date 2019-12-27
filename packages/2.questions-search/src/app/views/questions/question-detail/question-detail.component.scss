@@ -1,0 +1,20 @@
+mat-card{
+    width:500px;
+    justify-content: center;
+}
+
+.detalle-card{
+    // justify-content: center;
+    margin-left: 27rem;
+    margin-top: 5rem;
+
+    .datos-detalle{
+        margin-top: 1rem;
+        margin-left: 2rem;
+        width:400px;
+    }
+}
+
+mat-volver{
+    background-color:white;
+}

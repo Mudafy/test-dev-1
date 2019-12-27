@@ -39,15 +39,26 @@ Necesitás NodeJs 9 o más nuevo, Yarn, Angular CLI y seguir estos pasos:
 - Los datos se encuentran en una tabla, mostrando su nombre, email y telefono.
 - Se puede Eliminar consultas.
 - Se puede Agregar nuevas consultas.
+- Se puede Editar consultas.
 - Se puede Seleccionar la cantidad de registros que quieren verse (Paginado).
 - Se pueden ordenar las columnas de manera ascendente y descendente.
 - Se pueden filtrar las consultas segun Nombre, Telefono y Email.
-- Se utilizan los metodos provistos en el services para realizar el borrado y agregado de consultas.
+- Se utilizan los metodos provistos en el services para realizar el borrado, editado y creación de consultas.
 
 ## Detalles que me hubiera gustado agregar
 - Filtrado por Broker.
 - Modificar el icono que muestra la pestaña en el navegador.
 - Trabajar un poco mas con lo responsive.
+- Traer los brokers desde un servicio.
+- Mostrar el broker en el detalle.
+- Mostrar en español la paginación.
+- El editar no esta funcionando de manera correcta.
+
+## Falta completar:
+- Lograr enviar todos los datos a la vista de detalle.
+- Buen Funcionamiento del Editar.
+- Limpiar correctamente los filtros.
+- Mejorar la vista de Delete.
 
 
 

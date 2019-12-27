@@ -22,6 +22,8 @@ import { QuestionDetailComponent } from './views/questions/question-detail/quest
 import { QuestionListComponent } from './views/questions/question-list/question-list.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 @NgModule({
@@ -51,7 +53,9 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatCardModule,
+    MatDividerModule
   ],
   entryComponents: [ModalComponent],
   providers: [QuestionsService],

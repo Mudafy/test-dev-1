@@ -1,4 +1,4 @@
-<h1 mat-dialog-title><strong>{{action}} Consulta </strong> </h1>
+<h1 mat-dialog-title class="text-center"><strong>{{action}} Consulta </strong> </h1>
 
   <div mat-dialog-content class="container">
     
@@ -32,17 +32,16 @@
       <textarea  placeholder="Mensaje" matInput [(ngModel)]="localData.message"></textarea>
     </mat-form-field>
     <ng-template #borrarTemplate>
-      <p>Está a punto de eliminar la consulta:</p>
-      <li>Nombre: <b>{{localData.name}}</b></li>
-      <li>Telefono: <b>{{localData.phone}}</b></li>
-      <li>Email: <b>{{localData.email}}</b></li>
-      <!-- <li>Mensaje: <b>{{localData.message}}</b></li> -->
-      <p>¿Desea continuar?</p>
+      <p class="text-center">Está a punto de eliminar la consulta:</p>
+      <li class="text-center">Nombre: <b>{{localData.name}}</b></li>
+      <li class="text-center">Telefono: <b>{{localData.phone}}</b></li>
+      <li class="text-center">Email: <b>{{localData.email}}</b></li>
+      <p class="text-center">¿Desea continuar?</p>
     </ng-template>
   </div>
 
 
-  <div mat-dialog-actions id="btn">
-    <button mat-button (click)="accept()" mat-stroked-button color="primary" >{{action}}</button>
-    <button mat-button (click)="cancel()" mat-flat-button color="warn">Cancelar</button>
+  <div mat-dialog-actions id="buttons">
+    <button mat-button (click)="acceptAction()" mat-stroked-button color="primary" >{{action}}</button>
+    <button mat-button (click)="cancelAction()" mat-flat-button color="warn">Cancelar</button>
   </div>

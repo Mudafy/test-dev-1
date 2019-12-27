@@ -8,6 +8,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
+import { MatCard } from '@angular/material'
 
 
 
@@ -20,6 +21,11 @@ import { ModalComponent } from 'src/app/components/modal/modal.component';
 export class QuestionListComponent implements OnInit {
 
   questions: Array<Question>;
+  questionsSource: Array<Question>;
+  nameInput: string = "";
+  phoneInput: string = "";
+  emailInput: string = "";
+
 
   constructor(private questionsSvc: QuestionsService, public modal: MatDialog) {
 
@@ -41,6 +47,8 @@ export class QuestionListComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+
+    this.questionsSource = this.questions; //Lo usamos para mostrar la tabla nuevamente cuando limpiamos los filtros
   }
 
   openModal(action, obj) {
@@ -48,6 +56,7 @@ export class QuestionListComponent implements OnInit {
     const modalRef = this.modal.open(ModalComponent, {
       data: obj,
       width: '600px',
+      minWidth: '300px',
       direction: "ltr"
     });
 
@@ -75,7 +84,9 @@ export class QuestionListComponent implements OnInit {
         };
 
         //Verificar porque se esta quedando colgado dentro del subscribe
+        
         this.questionsSvc.getById(result.data.id).subscribe(data => {
+          console.log(data);
           this.questionsSvc.edit(data, questionStub);
         },
           error => { })
@@ -93,7 +104,13 @@ export class QuestionListComponent implements OnInit {
   }
 
   cleanFilters() {
-    this.questionsSvc.filterByQuestion("", "", "");
+    this.nameInput = "";
+    this.phoneInput = "";
+    this.emailInput = "";
+
+    this.dataSource = new MatTableDataSource(this.questionsSource);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   getQuestionId(index: number, item: Question): number {

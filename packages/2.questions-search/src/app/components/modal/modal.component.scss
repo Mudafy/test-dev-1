@@ -7,7 +7,7 @@
     width: 100%;
   }
 
-  #btn{
+  #buttons{
     justify-content: center;
     display: flex;
   }
@@ -16,6 +16,7 @@ mat-dialog-title{
   justify-content: center;
   border-bottom-width: 1px;
   border-bottom-style: solid;
+  margin:none;
 }
 
 mat-dialog-content{

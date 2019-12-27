@@ -24,16 +24,12 @@ export class QuestionsService {
   filterByQuestion(valueName: string, valuePhone: string, valueEmail: string) {
     const allQuestions = this.questions$.getValue();
 
-    if (valueName === "" && valuePhone === "" && valueEmail === "") {
-      console.log("limpiar filtros");
-      this.questions$.next(allQuestions);
-    }
-    else {
-      this.questions$.next(allQuestions.filter(q => q.name.includes(valueName)
-        && q.phone.includes(valuePhone)
-        && q.email.includes(valueEmail)));
+    console.log("filtrando");
+    this.questions$.next(allQuestions.filter(q => q.name.includes(valueName)
+      && q.phone.includes(valuePhone)
+      && q.email.includes(valueEmail)));
 
-    }
+
   }
 
   add(question: QuestionStub, broker: number) {

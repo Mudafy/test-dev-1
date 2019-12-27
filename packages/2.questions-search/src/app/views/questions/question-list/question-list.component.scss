@@ -1,9 +1,9 @@
 table {
     width: 70%;
     margin: auto;
-    // border:none;
     
 }
+
 
 .mat-elevation-z8{
     width: 90%;
@@ -24,6 +24,15 @@ table {
     padding: none;
 }
 
+//Si quiero los input del filtro en negro
+// .mat-form-field-appearance-outline .mat-form-field-outline {
+//   color: white;
+// }
+
+// /* Font color */
+// input.mat-input-element {
+//   color: white;
+// }
 
 .filters{
   justify-content: center;
@@ -32,6 +41,7 @@ table {
   margin-top: 10px;
   border-color: #fff;
   border-width: 1px;
+  
   button{
     width:10%;
     height: 20%;
@@ -42,6 +52,8 @@ table {
     margin-top: 0.8rem;
   }
 }
+
+
 
 .container-btn-new{
     display: fixed;
@@ -63,6 +75,10 @@ mat-paginator{
   width: 70%;
   height: 10%;
   margin: auto;
+}
+
+.mat-borrar{
+  color:rgb(212, 64, 64);
 }
 
 
@@ -87,6 +103,8 @@ tr.mat-row, tr.mat-footer-row {
 
 th.mat-header-cell,  th.mat-sort-header {
   flex-direction: column;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 th.mat-header-cell, td.mat-cell, td.mat-footer-cell, th.mat-sort-header {
@@ -104,3 +122,5 @@ th.mat-header-cell:first-child, td.mat-cell:first-child, td.mat-footer-cell:firs
 th.mat-header-cell:last-child, td.mat-cell:last-child, td.mat-footer-cell:last-child, th.mat-sort-header:last-child {
   padding-right: 0px;
 }
+
+

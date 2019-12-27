@@ -63,15 +63,13 @@ export class QuestionListComponent implements OnInit {
     modalRef.afterClosed().subscribe(result => {
 
       if (result.event == 'Crear') {
-
         const questionStub: QuestionStub = {
           name: result.data.name,
           phone: result.data.phone,
           email: result.data.email,
           message: result.data.message
         };
-
-        this.questionsSvc.add(questionStub, result.data.broker);
+        this.questionsSvc.add(questionStub, result.idBroker);
 
       } else if (result.event == 'Editar') {
 

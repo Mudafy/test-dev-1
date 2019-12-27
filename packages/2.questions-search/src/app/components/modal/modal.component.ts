@@ -13,6 +13,7 @@ export class ModalComponent implements OnInit {
 
   action:string;
   localData:any;
+  idBroker : number;
   email = new FormControl('', [Validators.required, Validators.email]);
 
 
@@ -37,7 +38,7 @@ export class ModalComponent implements OnInit {
 
   //Realizamos la accion que corresponda
   acceptAction(){
-    this.modalRef.close({event:this.action,data:this.localData});
+    this.modalRef.close({event:this.action,data:this.localData, idBroker:this.idBroker});
   }
 
   //Cerramos el modal.

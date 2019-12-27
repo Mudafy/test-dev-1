@@ -15,7 +15,7 @@
 
     <mat-form-field *ngIf="action != 'Borrar' && action !='Editar';">
       <mat-label>Broker</mat-label>
-      <mat-select>
+      <mat-select [(ngModel)]="idBroker">
         <mat-option *ngFor="let broker of brokerList" [value]="broker.id">
           {{broker.name}}
         </mat-option>

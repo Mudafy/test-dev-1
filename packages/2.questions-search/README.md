@@ -53,10 +53,8 @@ Necesitás NodeJs 9 o más nuevo, Yarn, Angular CLI y seguir estos pasos:
 - Traer los brokers desde un servicio.
 - Mostrar el broker en el detalle.
 - Mostrar en español la paginación.
-- El editar no esta funcionando de manera correcta.
 
 ## Falta completar:
-- Buen Funcionamiento del Editar.
 - Limpiar correctamente los filtros.
 
 

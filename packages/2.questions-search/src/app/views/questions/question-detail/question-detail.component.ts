@@ -14,7 +14,6 @@ export class QuestionDetailComponent implements OnInit {
   public questionId = "";
 
   constructor(activatedRoute: ActivatedRoute, public questionsSvc: QuestionsService) {
-    console.log(questionsSvc);
     this.questionId = activatedRoute.snapshot.params['id'];
   }
 

@@ -32,6 +32,7 @@ export class QuestionListComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'phone', 'email', 'actions'];
   dataSource = new MatTableDataSource();
+  questionToEdit : Question;
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -80,13 +81,13 @@ export class QuestionListComponent implements OnInit {
           message: result.data.message
         };
 
-        //Verificar porque se esta quedando colgado dentro del subscribe
         
         this.questionsSvc.getById(result.data.id).subscribe(data => {
-          console.log(data);
-          this.questionsSvc.edit(data, questionStub);
+          this.questionToEdit = data;
         },
           error => { })
+
+          this.questionsSvc.edit(this.questionToEdit, questionStub);
 
       } else if (result.event == 'Borrar') {
         this.questionsSvc.remove(result.data);

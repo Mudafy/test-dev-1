@@ -30,8 +30,11 @@ export class QuestionsService {
     this.questions$.next(allQuestions.filter(q => q.name.includes(valueName)
       && q.phone.includes(valuePhone)
       && q.email.includes(valueEmail)));
+  }
 
-
+  cleanFilters(questionsClean : Array<Question>)
+  {
+    this.questions$.next(questionsClean);
   }
 
   add(question: QuestionStub, broker: number) {

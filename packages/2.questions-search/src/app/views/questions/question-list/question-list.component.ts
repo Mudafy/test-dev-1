@@ -26,13 +26,13 @@ export class QuestionListComponent implements OnInit {
   emailInput: string = "";
 
 
-  constructor(private questionsSvc: QuestionsService, public modal: MatDialog, private router:Router) {
+  constructor(private questionsSvc: QuestionsService, public modal: MatDialog, private router: Router) {
 
   }
 
   displayedColumns: string[] = ['name', 'phone', 'email', 'actions'];
   dataSource = new MatTableDataSource();
-  questionToEdit : Question;
+  questionToEdit: Question;
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -48,7 +48,7 @@ export class QuestionListComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
 
-    this.questionsSource = this.questions; //Lo usamos para mostrar la tabla nuevamente cuando limpiamos los filtros
+    // this.questionsSource = this.questions; //Lo usamos para mostrar la tabla nuevamente cuando limpiamos los filtros
   }
 
   openModal(action, obj) {
@@ -71,6 +71,7 @@ export class QuestionListComponent implements OnInit {
           message: result.data.message
         };
         this.questionsSvc.add(questionStub, result.idBroker);
+        this.questionsSource = [...this.questions];
 
       } else if (result.event == 'Editar') {
 
@@ -81,22 +82,25 @@ export class QuestionListComponent implements OnInit {
           message: result.data.message
         };
 
-        
+
         this.questionsSvc.getById(result.data.id).subscribe(data => {
           this.questionToEdit = data;
         },
           error => { })
 
-          this.questionsSvc.edit(this.questionToEdit, questionStub);
+        this.questionsSvc.edit(this.questionToEdit, questionStub);
+        this.questionsSource = [...this.questions];
 
       } else if (result.event == 'Borrar') {
         this.questionsSvc.remove(result.data);
+        this.questionsSource = [...this.questions];
       }
 
     });
   }
 
   filterQuestion(valueName: string, valuePhone: string, valueEmail: string) {
+    this.questionsSource = [...this.questions];
     this.questionsSvc.filterByQuestion(valueName, valuePhone, valueEmail);
 
   }
@@ -106,14 +110,15 @@ export class QuestionListComponent implements OnInit {
     this.phoneInput = "";
     this.emailInput = "";
 
-    this.dataSource = new MatTableDataSource(this.questionsSource);
+    // this.dataSource = new MatTableDataSource(this.questionsSource);
+    this.questionsSvc.cleanFilters(this.questionsSource);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  onDetailsQuestion(question : Question){
-    this.questionsSvc.questionDetails = question;    
-    this.router.navigate(['/questions',question.id]);
+  onDetailsQuestion(question: Question) {
+    this.questionsSvc.questionDetails = question;
+    this.router.navigate(['/questions', question.id]);
   }
 
   getQuestionId(index: number, item: Question): number {

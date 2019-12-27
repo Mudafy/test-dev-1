@@ -54,8 +54,8 @@ Necesitás NodeJs 9 o más nuevo, Yarn, Angular CLI y seguir estos pasos:
 - Mostrar el broker en el detalle.
 - Mostrar en español la paginación.
 
-## Falta completar:
-- Limpiar correctamente los filtros.
+## Falta arreglar:
+- La limpieza de los filtros funciona, pero en el caso de que se edite, cree o borre luego del filtrado, no esta funcionando correctamente.
 
 
 

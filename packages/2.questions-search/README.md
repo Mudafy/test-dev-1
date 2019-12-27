@@ -37,13 +37,14 @@ Necesitás NodeJs 9 o más nuevo, Yarn, Angular CLI y seguir estos pasos:
 
 ## Realizado:
 - Los datos se encuentran en una tabla, mostrando su nombre, email y telefono.
-- Se puede Eliminar consultas.
-- Se puede Agregar nuevas consultas.
-- Se puede Editar consultas.
-- Se puede Seleccionar la cantidad de registros que quieren verse (Paginado).
-- Se pueden ordenar las columnas de manera ascendente y descendente.
-- Se pueden filtrar las consultas segun Nombre, Telefono y Email.
+- Eliminar consultas.
+- Agregar nuevas consultas.
+- Editar consultas.
+- Seleccionar la cantidad de registros que quieren verse (Paginado).
+- Ordenar las columnas de manera ascendente y descendente.
+- Filtrar las consultas segun Nombre, Telefono y Email.
 - Se utilizan los metodos provistos en el services para realizar el borrado, editado y creación de consultas.
+- Acceder al detalle de cada consulta.
 
 ## Detalles que me hubiera gustado agregar
 - Filtrado por Broker.
@@ -55,10 +56,8 @@ Necesitás NodeJs 9 o más nuevo, Yarn, Angular CLI y seguir estos pasos:
 - El editar no esta funcionando de manera correcta.
 
 ## Falta completar:
-- Lograr enviar todos los datos a la vista de detalle.
 - Buen Funcionamiento del Editar.
 - Limpiar correctamente los filtros.
-- Mejorar la vista de Delete.
 
 
 

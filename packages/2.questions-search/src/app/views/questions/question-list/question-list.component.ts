@@ -2,13 +2,12 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Question } from 'src/app/services/question';
 import { QuestionStub } from 'src/app/services/question-stub';
 import { QuestionsService } from 'src/app/services/questions.service';
-import { MatIcon, MatButton } from '@angular/material';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
-import { MatCard } from '@angular/material'
+import { Router } from '@angular/router';
 
 
 
@@ -27,7 +26,7 @@ export class QuestionListComponent implements OnInit {
   emailInput: string = "";
 
 
-  constructor(private questionsSvc: QuestionsService, public modal: MatDialog) {
+  constructor(private questionsSvc: QuestionsService, public modal: MatDialog, private router:Router) {
 
   }
 
@@ -111,6 +110,11 @@ export class QuestionListComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.questionsSource);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  onDetailsQuestion(question : Question){
+    this.questionsSvc.questionDetails = question;    
+    this.router.navigate(['/questions',question.id]);
   }
 
   getQuestionId(index: number, item: Question): number {

@@ -12,6 +12,8 @@ import { questions } from './questions';
 export class QuestionsService {
 
   questions$ = new BehaviorSubject<Array<Question>>(questions);
+  questionDetails : Question;
+
   constructor() { }
 
   // getAllQuestions(){

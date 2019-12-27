@@ -12,27 +12,13 @@ import { ActivatedRoute } from '@angular/router';
 export class QuestionDetailComponent implements OnInit {
 
   public questionId = "";
-  public question: Question;
 
-  @Input() name : string;
-  @Input() phone : string;
-  @Input() email : string;
-  @Input() message : string;
-
-
-  constructor(activatedRoute: ActivatedRoute, private questionsSvc: QuestionsService) {
+  constructor(activatedRoute: ActivatedRoute, public questionsSvc: QuestionsService) {
     console.log(questionsSvc);
     this.questionId = activatedRoute.snapshot.params['id'];
   }
 
   ngOnInit() {
-
-    // this.questionsSvc.getById(this.questionId).suscribe(data => {
-    //   console.log("gola");
-
-    //   this.question = data;
-    // },
-    //   error => { });
 
   }
 

@@ -44,3 +44,14 @@ Recomendamos usar un virtualenv.
 
 Sólo basta hacer `docker-compose up`.
 
+### Realizado:
+- Se completaron los serializadores question_fields y submit_question_field.
+- Se creo un archivo con datos de prueba.
+- QuestionsResource: get (listado) y post (creación) de consultas.
+- QuestionResource: get (una consulta) y delete (una consulta)
+- Se valida que las consultas a leer o la consulta a eliminar sean del broker que está loggeado.
+
+
+### Falta realizar
+- Implementar la API en el ejercicio 2 
+

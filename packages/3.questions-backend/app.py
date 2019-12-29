@@ -26,6 +26,8 @@ from api_config import authorizations, config as swagger_config
 
 from users import User, admins, brokers, everyone, get_user, save_user, check_user
 from questions import questions
+from brokers import brokersList
+
 
 
 logger = get_logger(__name__)
@@ -268,13 +270,17 @@ class QuestionsResource(Resource):
         List available questions
         """
 
-        current_user = assert_broker()
+        current_user = assert_broker() ### Obtenemos el usuario actual
+
+        ### Buscamos la información de broker segun el usuario loggeado
+        userData = [broker for broker in brokersList if broker['name'] == current_user.name]
+
+        ### Filtramos las questions segun el id del broker
+        questionsByBroker = [question for question in questions if question['broker'] == userData[0]['id']]
 
         ### TODO: brokers should only be able to read their own questions, not others'
 
-        ### Verificar que el id del broker que tiene cada question coincida con el broker que inicio sesion
-
-        return questions
+        return questionsByBroker
 
 
 
@@ -302,7 +308,8 @@ class QuestionsResource(Resource):
             "id" : idNewQuestion
         }
 
-        ### Previo a agregar la question, deberíamos validar todos los campos según el formato deseado
+        ### Previo a agregar la question, deberíamos validar todos los campos según el formato deseado,
+        ### en caso de errores, debemos devolverlo al front para que lo resuelva y vuelva a reenviarlo.
 
         questions.append(new_question)
 
@@ -331,9 +338,21 @@ class QuestionResource(Resource):
 
         :raises Unauthorized: When current user has insufficient permissions
         """
+
+        current_user = assert_broker() ### Obtenemos el usuario actual
+
+        ### Buscamos la información de broker segun el usuario loggeado
+        userData = [broker for broker in brokersList if broker['name'] == current_user.name]
+
         questionFound = [question for question in questions if question['id'] == int(question_id)]
 
-        return questionFound
+        if len(questionFound) > 0:
+            if questionFound[0]['broker'] == userData[0]['id']:
+                return questionFound[0]
+            else:
+                return 'No tiene permiso para ver esta consulta'
+        else:
+            return 'Producto no encontrado'
 
     @jwt_required
     @questions_ns.doc('remove_question', expect=[auth_parser])
@@ -345,13 +364,25 @@ class QuestionResource(Resource):
         :raises Unauthorized: When current user has insufficient permissions
         :raises BadRequest: When couldn't delete the question
         """
+
+        current_user = assert_broker() ### Obtenemos el usuario actual
+
+        ### Buscamos la información de broker segun el usuario loggeado
+        userData = [broker for broker in brokersList if broker['name'] == current_user.name]
+
         try:
             questionToDelete = [question for question in questions if question['id'] == int(question_id)]
 
             if len(questionToDelete) > 0:
-                questions.remove(questionToDelete[0])
+                if questionToDelete[0]['broker'] == userData[0]['id']:
+                    questions.remove(questionToDelete[0])
+                    return 'Consulta borrada satisfactoriamente', 200
+                else:
+                    return 'No tiene permiso para eliminar esta consulta' 
+            else:
+                return 'Producto no encontrado'
 
-            return 'Consulta borrada satisfactoriamente', 200
+
         except:
             raise BadRequest("There was a problem deleting the question")
 

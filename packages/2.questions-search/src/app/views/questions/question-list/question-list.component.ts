@@ -102,7 +102,6 @@ export class QuestionListComponent implements OnInit {
   filterQuestion(valueName: string, valuePhone: string, valueEmail: string) {
     this.questionsSource = [...this.questions];
     this.questionsSvc.filterByQuestion(valueName, valuePhone, valueEmail);
-
   }
 
   cleanFilters() {
@@ -110,7 +109,6 @@ export class QuestionListComponent implements OnInit {
     this.phoneInput = "";
     this.emailInput = "";
 
-    // this.dataSource = new MatTableDataSource(this.questionsSource);
     this.questionsSvc.cleanFilters(this.questionsSource);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -124,5 +122,11 @@ export class QuestionListComponent implements OnInit {
   getQuestionId(index: number, item: Question): number {
     return item.id;
   }
+
+
+  //Alternativa para el funcionamiento de los filtros
+  // applyFilter(filterValue: string) {
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
 
 }

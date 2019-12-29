@@ -1,7 +1,7 @@
-<div  class="filters">
-  <mat-form-field >
+<div class="filters">
+  <mat-form-field>
     <input matInput #filterName [(ngModel)]='nameInput' placeholder="Ingrese Nombre...">
-  </mat-form-field >
+  </mat-form-field>
   <mat-form-field>
     <input matInput #filterPhone [(ngModel)]='phoneInput' placeholder="Ingrese Teléfono...">
   </mat-form-field>
@@ -15,6 +15,14 @@
     &nbsp; Limpiar
   </button>
 </div>
+
+
+<!-- Alternativa para el funcionamiento de los filtros
+  <div class="filters">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Ingrese su búsqueda...">
+  </mat-form-field>
+</div> -->
 
 <div class="container-btn-new">
   <button mat-stroked-button (click)="openModal('Crear',{})">
@@ -60,7 +68,7 @@
           matTooltipPosition="after">
           <i class="material-icons md-18">delete</i>
         </a>
-        
+
       </td>
     </ng-container>
 

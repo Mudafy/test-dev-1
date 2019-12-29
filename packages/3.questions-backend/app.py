@@ -270,20 +270,16 @@ class QuestionsResource(Resource):
 
         current_user = assert_broker()
 
-        print(current_user)
-        print(questions)
-
         ### TODO: brokers should only be able to read their own questions, not others'
 
         ### Verificar que el id del broker que tiene cada question coincida con el broker que inicio sesion
-        return jsonify({"questions" : questions[0]})
+
+        return questions
 
 
-
-        # return []
 
     @questions_ns.doc('ask_a_question', body=submit_question_fields)
-    @api.expect(submit_question_fields)
+    @api.expect(submit_question_fields) ###Indica el serializador que espera
     @api.response(200, "Success")
     @api.response(400, "Missing parameters", generic_error)
     def post(self):
@@ -291,6 +287,9 @@ class QuestionsResource(Resource):
         Creates a question
         """
         question = api.payload
+
+        ###Obtenemos el valor del id de la question a ingresar:
+        idNewQuestion = questions[len(questions) - 1]["id"] + 1
 
         ###Creamos una nueva question utilizando el formato que definimos en question_fields, ya que 
         ###es lo que espera el array que usamos, y este metodo recibe un submit_question_field
@@ -300,14 +299,14 @@ class QuestionsResource(Resource):
             "email" : question["email"],
             "message" : question["message"],
             "broker" : question["broker"],
-            "id" : len(questions) + 1 ###Obtenemos el id sacando la cantidad de registros que hay en el array de prueba
+            "id" : idNewQuestion
         }
 
         ### Previo a agregar la question, deberíamos validar todos los campos según el formato deseado
 
         questions.append(new_question)
 
-        return questions, 200
+        return {"message":"Consulta agregada satisfactoriamente"}, 200
 
         ### El agregado de una consulta lo realizamos asi ya que estamos trabajando con un array de prueba.
         ### En el caso de que trabajemos con una base de datos, se deberían controlar las transacciones,
@@ -332,7 +331,9 @@ class QuestionResource(Resource):
 
         :raises Unauthorized: When current user has insufficient permissions
         """
-        return None
+        questionFound = [question for question in questions if question['id'] == int(question_id)]
+
+        return questionFound
 
     @jwt_required
     @questions_ns.doc('remove_question', expect=[auth_parser])
@@ -345,7 +346,12 @@ class QuestionResource(Resource):
         :raises BadRequest: When couldn't delete the question
         """
         try:
-            return '', 200
+            questionToDelete = [question for question in questions if question['id'] == int(question_id)]
+
+            if len(questionToDelete) > 0:
+                questions.remove(questionToDelete[0])
+
+            return 'Consulta borrada satisfactoriamente', 200
         except:
             raise BadRequest("There was a problem deleting the question")
 

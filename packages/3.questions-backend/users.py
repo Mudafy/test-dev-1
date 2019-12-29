@@ -11,6 +11,8 @@ ADMIN = "admin"
 admins = [
     User("Matías B", "matias@siprop.com", "totally safe password", ADMIN),
     User("Franco F", "franco@siprop.com", "pass123", ADMIN),
+    User("Lautaro P", "lautaro@gmail.com", "123", ADMIN),
+
 ]
 
 
@@ -18,6 +20,8 @@ brokers = [
     User("faralla", "admin@faralla.com.ar", "1231231", BROKER),
     User("fasebonne", "admin@casebonne.com.ar", "maybe123", BROKER),
     User("icortese", "admin@icortese.com.ar", "not123", BROKER),
+    User("Lautaro F", "lautarof@gmail.com", "123", BROKER),
+
 ]
 
 everyone = admins + brokers

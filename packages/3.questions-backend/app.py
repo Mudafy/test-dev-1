@@ -25,12 +25,13 @@ from config import config_by_name
 from api_config import authorizations, config as swagger_config
 
 from users import User, admins, brokers, everyone, get_user, save_user, check_user
+from questions import questions
 
 
 logger = get_logger(__name__)
 
 config_name = os.environ.get("ENVIRONMENT", "development")
-app = Flask('Questions', static_folder=None)
+app = Flask('Questions', static_folder=None) ###Se ejecuta Flask, app es la aplicacion de servidor
 app.config.from_object(config_by_name[config_name])
 
 cors = FlaskCors(app)
@@ -49,6 +50,7 @@ jwt._set_error_handler_callbacks(api)
 generic_error = api.model('GenericError', {
     'message': fields.String(required=True, description='A description of the error')
 })
+
 
 @app.before_request
 def before_request():
@@ -237,11 +239,23 @@ class RefreshResource(Resource):
 questions_ns = api.namespace('questions', description='Questions')
 
 submit_question_fields = api.model('AskAQuestion', {
+    'name': fields.String(required=True, description='The name'),
+    'phone': fields.String(required=False, description='The phone'),
+    'email': fields.String(required=True, description='The email'),
+    'message': fields.String(required=False, description='The message'),
+    'broker': fields.Integer(required=False, description='Broker'),
+
 })
 
 question_fields = api.model('Question', {
-
+    'name': fields.String(required=True, description='The name'),
+    'phone': fields.String(required=False, description='The phone'),
+    'email': fields.String(required=True, description='The email'),
+    'message': fields.String(required=False, description='The message'),
+    'broker': fields.Integer(required=False, readOnly=True, description='Broker'),
+    'id': fields.Integer(required=True, readOnly=True, description='Id'),
 })
+
 
 @questions_ns.route('')
 class QuestionsResource(Resource):
@@ -253,9 +267,20 @@ class QuestionsResource(Resource):
         """
         List available questions
         """
-        assert_broker()
+
+        current_user = assert_broker()
+
+        print(current_user)
+        print(questions)
+
         ### TODO: brokers should only be able to read their own questions, not others'
-        return []
+
+        ### Verificar que el id del broker que tiene cada question coincida con el broker que inicio sesion
+        return jsonify({"questions" : questions[0]})
+
+
+
+        # return []
 
     @questions_ns.doc('ask_a_question', body=submit_question_fields)
     @api.expect(submit_question_fields)
@@ -267,7 +292,28 @@ class QuestionsResource(Resource):
         """
         question = api.payload
 
-        return None, 200
+        ###Creamos una nueva question utilizando el formato que definimos en question_fields, ya que 
+        ###es lo que espera el array que usamos, y este metodo recibe un submit_question_field
+        new_question = {
+            "name" : question['name'],
+            "phone" : question["phone"],
+            "email" : question["email"],
+            "message" : question["message"],
+            "broker" : question["broker"],
+            "id" : len(questions) + 1 ###Obtenemos el id sacando la cantidad de registros que hay en el array de prueba
+        }
+
+        ### Previo a agregar la question, deberíamos validar todos los campos según el formato deseado
+
+        questions.append(new_question)
+
+        return questions, 200
+
+        ### El agregado de una consulta lo realizamos asi ya que estamos trabajando con un array de prueba.
+        ### En el caso de que trabajemos con una base de datos, se deberían controlar las transacciones,
+        ### teniendo en cuenta que puede haber un error en el medio y la transacción no puede quedar abierta.
+        ### Se debería implementar control de errores, y en el caso de ocurrir alguno, realizar un rollback.
+
 
 
 @questions_ns.param('question_id', 'The question ID')
@@ -314,4 +360,4 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    run() ### se ejecuta el servidor

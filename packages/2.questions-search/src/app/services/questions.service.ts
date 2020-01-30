@@ -11,55 +11,55 @@ import { questions } from './questions';
 })
 export class QuestionsService {
 
-  questions$ = new BehaviorSubject<Array<Question>>(questions);
-  questionDetails : Question;
+  questionsSource = questions;
+
+  //observers
+  questions$ = new BehaviorSubject<Array<Question>>(this.questionsSource);
+  questionDetails$ = new BehaviorSubject<Question>(null);
 
   constructor() { }
 
-  // getAllQuestions(){
-  //   const modified: Question = { name:"Jorge",email:"jorge@gmail.com"};
-  //   const questions: Array<Question> = [modified];
-  //   this.questions$.next(questions);
-  // }
-
 
   filterByQuestion(valueName: string, valuePhone: string, valueEmail: string) {
-    const allQuestions = this.questions$.getValue();
 
-    console.log("filtrando");
-    this.questions$.next(allQuestions.filter(q => q.name.includes(valueName)
+    this.questions$.next(this.questionsSource.filter(q => q.name.includes(valueName)
       && q.phone.includes(valuePhone)
       && q.email.includes(valueEmail)));
+    
   }
 
-  cleanFilters(questionsClean : Array<Question>)
+  cleanFilters()
   {
-    this.questions$.next(questionsClean);
+    this.questions$.next(this.questionsSource);
   }
 
   add(question: QuestionStub, broker: number) {
-    const allQuestions = this.questions$.getValue();
-    const lastId = Math.max(...allQuestions.map(q => q.id));
+
+    const lastId = Math.max(...this.questionsSource.map(q => q.id));
     const last: Question = { ...question, broker, id: lastId + 1 };
-    this.questions$.next([...allQuestions, last]);
+    this.questionsSource.push(last);
+    this.questions$.next(this.questionsSource);
   }
 
   remove(question: Question) {
-    const allQuestions = this.questions$.getValue();
-    this.questions$.next(allQuestions.filter(q => q.id !== question.id));
+    this.questionsSource = this.questionsSource.filter(q => q.id !== question.id);
+    this.questions$.next(this.questionsSource);
     return of('ok');
   }
 
   edit(question: Question, newContent: QuestionStub) {
-    const allQuestions = this.questions$.getValue()
-      .map(q => {
+    this.questionsSource.map(q => {
         if (q.id === question.id) {
-          return { ...question, ...newContent };
+          // return { ...question, ...newContent };
+          q.name = newContent.name;
+          q.phone = newContent.phone;
+          q.message = newContent.message;
+          q.email = newContent.email;
         }
         return q;
       });
-    this.questions$.next(allQuestions);
-    return of('ok');
+    this.questions$.next(this.questionsSource);
+    // return of('ok');
   }
 
   getById(questionId: number): Observable<Question> {
@@ -67,6 +67,10 @@ export class QuestionsService {
       switchAll(),
       find(q => q.id === questionId)
     );
+  }
+
+  goToDetails(question: Question){
+    this.questionDetails$.next(question);
   }
 
 }

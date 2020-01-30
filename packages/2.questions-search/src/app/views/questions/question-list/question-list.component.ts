@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Question } from 'src/app/services/question';
 import { QuestionStub } from 'src/app/services/question-stub';
 import { QuestionsService } from 'src/app/services/questions.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { Router } from '@angular/router';
 
@@ -48,7 +48,6 @@ export class QuestionListComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
 
-    // this.questionsSource = this.questions; //Lo usamos para mostrar la tabla nuevamente cuando limpiamos los filtros
   }
 
   openModal(action, obj) {
@@ -71,7 +70,8 @@ export class QuestionListComponent implements OnInit {
           message: result.data.message
         };
         this.questionsSvc.add(questionStub, result.idBroker);
-        this.questionsSource = [...this.questions];
+        console.log(this.nameInput);
+        this.questionsSvc.filterByQuestion(this.nameInput, this.phoneInput, this.emailInput);
 
       } else if (result.event == 'Editar') {
 
@@ -89,18 +89,17 @@ export class QuestionListComponent implements OnInit {
           error => { })
 
         this.questionsSvc.edit(this.questionToEdit, questionStub);
-        this.questionsSource = [...this.questions];
+        this.questionsSvc.filterByQuestion(this.nameInput, this.phoneInput, this.emailInput);
 
       } else if (result.event == 'Borrar') {
         this.questionsSvc.remove(result.data);
-        this.questionsSource = [...this.questions];
+        this.questionsSvc.filterByQuestion(this.nameInput, this.phoneInput, this.emailInput);
       }
 
     });
   }
 
   filterQuestion(valueName: string, valuePhone: string, valueEmail: string) {
-    this.questionsSource = [...this.questions];
     this.questionsSvc.filterByQuestion(valueName, valuePhone, valueEmail);
   }
 
@@ -109,13 +108,13 @@ export class QuestionListComponent implements OnInit {
     this.phoneInput = "";
     this.emailInput = "";
 
-    this.questionsSvc.cleanFilters(this.questionsSource);
+    this.questionsSvc.cleanFilters();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   onDetailsQuestion(question: Question) {
-    this.questionsSvc.questionDetails = question;
+    this.questionsSvc.goToDetails(question);
     this.router.navigate(['/questions', question.id]);
   }
 
@@ -123,10 +122,5 @@ export class QuestionListComponent implements OnInit {
     return item.id;
   }
 
-
-  //Alternativa para el funcionamiento de los filtros
-  // applyFilter(filterValue: string) {
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-  // }
 
 }

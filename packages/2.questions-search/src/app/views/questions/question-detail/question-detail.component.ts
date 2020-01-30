@@ -11,14 +11,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class QuestionDetailComponent implements OnInit {
 
-  public questionId = "";
+  public questionDetails : Question;
 
-  constructor(activatedRoute: ActivatedRoute, public questionsSvc: QuestionsService) {
-    this.questionId = activatedRoute.snapshot.params['id'];
+  constructor(private activatedRoute: ActivatedRoute, public questionsSvc: QuestionsService) {
   }
 
   ngOnInit() {
-
+    // this.questionId = this.activatedRoute.snapshot.params['id'];
+    this.questionsSvc.questionDetails$.subscribe(q => {
+      this.questionDetails = q;
+    })
   }
 
 

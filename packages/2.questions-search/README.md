@@ -36,3 +36,7 @@ Necesitás NodeJs 9 o más nuevo, Yarn, Angular CLI y seguir estos pasos:
 - `ng generate` para generar componentes y otros.
 
 
+## Levantar con Docker 
+- `docker build -t questions-search-frontend .`
+- `docker run -p 4200:4200 questions-search-frontend`
+

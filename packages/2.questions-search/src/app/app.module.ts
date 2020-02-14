@@ -11,6 +11,7 @@ import { QuestionsService } from './services/questions.service';
 import { NotFoundComponent } from './views/questions/not-found/not-found.component';
 import { QuestionDetailComponent } from './views/questions/question-detail/question-detail.component';
 import { QuestionListComponent } from './views/questions/question-list/question-list.component';
+import { MaterialUiModule } from './modules/material-ui/material-ui.module';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { QuestionListComponent } from './views/questions/question-list/question-
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MaterialUiModule
   ],
   providers: [QuestionsService],
   bootstrap: [AppComponent]

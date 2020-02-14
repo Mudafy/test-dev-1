@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Question } from 'src/app/services/question';
 import { QuestionsService } from 'src/app/services/questions.service';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-question-list',
@@ -9,14 +10,18 @@ import { QuestionsService } from 'src/app/services/questions.service';
 })
 export class QuestionListComponent implements OnInit {
 
-  questions: Array<Question>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  displayedColumns: string[] = ['name', 'phone', 'email', 'broker', 'actions'];
+  dataSource: MatTableDataSource<Question>;
   constructor(questionsSvc: QuestionsService) {
     questionsSvc.questions$.subscribe(q => {
-      this.questions = q;
+      this.dataSource = new MatTableDataSource(q);
     });
   }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
 

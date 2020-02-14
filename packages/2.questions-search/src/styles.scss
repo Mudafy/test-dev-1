@@ -30,3 +30,6 @@ $test-questions-search-theme: mat-light-theme($test-questions-search-primary, $t
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.basic-container {
+    padding: 30px;
+  }

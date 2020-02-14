@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MatToolbarModule } from '@angular/material';
+import { MatToolbarModule, MatPaginatorIntl } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,7 @@ import { NotFoundComponent } from './views/questions/not-found/not-found.compone
 import { QuestionDetailComponent } from './views/questions/question-detail/question-detail.component';
 import { QuestionListComponent } from './views/questions/question-list/question-list.component';
 import { MaterialUiModule } from './modules/material-ui/material-ui.module';
+import { Paginator } from './custom/paginator';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { MaterialUiModule } from './modules/material-ui/material-ui.module';
     QuestionCardComponent,
     NavbarComponent,
     FooterComponent,
-    NotFoundComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +32,7 @@ import { MaterialUiModule } from './modules/material-ui/material-ui.module';
     MatToolbarModule,
     MaterialUiModule
   ],
-  providers: [QuestionsService],
+  providers: [QuestionsService, { provide: MatPaginatorIntl, useClass: Paginator}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

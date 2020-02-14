@@ -6,7 +6,7 @@
     </mat-form-field>
 </ng-container> -->
 
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc"  class="mat-elevation-z8">
 
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>

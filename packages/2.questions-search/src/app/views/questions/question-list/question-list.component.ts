@@ -14,18 +14,26 @@ export class QuestionListComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'phone', 'email', 'broker', 'actions'];
   dataSource: MatTableDataSource<Question>;
-  constructor(questionsSvc: QuestionsService) {
+  constructor(private questionsSvc: QuestionsService) {
     questionsSvc.questions$.subscribe(q => {
       this.dataSource = new MatTableDataSource(q);
+      this.refreshTable();
     });
   }
 
   ngOnInit() {
+    this.refreshTable();
+  }
+
+  refreshTable(){
     this.dataSource.paginator = this.paginator;
   }
 
-
   getQuestionId(index: number, item: Question): number {
     return item.id;
+  }
+
+  deleteQuestion(item: Question) {
+    return this.questionsSvc.remove(item);
   }
 }

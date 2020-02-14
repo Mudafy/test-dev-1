@@ -5,9 +5,42 @@
         <input matInput (keyup)="applyFilter($event)" (focus)="setupFilter(filterCol)" />
     </mat-form-field>
 </ng-container> -->
+
+<div class="mat-elevation-z8 margin-bottom">
+    <mat-accordion>
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Filtros de Búsqueda
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput [formControl]="nameFilter">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Teléfono</mat-label>
+                <input matInput [formControl]="phoneFilter">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput [formControl]="emailFilter">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Broker</mat-label>
+                <input matInput [formControl]="brokerFilter">
+            </mat-form-field>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+
+
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc"
-        class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc">
 
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
@@ -35,8 +68,8 @@
                 <a mat-icon-button [routerLink]="['/', 'questions', q.id]">
                     <mat-icon>search</mat-icon>
                 </a>
-                <a mat-icon-button (click)="deleteQuestion(q)">
-                    <mat-icon>delete</mat-icon>
+                <a mat-icon-button color="warn" (click)="deleteQuestion(q)">
+                    <mat-icon color>delete</mat-icon>
                 </a>
             </td>
         </ng-container>

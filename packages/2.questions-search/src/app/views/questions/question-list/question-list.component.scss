@@ -1,4 +1,11 @@
 table {
     width: 100%;
   }
-  
+
+  .mat-form-field + .mat-form-field {
+    margin-left: 10px;
+  }
+
+  .margin-bottom{
+    margin-bottom: 20px;
+  }

@@ -8,6 +8,10 @@
     flex: 1;
 }
 
+.body-content {
+  opacity: 0.95;
+}
+
 .custom-container {
     display: flex;
     flex-direction: column;
@@ -19,5 +23,9 @@
   }
 
   .basic-container {
-    padding: 30px;
+    padding: 25px 200px;
+  }
+
+  .mudafy-background {
+    background: url(/assets/background.webp) center center/cover no-repeat;
   }

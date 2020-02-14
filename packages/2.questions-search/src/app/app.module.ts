@@ -13,6 +13,7 @@ import { QuestionDetailComponent } from './views/questions/question-detail/quest
 import { QuestionListComponent } from './views/questions/question-list/question-list.component';
 import { MaterialUiModule } from './modules/material-ui/material-ui.module';
 import { Paginator } from './custom/paginator';
+import { ReactiveFormsModule } from '@angular/forms'
 
 
 @NgModule({
@@ -30,9 +31,10 @@ import { Paginator } from './custom/paginator';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MaterialUiModule
+    MaterialUiModule,
+    ReactiveFormsModule
   ],
-  providers: [QuestionsService, { provide: MatPaginatorIntl, useClass: Paginator}],
+  providers: [QuestionsService, { provide: MatPaginatorIntl, useClass: Paginator }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

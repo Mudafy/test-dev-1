@@ -15,6 +15,9 @@ import { MaterialUiModule } from './modules/material-ui/material-ui.module';
 import { Paginator } from './custom/paginator';
 import { ReactiveFormsModule } from '@angular/forms'
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { QuestionNewComponent } from './components/questions/question-new/question-new.component';
+import { QuestionDeleteComponent } from './components/questions/question-delete/question-delete.component';
+import { QuestionEditComponent } from './components/questions/question-edit/question-edit.component';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     QuestionCardComponent,
     NavbarComponent,
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    QuestionNewComponent,
+    QuestionDeleteComponent,
+    QuestionEditComponent
   ],
   imports: [
     BrowserModule,

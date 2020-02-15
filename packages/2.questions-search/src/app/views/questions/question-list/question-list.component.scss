@@ -9,3 +9,23 @@ table {
 .margin-bottom {
   margin-bottom: 20px;
 }
+
+.mat-table-containter {
+  overflow-x: auto;
+}
+
+.mat-cell,
+.mat-header-cell {
+  word-wrap: initial;
+  display: table-cell;
+  padding: 0px 10px;
+  line-break: unset;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.mat-row,
+.mat-header-row {
+  display: table-row;
+}

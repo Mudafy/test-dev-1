@@ -7,79 +7,90 @@
 </ng-container> -->
 
 <div class="mat-elevation-z8 margin-bottom">
-    <mat-accordion>
-        <mat-expansion-panel [expanded]="true">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Filtros de Búsqueda
-                </mat-panel-title>
-            </mat-expansion-panel-header>
 
-            <div fxLayout="row wrap">
-                <mat-form-field fxFlex.gt-sm="25%" fxFlex.sm="50%" fxFlex.lt-sm="100%">
-                    <mat-label>Nombre</mat-label>
-                    <input matInput [formControl]="nameFilter">
-                </mat-form-field>
-    
-                <mat-form-field fxFlex.gt-sm="25%" fxFlex.sm="50%" fxFlex.lt-sm="100%">
-                    <mat-label>Teléfono</mat-label>
-                    <input matInput [formControl]="phoneFilter">
-                </mat-form-field>
-    
-                <mat-form-field fxFlex.gt-sm="25%" fxFlex.sm="50%" fxFlex.lt-sm="100%">
-                    <mat-label>Email</mat-label>
-                    <input matInput [formControl]="emailFilter">
-                </mat-form-field>
-    
-                <mat-form-field fxFlex.gt-sm="25%" fxFlex.sm="50%" fxFlex.lt-sm="100%">
-                    <mat-label>Broker</mat-label>
-                    <input matInput [formControl]="brokerFilter">
-                </mat-form-field>
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Filtros de Búsqueda
+            </mat-panel-title>
+        </mat-expansion-panel-header>
 
-            </div>
-        </mat-expansion-panel>
-    </mat-accordion>
+        <div fxLayout="row wrap">
+            <mat-form-field fxFlex.gt-sm="25%" fxFlex.sm="50%" fxFlex.lt-sm="100%">
+                <mat-label>Nombre</mat-label>
+                <input matInput [formControl]="nameFilter">
+            </mat-form-field>
+
+            <mat-form-field fxFlex.gt-sm="25%" fxFlex.sm="50%" fxFlex.lt-sm="100%">
+                <mat-label>Teléfono</mat-label>
+                <input matInput [formControl]="phoneFilter">
+            </mat-form-field>
+
+            <mat-form-field fxFlex.gt-sm="25%" fxFlex.sm="50%" fxFlex.lt-sm="100%">
+                <mat-label>Email</mat-label>
+                <input matInput [formControl]="emailFilter">
+            </mat-form-field>
+
+            <mat-form-field fxFlex.gt-sm="25%" fxFlex.sm="50%" fxFlex.lt-sm="100%">
+                <mat-label>Broker</mat-label>
+                <input matInput [formControl]="brokerFilter">
+            </mat-form-field>
+
+        </div>
+    </mat-expansion-panel>
 </div>
 
 
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc">
+    <mat-expansion-panel [expanded]="true" class="mat-table-containter">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Listado de Consultas
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <table mat-table [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc">
 
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-            <td mat-cell *matCellDef="let q"> {{q.name}} </td>
-        </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                <td mat-cell *matCellDef="let q"> {{q.name}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Teléfono </th>
+                <td mat-cell *matCellDef="let q"> {{q.phone}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                <td mat-cell *matCellDef="let q"> {{q.email}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="broker">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Broker </th>
+                <td mat-cell *matCellDef="let q"> {{q.broker}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                <td mat-cell *matCellDef="let q">
+                    <a mat-icon-button [routerLink]="['/', 'questions', q.id]">
+                        <mat-icon>search</mat-icon>
+                    </a>
+                    <a mat-icon-button color="warn" (click)="deleteQuestion(q)">
+                        <mat-icon color>delete</mat-icon>
+                    </a>
+                </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    
+        <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+    </mat-expansion-panel>
 
-        <ng-container matColumnDef="phone">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Teléfono </th>
-            <td mat-cell *matCellDef="let q"> {{q.phone}} </td>
-        </ng-container>
 
-        <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-            <td mat-cell *matCellDef="let q"> {{q.email}} </td>
-        </ng-container>
 
-        <ng-container matColumnDef="broker">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Broker </th>
-            <td mat-cell *matCellDef="let q"> {{q.broker}} </td>
-        </ng-container>
+ 
 
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> Acciones </th>
-            <td mat-cell *matCellDef="let q">
-                <a mat-icon-button [routerLink]="['/', 'questions', q.id]">
-                    <mat-icon>search</mat-icon>
-                </a>
-                <a mat-icon-button color="warn" (click)="deleteQuestion(q)">
-                    <mat-icon color>delete</mat-icon>
-                </a>
-            </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
-    <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
 </div>

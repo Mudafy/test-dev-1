@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { Question } from 'src/app/services/question';
 import { QuestionsService } from 'src/app/services/questions.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Question } from 'src/app/models/question';
 
 @Component({
   selector: 'app-question-delete',
-  templateUrl: './question-delete.component.html',
-  styleUrls: ['./question-delete.component.scss']
+  templateUrl: './question-delete-dialog.component.html',
+  styleUrls: ['./question-delete-dialog.component.scss']
 })
 export class QuestionDeleteDialogComponent implements OnInit {
 

@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Question } from 'src/app/services/question';
+import { Question } from 'src/app/models/question';
 import { QuestionsService } from 'src/app/services/questions.service';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { FormControl } from '@angular/forms';
-import { QuestionDeleteDialogComponent } from 'src/app/components/questions/question-delete/question-delete.component';
+import { QuestionDeleteDialogComponent } from 'src/app/components/questions/question-delete-dialog/question-delete-dialog.component';
+import { QuestionNewEditDialogComponent } from 'src/app/components/questions/question-new-edit-dialog/question-new-edit-dialog.component';
+import { BrokersService } from 'src/app/services/brokers.service';
 
 @Component({
   selector: 'app-question-list',
@@ -16,7 +18,7 @@ export class QuestionListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns: string[] = ['name', 'phone', 'email', 'broker', 'actions'];
-  dataSource: MatTableDataSource<Question>;
+  dataSource: MatTableDataSource<any>;
   globalFilter = '';
   filteredValues = {
     name: '', phone: '', broker: '', email: ''
@@ -25,9 +27,16 @@ export class QuestionListComponent implements OnInit {
   phoneFilter = new FormControl();
   brokerFilter = new FormControl();
   emailFilter = new FormControl();
-  constructor(private questionsSvc: QuestionsService, public dialog: MatDialog) {
-    questionsSvc.questions$.subscribe(q => {
-      this.dataSource = new MatTableDataSource(q);
+  constructor(
+    private questionsSvc: QuestionsService, 
+    private brokersSvc: BrokersService, 
+    public dialog: MatDialog
+    ) {
+    questionsSvc.questions$.subscribe(questions => {
+      // let questionDataSource = questions.map(q => {
+      //   brokerName: brokersSvc.getById(q.id).subscribe()
+      // });
+      this.dataSource = new MatTableDataSource(questions);
       this.refreshTable();
     });
   }
@@ -58,18 +67,17 @@ export class QuestionListComponent implements OnInit {
     return item.id;
   }
 
-  // deleteQuestion(item: Question) {
-  //   return this.questionsSvc.remove(item);
-  // }
+  addQuestion(){
+    this.dialog.open(QuestionNewEditDialogComponent, {
+      disableClose: true,
+      autoFocus: true,
+      width: "50%"
+    });
+  }
 
   deleteQuestion(item: Question): void {
-    const dialogRef = this.dialog.open(QuestionDeleteDialogComponent, {
-      width: '250px',
+    this.dialog.open(QuestionDeleteDialogComponent, {
       data: item
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     });
   }
 

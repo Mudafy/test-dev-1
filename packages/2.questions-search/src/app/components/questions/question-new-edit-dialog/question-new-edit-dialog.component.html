@@ -1,0 +1,45 @@
+<div style="flex-direction: row;">
+  <h2 mat-dialog-title >Formulario de Alta</h2>
+
+  <form [formGroup]="form" fxFlex="100%" (submit)="onSubmit()">
+  
+    <input type="hidden" formControlName="$id">
+  
+    <div fxLayout="row wrap">
+      <mat-form-field fxFlex="100%">
+        <input matInput placeholder="Nombre" formControlName="name" />
+        <mat-error>Debe ingresar un Nombre.</mat-error>
+      </mat-form-field>
+    
+      <mat-form-field fxFlex="100%">
+        <input matInput placeholder="Email" formControlName="email" />
+        <mat-error *ngIf="form.controls['email'].errors?.required">Debe ingresar un Email.</mat-error>
+        <mat-error *ngIf="form.controls['email'].errors?.email">Debe ingresar un Email válido.</mat-error>
+      </mat-form-field>
+    
+      <mat-form-field fxFlex="100%"> 
+        <input matInput placeholder="Teléfono" formControlName="phone" />
+      </mat-form-field>
+    
+      <mat-form-field fxFlex="100%">
+        <textarea matInput placeholder="Mensaje" formControlName="message"></textarea>
+      </mat-form-field>
+    
+      <mat-form-field fxFlex="100%">
+        <mat-select matInput placeholder="Broker" formControlName="broker">
+          <ng-container *ngFor="let broker of brokersSvc.brokers$.value">
+            <mat-option value="{{broker.id}}">{{broker.name}}</mat-option>
+          </ng-container>
+        </mat-select>
+    
+      </mat-form-field>
+    </div>
+    
+  
+    <mat-dialog-actions >
+      <button mat-button (click)="close()" type="button">Cerrar</button>
+      <button mat-button mat-primary [disabled]="form.invalid" type="submit" color="primary">Aceptar</button>
+    </mat-dialog-actions>
+  
+  </form>
+</div>

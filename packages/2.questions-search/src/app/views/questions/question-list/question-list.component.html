@@ -1,4 +1,3 @@
-
 <div class="mat-elevation-z8 margin-bottom">
 
     <mat-expansion-panel [expanded]="true">
@@ -41,6 +40,9 @@
                 Listado de Consultas
             </mat-panel-title>
         </mat-expansion-panel-header>
+        <button mat-button color="primary" (click)="addQuestion()">
+            Ingresar Nueva Consulta
+        </button>
         <table mat-table [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc">
 
             <ng-container matColumnDef="name">
@@ -83,4 +85,3 @@
     </mat-expansion-panel>
 
 </div>
-

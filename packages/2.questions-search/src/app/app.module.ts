@@ -15,9 +15,10 @@ import { MaterialUiModule } from './modules/material-ui/material-ui.module';
 import { Paginator } from './custom/paginator';
 import { ReactiveFormsModule } from '@angular/forms'
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { QuestionNewComponent } from './components/questions/question-new/question-new.component';
-import { QuestionDeleteDialogComponent } from './components/questions/question-delete/question-delete.component';
-import { QuestionEditComponent } from './components/questions/question-edit/question-edit.component';
+import { QuestionDeleteDialogComponent } from './components/questions/question-delete-dialog/question-delete-dialog.component';
+import { QuestionNewEditDialogComponent } from './components/questions/question-new-edit-dialog/question-new-edit-dialog.component';
+import { BrokersService } from './services/brokers.service';
+import { NotificationsService } from './services/notifications.service';
 
 
 @NgModule({
@@ -29,9 +30,8 @@ import { QuestionEditComponent } from './components/questions/question-edit/ques
     NavbarComponent,
     FooterComponent,
     NotFoundComponent,
-    QuestionNewComponent,
     QuestionDeleteDialogComponent,
-    QuestionEditComponent
+    QuestionNewEditDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,8 +42,8 @@ import { QuestionEditComponent } from './components/questions/question-edit/ques
     ReactiveFormsModule,    
     FlexLayoutModule
   ],
-  entryComponents: [QuestionDeleteDialogComponent],
-  providers: [QuestionsService, { provide: MatPaginatorIntl, useClass: Paginator }],
+  entryComponents: [QuestionDeleteDialogComponent, QuestionNewEditDialogComponent],
+  providers: [QuestionsService, BrokersService, NotificationsService, { provide: MatPaginatorIntl, useClass: Paginator }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

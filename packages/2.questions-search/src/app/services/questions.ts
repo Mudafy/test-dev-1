@@ -14,5 +14,5 @@ function fakeQuestion(id: number): Question {
 }
 
 // export const brokers = [1, 2, 3, 40, 6];
-export const questions: Array<Question> = [...Array(10).keys()]
+export const questions: Array<Question> = [...Array(100).keys()]
     .map(fakeQuestion);

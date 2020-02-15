@@ -79,17 +79,16 @@ export class QuestionNewEditDialogComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       if (!this.form.get('$id').value) {
-        console.log('ketapasando');
         this.questionsSvc.add(
           this.mapFormToQuestionStub(),
           this.form.value.broker);
-        this.notificationsSvc.success("¡La consulta ha sido creada exitosamente!");
+        this.notificationsSvc.success("La consulta ha sido creada exitosamente.");
       }
       else {
         this.questionsSvc.edit(
           this.question,
           this.mapFormToQuestionStub());
-        this.notificationsSvc.success("¡La consulta ha sido modificada exitosamente!");
+        this.notificationsSvc.success("La consulta ha sido modificada exitosamente.");
       }
       this.close();
     }

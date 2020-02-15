@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Question } from 'src/app/models/question';
+import { BrokersService } from 'src/app/services/brokers.service';
+import { questions } from 'src/app/services/questions';
 
 @Component({
   selector: 'app-question-card',
@@ -9,10 +11,18 @@ import { Question } from 'src/app/models/question';
 export class QuestionCardComponent implements OnInit {
 
   @Input() question: Question;
+  public brokerName: string;
 
-  constructor() { }
+  constructor(public brokersSvc: BrokersService) {
+   
+  }
 
   ngOnInit() {
+    if(this.question){
+      this.brokersSvc.getById(this.question.broker).subscribe(
+        b => { if (b) this.brokerName = b.name; }
+      );
+    }
   }
 
 }

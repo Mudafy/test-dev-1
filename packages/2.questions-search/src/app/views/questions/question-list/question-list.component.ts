@@ -17,36 +17,41 @@ export class QuestionListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns: string[] = ['name', 'phone', 'email', 'broker', 'actions'];
+  displayedColumns: string[] = ['name', 'phone', 'email', 'brokerName', 'actions'];
   dataSource: MatTableDataSource<any>;
   globalFilter = '';
   filteredValues = {
-    name: '', phone: '', broker: '', email: ''
+    name: '', phone: '', brokerName: '', email: ''
   };
   nameFilter = new FormControl();
   phoneFilter = new FormControl();
   brokerFilter = new FormControl();
   emailFilter = new FormControl();
   constructor(
-    private questionsSvc: QuestionsService, 
-    private brokersSvc: BrokersService, 
+    private questionsSvc: QuestionsService,
+    private brokersSvc: BrokersService,
     public dialog: MatDialog
-    ) {
+  ) {
     questionsSvc.questions$.subscribe(questions => {
-      // let questionDataSource = questions.map(q => {
-      //   brokerName: brokersSvc.getById(q.id).subscribe()
-      // });
-      this.dataSource = new MatTableDataSource(questions);
+      let questionDataSource = questions.map(q => {
+        let brokerName = '';
+        brokersSvc.getById(q.broker).subscribe(b => { if (b) brokerName = b.name; });
+        return {
+          brokerName,
+          ...q
+        };
+      });
+      this.dataSource = new MatTableDataSource(questionDataSource);
       this.refreshTable();
     });
   }
 
   ngOnInit() {
-    this.refreshTable();        
+    this.refreshTable();
     this.subscribeFilter(this.nameFilter, 'name');
     this.subscribeFilter(this.phoneFilter, 'phone');
     this.subscribeFilter(this.emailFilter, 'email');
-    this.subscribeFilter(this.brokerFilter, 'broker');
+    this.subscribeFilter(this.brokerFilter, 'brokerName');
   }
 
   subscribeFilter(formControl: FormControl, valueName: string) {
@@ -67,7 +72,7 @@ export class QuestionListComponent implements OnInit {
     return item.id;
   }
 
-  addQuestion(){
+  addQuestion() {
     this.dialog.open(QuestionNewEditDialogComponent, {
       disableClose: true,
       autoFocus: true,
@@ -75,7 +80,7 @@ export class QuestionListComponent implements OnInit {
     });
   }
 
-  editQuestion(item: Question){
+  editQuestion(item: Question) {
     this.dialog.open(QuestionNewEditDialogComponent, {
       disableClose: true,
       autoFocus: true,
@@ -92,11 +97,11 @@ export class QuestionListComponent implements OnInit {
   }
 
   customFilterPredicate() {
-    const myFilterPredicate = (data: Question, filter: string): boolean => {
+    const myFilterPredicate = (data: any, filter: string): boolean => {
       let searchString = JSON.parse(filter);
       return data.name.toString().trim().toLowerCase().indexOf(searchString.name.toLowerCase()) !== -1
         && data.phone.toString().trim().toLowerCase().indexOf(searchString.phone.toLowerCase()) !== -1
-        && (!data.broker || data.broker.toString().trim().toLowerCase().indexOf(searchString.broker.toLowerCase()) !== -1)
+        && data.brokerName.toString().trim().toLowerCase().indexOf(searchString.brokerName.toLowerCase()) !== -1
         && data.email.toString().trim().toLowerCase().indexOf(searchString.email.toLowerCase()) !== -1;
     }
     return myFilterPredicate;

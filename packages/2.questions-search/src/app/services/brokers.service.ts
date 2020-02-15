@@ -12,10 +12,10 @@ export class BrokersService {
   brokers$ = new BehaviorSubject<Array<Broker>>(brokers);
   constructor() { }
 
-  getById(questionId: number): Observable<Broker> {
+  getById(brokerId: number): Observable<Broker> {
     return this.brokers$.pipe(
       switchAll(),
-      find(q => q.id === questionId)
+      find(b => b.id == brokerId)
     );
   }
 }

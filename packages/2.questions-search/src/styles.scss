@@ -11,11 +11,11 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$test-questions-search-primary: mat-palette($mat-red);
-$test-questions-search-accent: mat-palette($mat-pink, A200, A100, A400);
+$test-questions-search-primary: mat-palette($mat-teal, 700);
+$test-questions-search-accent: mat-palette($mat-cyan, 700);
 
 // The warn palette is optional (defaults to red).
-$test-questions-search-warn: mat-palette($mat-red);
+$test-questions-search-warn: mat-palette($mat-red, 700);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $test-questions-search-theme: mat-light-theme(
@@ -38,4 +38,15 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* notifications */
+snack-bar-container.success{
+  background-color: mat-color($test-questions-search-primary);
+  color:#fff;
+}
+
+snack-bar-container.warn{
+  background-color: mat-color($test-questions-search-warn);
+  color:#fff;
 }

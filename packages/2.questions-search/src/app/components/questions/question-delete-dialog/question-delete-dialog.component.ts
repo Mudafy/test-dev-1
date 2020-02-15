@@ -26,7 +26,7 @@ export class QuestionDeleteDialogComponent implements OnInit {
 
   deleteQuestion(item: Question) {
     this.questionsSvc.remove(item);
-    this.notificationsSvc.success("¡La consulta ha sido eliminada exitosamente!");
+    this.notificationsSvc.warn("La consulta ha sido eliminada.");
     this.close();
   }
 

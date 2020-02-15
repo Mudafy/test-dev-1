@@ -1,18 +1,24 @@
-<mat-card class="custom-card mat-elevation-z8">
-  <mat-card-header>
-    <div mat-card-avatar class="header-image"></div>
-    <mat-card-title>{{question.name}}</mat-card-title>
-    <mat-card-subtitle>{{question.email}}</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="https://i.picsum.photos/id/1067/750/600.jpg" alt="Photo of a Shiba Inu">
-  <mat-card-content>
-    <p>
-      {{question.message}}
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <a mat-button [routerLink]="['/', 'questions']">
-      Volver al Listado de Consultas
-    </a>
-  </mat-card-actions>
-</mat-card>
+<div fxLayout fxFill fxLayoutAlign="space-around center">
+  <mat-card class="custom-card mat-elevation-z8">
+    <mat-card-header>
+      <div mat-card-avatar class="header-image"></div>
+      <mat-card-title>{{question.name}}</mat-card-title>
+      <mat-card-subtitle>{{brokerName ? brokerName : "-"}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://i.picsum.photos/id/1067/750/600.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p class="with-icon">
+        <mat-icon>mail</mat-icon>&nbsp;{{question.email}}&nbsp;<mat-icon>phone</mat-icon>&nbsp;{{question.phone}}
+      </p>
+      <p>
+        {{question.message}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-button [routerLink]="['/', 'questions']">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+        Volver
+      </a>
+    </mat-card-actions>
+  </mat-card>
+</div>

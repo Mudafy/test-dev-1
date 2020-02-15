@@ -15,25 +15,28 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
 
-            <mat-form-field>
-                <mat-label>Nombre</mat-label>
-                <input matInput [formControl]="nameFilter">
-            </mat-form-field>
+            <div fxLayout="row wrap">
+                <mat-form-field fxFlex.gt-sm="25%" fxFlex.sm="50%" fxFlex.lt-sm="100%">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput [formControl]="nameFilter">
+                </mat-form-field>
+    
+                <mat-form-field fxFlex.gt-sm="25%" fxFlex.sm="50%" fxFlex.lt-sm="100%">
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput [formControl]="phoneFilter">
+                </mat-form-field>
+    
+                <mat-form-field fxFlex.gt-sm="25%" fxFlex.sm="50%" fxFlex.lt-sm="100%">
+                    <mat-label>Email</mat-label>
+                    <input matInput [formControl]="emailFilter">
+                </mat-form-field>
+    
+                <mat-form-field fxFlex.gt-sm="25%" fxFlex.sm="50%" fxFlex.lt-sm="100%">
+                    <mat-label>Broker</mat-label>
+                    <input matInput [formControl]="brokerFilter">
+                </mat-form-field>
 
-            <mat-form-field>
-                <mat-label>Teléfono</mat-label>
-                <input matInput [formControl]="phoneFilter">
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input matInput [formControl]="emailFilter">
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Broker</mat-label>
-                <input matInput [formControl]="brokerFilter">
-            </mat-form-field>
+            </div>
         </mat-expansion-panel>
     </mat-accordion>
 </div>

@@ -14,6 +14,7 @@ import { QuestionListComponent } from './views/questions/question-list/question-
 import { MaterialUiModule } from './modules/material-ui/material-ui.module';
 import { Paginator } from './custom/paginator';
 import { ReactiveFormsModule } from '@angular/forms'
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ReactiveFormsModule } from '@angular/forms'
     BrowserAnimationsModule,
     MatToolbarModule,
     MaterialUiModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,    
+    FlexLayoutModule
   ],
   providers: [QuestionsService, { provide: MatPaginatorIntl, useClass: Paginator }],
   bootstrap: [AppComponent]

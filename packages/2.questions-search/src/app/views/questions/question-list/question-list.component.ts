@@ -18,7 +18,7 @@ export class QuestionListComponent implements OnInit {
   dataSource: MatTableDataSource<Question>;
   globalFilter = '';
   filteredValues = {
-    name: '', phone: '', broker: '',email: ''
+    name: '', phone: '', broker: '', email: ''
   };
   nameFilter = new FormControl();
   phoneFilter = new FormControl();
@@ -32,32 +32,21 @@ export class QuestionListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.refreshTable();
-
-    this.nameFilter.valueChanges.subscribe((nameFilterValue) => {
-      this.filteredValues['name'] = nameFilterValue;
-      this.dataSource.filter = JSON.stringify(this.filteredValues);
-    });
-
-    this.phoneFilter.valueChanges.subscribe((phoneFilterValue) => {
-      this.filteredValues['phone'] = phoneFilterValue;
-      this.dataSource.filter = JSON.stringify(this.filteredValues);
-    });
-
-    this.emailFilter.valueChanges.subscribe((emailFilterValue) => {
-      this.filteredValues['email'] = emailFilterValue;
-      this.dataSource.filter = JSON.stringify(this.filteredValues);
-    });
-
-    this.brokerFilter.valueChanges.subscribe((brokerFilterValue) => {
-      this.filteredValues['broker'] = brokerFilterValue;
-      this.dataSource.filter = JSON.stringify(this.filteredValues);
-    });
-
-
+    this.refreshTable();        
+    this.subscribeFilter(this.nameFilter, 'name');
+    this.subscribeFilter(this.phoneFilter, 'phone');
+    this.subscribeFilter(this.emailFilter, 'email');
+    this.subscribeFilter(this.brokerFilter, 'broker');
   }
 
-  refreshTable(){
+  subscribeFilter(formControl: FormControl, valueName: string) {
+    formControl.valueChanges.subscribe((value) => {
+      this.filteredValues[valueName] = value;
+      this.dataSource.filter = JSON.stringify(this.filteredValues);
+    });
+  }
+
+  refreshTable() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.dataSource.filterPredicate = this.customFilterPredicate();
@@ -75,10 +64,10 @@ export class QuestionListComponent implements OnInit {
   customFilterPredicate() {
     const myFilterPredicate = (data: Question, filter: string): boolean => {
       let searchString = JSON.parse(filter);
-      return data.name.toString().trim().toLowerCase().indexOf(searchString.name) !== -1 
-         && data.phone.toString().trim().toLowerCase().indexOf(searchString.phone) !== -1
-         && data.broker.toString().trim().toLowerCase().indexOf(searchString.broker) !== -1
-         && data.email.toString().trim().toLowerCase().indexOf(searchString.email) !== -1;
+      return data.name.toString().trim().toLowerCase().indexOf(searchString.name.toLowerCase()) !== -1
+        && data.phone.toString().trim().toLowerCase().indexOf(searchString.phone.toLowerCase()) !== -1
+        && data.broker.toString().trim().toLowerCase().indexOf(searchString.broker) !== -1
+        && data.email.toString().trim().toLowerCase().indexOf(searchString.email.toLowerCase()) !== -1;
     }
     return myFilterPredicate;
   }

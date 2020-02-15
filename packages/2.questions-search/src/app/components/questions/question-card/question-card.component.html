@@ -1,4 +1,18 @@
-<div>
-  <h4>{{question.id}} - {{question.name}}</h4>
-  <a [routerLink]="['/', 'questions', question.id]">Ir a la consulta {{question.id}}</a>
-</div>
+<mat-card class="custom-card mat-elevation-z8">
+  <mat-card-header>
+    <div mat-card-avatar class="header-image"></div>
+    <mat-card-title>{{question.name}}</mat-card-title>
+    <mat-card-subtitle>{{question.email}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="https://i.picsum.photos/id/1067/750/600.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      {{question.message}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-button [routerLink]="['/', 'questions']">
+      Volver al Listado de Consultas
+    </a>
+  </mat-card-actions>
+</mat-card>

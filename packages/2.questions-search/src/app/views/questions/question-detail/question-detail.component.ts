@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { QuestionsService } from 'src/app/services/questions.service';
+import { Question } from 'src/app/services/question';
 
 @Component({
   selector: 'app-question-detail',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionDetailComponent implements OnInit {
 
-  constructor() { }
+  public question: Question;
+  constructor(private route: ActivatedRoute, private questionsSvc: QuestionsService) { }
 
   ngOnInit() {
+    let id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.questionsSvc.getById(id).subscribe(q => this.question = q);
   }
 
 }

@@ -1,10 +1,3 @@
-<!-- <app-question-card *ngFor="let question of questions; trackBy getQuestionId" [question]="question"></app-question-card> -->
-<!-- <ng-container *ngFor="let filterCol of ['name', 'phone', 'email']">
-    <mat-form-field>
-        <mat-label>{{filterCol}}</mat-label>
-        <input matInput (keyup)="applyFilter($event)" (focus)="setupFilter(filterCol)" />
-    </mat-form-field>
-</ng-container> -->
 
 <div class="mat-elevation-z8 margin-bottom">
 
@@ -54,22 +47,22 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
                 <td mat-cell *matCellDef="let q"> {{q.name}} </td>
             </ng-container>
-    
+
             <ng-container matColumnDef="phone">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Teléfono </th>
                 <td mat-cell *matCellDef="let q"> {{q.phone}} </td>
             </ng-container>
-    
+
             <ng-container matColumnDef="email">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
                 <td mat-cell *matCellDef="let q"> {{q.email}} </td>
             </ng-container>
-    
+
             <ng-container matColumnDef="broker">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Broker </th>
                 <td mat-cell *matCellDef="let q"> {{q.broker}} </td>
             </ng-container>
-    
+
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> Acciones </th>
                 <td mat-cell *matCellDef="let q">
@@ -81,16 +74,13 @@
                     </a>
                 </td>
             </ng-container>
-    
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-    
+
         <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
     </mat-expansion-panel>
 
-
-
- 
-
 </div>
+

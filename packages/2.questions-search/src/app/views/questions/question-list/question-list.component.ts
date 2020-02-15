@@ -28,8 +28,8 @@ export class QuestionListComponent implements OnInit {
   brokerFilter = new FormControl();
   emailFilter = new FormControl();
   constructor(
-    private questionsSvc: QuestionsService,
-    private brokersSvc: BrokersService,
+    questionsSvc: QuestionsService,
+    brokersSvc: BrokersService,
     public dialog: MatDialog
   ) {
     questionsSvc.questions$.subscribe(questions => {
@@ -63,6 +63,7 @@ export class QuestionListComponent implements OnInit {
 
   refreshTable() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sortingDataAccessor = (value, sortHeaderId) => value[sortHeaderId].toLocaleLowerCase();
     this.dataSource.sort = this.sort;
     this.dataSource.filterPredicate = this.customFilterPredicate();
     this.dataSource.filter = JSON.stringify(this.filteredValues);

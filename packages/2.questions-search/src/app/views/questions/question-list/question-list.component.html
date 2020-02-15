@@ -11,21 +11,37 @@
             <mat-form-field fxFlex.gt-sm="25%" fxFlex.sm="50%" fxFlex.lt-sm="100%">
                 <mat-label>Nombre</mat-label>
                 <input matInput [formControl]="nameFilter">
+                <button mat-button *ngIf="nameFilter.value" matSuffix mat-icon-button aria-label="Limpiar"
+                    (click)="nameFilter.setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
             </mat-form-field>
 
             <mat-form-field fxFlex.gt-sm="25%" fxFlex.sm="50%" fxFlex.lt-sm="100%">
                 <mat-label>Teléfono</mat-label>
                 <input matInput [formControl]="phoneFilter">
+                <button mat-button *ngIf="phoneFilter.value" matSuffix mat-icon-button aria-label="Limpiar"
+                    (click)="phoneFilter.setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
             </mat-form-field>
 
             <mat-form-field fxFlex.gt-sm="25%" fxFlex.sm="50%" fxFlex.lt-sm="100%">
                 <mat-label>Email</mat-label>
                 <input matInput [formControl]="emailFilter">
+                <button mat-button *ngIf="emailFilter.value" matSuffix mat-icon-button aria-label="Limpiar"
+                    (click)="emailFilter.setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
             </mat-form-field>
 
             <mat-form-field fxFlex.gt-sm="25%" fxFlex.sm="50%" fxFlex.lt-sm="100%">
                 <mat-label>Broker</mat-label>
                 <input matInput [formControl]="brokerFilter">
+                <button mat-button *ngIf="brokerFilter.value" matSuffix mat-icon-button aria-label="Limpiar"
+                    (click)="brokerFilter.setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
             </mat-form-field>
 
         </div>

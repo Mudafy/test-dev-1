@@ -75,6 +75,16 @@ export class QuestionListComponent implements OnInit {
     });
   }
 
+  editQuestion(item: Question){
+    this.dialog.open(QuestionNewEditDialogComponent, {
+      disableClose: true,
+      autoFocus: true,
+      width: "50%",
+      data: item
+    });
+  }
+
+
   deleteQuestion(item: Question): void {
     this.dialog.open(QuestionDeleteDialogComponent, {
       data: item
@@ -86,7 +96,7 @@ export class QuestionListComponent implements OnInit {
       let searchString = JSON.parse(filter);
       return data.name.toString().trim().toLowerCase().indexOf(searchString.name.toLowerCase()) !== -1
         && data.phone.toString().trim().toLowerCase().indexOf(searchString.phone.toLowerCase()) !== -1
-        && data.broker.toString().trim().toLowerCase().indexOf(searchString.broker) !== -1
+        && (!data.broker || data.broker.toString().trim().toLowerCase().indexOf(searchString.broker.toLowerCase()) !== -1)
         && data.email.toString().trim().toLowerCase().indexOf(searchString.email.toLowerCase()) !== -1;
     }
     return myFilterPredicate;

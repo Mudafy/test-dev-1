@@ -1,5 +1,5 @@
 <div style="flex-direction: row;">
-  <h2 mat-dialog-title >Formulario de Alta</h2>
+  <h2 mat-dialog-title >{{!editMode?"Ingresar Nueva Consulta":"Editar Consulta"}}</h2>
 
   <form [formGroup]="form" fxFlex="100%" (submit)="onSubmit()">
   
@@ -25,8 +25,9 @@
         <textarea matInput placeholder="Mensaje" formControlName="message"></textarea>
       </mat-form-field>
     
-      <mat-form-field fxFlex="100%">
-        <mat-select matInput placeholder="Broker" formControlName="broker">
+    
+      <mat-form-field fxFlex="100%" *ngIf="!editMode">
+        <mat-select placeholder="Broker" formControlName="broker">
           <ng-container *ngFor="let broker of brokersSvc.brokers$.value">
             <mat-option value="{{broker.id}}">{{broker.name}}</mat-option>
           </ng-container>

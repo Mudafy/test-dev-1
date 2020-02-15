@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { QuestionsService } from 'src/app/services/questions.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Question } from 'src/app/models/question';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 @Component({
   selector: 'app-question-delete',
@@ -15,6 +16,7 @@ export class QuestionDeleteDialogComponent implements OnInit {
   
   constructor(
     private questionsSvc: QuestionsService,
+    public notificationsSvc: NotificationsService,
     public dialogRef: MatDialogRef<QuestionDeleteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public question: Question) {}
 
@@ -24,6 +26,7 @@ export class QuestionDeleteDialogComponent implements OnInit {
 
   deleteQuestion(item: Question) {
     this.questionsSvc.remove(item);
+    this.notificationsSvc.success("¡La consulta ha sido eliminada exitosamente!");
     this.close();
   }
 

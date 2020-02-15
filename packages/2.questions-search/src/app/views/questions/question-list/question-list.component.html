@@ -71,6 +71,9 @@
                     <a mat-icon-button [routerLink]="['/', 'questions', q.id]">
                         <mat-icon>search</mat-icon>
                     </a>
+                    <button mat-icon-button color="primary" (click)="editQuestion(q)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
                     <button mat-icon-button color="warn" (click)="deleteQuestion(q)">
                         <mat-icon>delete</mat-icon>
                     </button>

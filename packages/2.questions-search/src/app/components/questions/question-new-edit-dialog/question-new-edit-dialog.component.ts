@@ -20,8 +20,10 @@ export class QuestionNewEditDialogComponent implements OnInit {
     phone: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
     message: new FormControl(''),
-    broker: new FormControl(0)
+    broker: new FormControl(null)
   })
+
+  public editMode: boolean;
 
   // initializeFormGroup() {
   //   this.form.setValue({
@@ -33,6 +35,17 @@ export class QuestionNewEditDialogComponent implements OnInit {
   //     broker: 0
   //   });
   // }
+
+  populateForm(question: Question) {
+    this.form.setValue({
+      $id: question.id,
+      name: question.name,
+      phone: question.phone,
+      email: question.email,
+      message: question.message,
+      broker: question.broker
+    });
+  }
 
   mapFormToQuestionStub(): QuestionStub {
     return {
@@ -48,7 +61,13 @@ export class QuestionNewEditDialogComponent implements OnInit {
     public brokersSvc: BrokersService,
     public notificationsSvc: NotificationsService,
     public dialogRef: MatDialogRef<QuestionNewEditDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public question: Question) { }
+    @Inject(MAT_DIALOG_DATA) public question: Question) {      
+      this.editMode = false;
+      if (question){
+        this.populateForm(question);
+        this.editMode = true;
+      }       
+  }
 
   ngOnInit() {
   }
@@ -59,10 +78,19 @@ export class QuestionNewEditDialogComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      this.questionsSvc.add(
-        this.mapFormToQuestionStub(),
-        this.form.value.broker);
-      this.notificationsSvc.success("¡La consulta ha sido creada exitosamente!");
+      if (!this.form.get('$id').value) {
+        console.log('ketapasando');
+        this.questionsSvc.add(
+          this.mapFormToQuestionStub(),
+          this.form.value.broker);
+        this.notificationsSvc.success("¡La consulta ha sido creada exitosamente!");
+      }
+      else {
+        this.questionsSvc.edit(
+          this.question,
+          this.mapFormToQuestionStub());
+        this.notificationsSvc.success("¡La consulta ha sido modificada exitosamente!");
+      }
       this.close();
     }
   }

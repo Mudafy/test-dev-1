@@ -69,9 +69,9 @@
                     <a mat-icon-button [routerLink]="['/', 'questions', q.id]">
                         <mat-icon>search</mat-icon>
                     </a>
-                    <a mat-icon-button color="warn" (click)="deleteQuestion(q)">
-                        <mat-icon color>delete</mat-icon>
-                    </a>
+                    <button mat-icon-button color="warn" (click)="deleteQuestion(q)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
                 </td>
             </ng-container>
 

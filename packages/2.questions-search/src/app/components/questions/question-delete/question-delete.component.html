@@ -1,3 +1,8 @@
-<p>
-  question-delete works!
-</p>
+<h1 mat-dialog-title>Eliminar Consulta</h1>
+<mat-dialog-content>
+  <p>¿Está seguro que desea eliminar la consulta seleccionada?</p>
+</mat-dialog-content>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Cancelar</button>
+  <button mat-button (click)="deleteQuestion(question)" color="warn" cdkFocusInitial>Aceptar</button>
+</div>

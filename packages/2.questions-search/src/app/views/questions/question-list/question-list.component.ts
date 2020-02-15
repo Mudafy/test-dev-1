@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Question } from 'src/app/services/question';
 import { QuestionsService } from 'src/app/services/questions.service';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { FormControl } from '@angular/forms';
+import { QuestionDeleteDialogComponent } from 'src/app/components/questions/question-delete/question-delete.component';
 
 @Component({
   selector: 'app-question-list',
@@ -24,7 +25,7 @@ export class QuestionListComponent implements OnInit {
   phoneFilter = new FormControl();
   brokerFilter = new FormControl();
   emailFilter = new FormControl();
-  constructor(private questionsSvc: QuestionsService) {
+  constructor(private questionsSvc: QuestionsService, public dialog: MatDialog) {
     questionsSvc.questions$.subscribe(q => {
       this.dataSource = new MatTableDataSource(q);
       this.refreshTable();
@@ -57,8 +58,19 @@ export class QuestionListComponent implements OnInit {
     return item.id;
   }
 
-  deleteQuestion(item: Question) {
-    return this.questionsSvc.remove(item);
+  // deleteQuestion(item: Question) {
+  //   return this.questionsSvc.remove(item);
+  // }
+
+  deleteQuestion(item: Question): void {
+    const dialogRef = this.dialog.open(QuestionDeleteDialogComponent, {
+      width: '250px',
+      data: item
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   customFilterPredicate() {

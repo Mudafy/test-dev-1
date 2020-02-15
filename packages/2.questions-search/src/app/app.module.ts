@@ -16,7 +16,7 @@ import { Paginator } from './custom/paginator';
 import { ReactiveFormsModule } from '@angular/forms'
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { QuestionNewComponent } from './components/questions/question-new/question-new.component';
-import { QuestionDeleteComponent } from './components/questions/question-delete/question-delete.component';
+import { QuestionDeleteDialogComponent } from './components/questions/question-delete/question-delete.component';
 import { QuestionEditComponent } from './components/questions/question-edit/question-edit.component';
 
 
@@ -30,7 +30,7 @@ import { QuestionEditComponent } from './components/questions/question-edit/ques
     FooterComponent,
     NotFoundComponent,
     QuestionNewComponent,
-    QuestionDeleteComponent,
+    QuestionDeleteDialogComponent,
     QuestionEditComponent
   ],
   imports: [
@@ -42,6 +42,7 @@ import { QuestionEditComponent } from './components/questions/question-edit/ques
     ReactiveFormsModule,    
     FlexLayoutModule
   ],
+  entryComponents: [QuestionDeleteDialogComponent],
   providers: [QuestionsService, { provide: MatPaginatorIntl, useClass: Paginator }],
   bootstrap: [AppComponent]
 })

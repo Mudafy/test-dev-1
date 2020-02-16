@@ -19,6 +19,7 @@ import { QuestionDeleteDialogComponent } from './components/questions/question-d
 import { QuestionNewEditDialogComponent } from './components/questions/question-new-edit-dialog/question-new-edit-dialog.component';
 import { BrokersService } from './services/brokers.service';
 import { NotificationsService } from './services/notifications.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { NotificationsService } from './services/notifications.service';
     MaterialUiModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    HttpClientModule
   ],
   entryComponents: [QuestionDeleteDialogComponent, QuestionNewEditDialogComponent],
   providers: [QuestionsService, BrokersService, NotificationsService, { provide: MatPaginatorIntl, useClass: Paginator }],

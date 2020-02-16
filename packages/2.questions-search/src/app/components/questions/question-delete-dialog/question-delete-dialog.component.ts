@@ -13,12 +13,12 @@ export class QuestionDeleteDialogComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   constructor(
     private questionsSvc: QuestionsService,
     public notificationsSvc: NotificationsService,
     public dialogRef: MatDialogRef<QuestionDeleteDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public question: Question) {}
+    @Inject(MAT_DIALOG_DATA) public question: Question) { }
 
   close(): void {
     this.dialogRef.close();
@@ -26,7 +26,7 @@ export class QuestionDeleteDialogComponent implements OnInit {
 
   deleteQuestion(item: Question) {
     this.questionsSvc.remove(item);
-    this.notificationsSvc.warn("La consulta ha sido eliminada.");
+    this.notificationsSvc.warn('La consulta ha sido eliminada.');
     this.close();
   }
 

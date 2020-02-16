@@ -33,9 +33,9 @@ export class QuestionListComponent implements OnInit {
     public dialog: MatDialog
   ) {
     questionsSvc.questions$.subscribe(questions => {
-      let questionDataSource = questions.map(q => {
+      const questionDataSource = questions.map(q => {
         let brokerName = '';
-        brokersSvc.getById(q.broker).subscribe(b => { if (b) brokerName = b.name; });
+        brokersSvc.getById(q.broker).subscribe(b => { if (b) { brokerName = b.name; } });
         return {
           brokerName,
           ...q
@@ -77,7 +77,7 @@ export class QuestionListComponent implements OnInit {
     this.dialog.open(QuestionNewEditDialogComponent, {
       disableClose: true,
       autoFocus: true,
-      width: "50%"
+      width: '50%'
     });
   }
 
@@ -85,7 +85,7 @@ export class QuestionListComponent implements OnInit {
     this.dialog.open(QuestionNewEditDialogComponent, {
       disableClose: true,
       autoFocus: true,
-      width: "50%",
+      width: '50%',
       data: item
     });
   }
@@ -99,12 +99,12 @@ export class QuestionListComponent implements OnInit {
 
   customFilterPredicate() {
     const myFilterPredicate = (data: any, filter: string): boolean => {
-      let searchString = JSON.parse(filter);
+      const searchString = JSON.parse(filter);
       return data.name.toString().trim().toLowerCase().indexOf(searchString.name.toLowerCase()) !== -1
         && data.phone.toString().trim().toLowerCase().indexOf(searchString.phone.toLowerCase()) !== -1
         && data.brokerName.toString().trim().toLowerCase().indexOf(searchString.brokerName.toLowerCase()) !== -1
         && data.email.toString().trim().toLowerCase().indexOf(searchString.email.toLowerCase()) !== -1;
-    }
+    };
     return myFilterPredicate;
   }
 }

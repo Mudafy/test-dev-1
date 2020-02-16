@@ -21,7 +21,7 @@ export class QuestionNewEditDialogComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     message: new FormControl(''),
     broker: new FormControl(null)
-  })
+  });
 
   public editMode: boolean;
 
@@ -61,12 +61,12 @@ export class QuestionNewEditDialogComponent implements OnInit {
     public brokersSvc: BrokersService,
     public notificationsSvc: NotificationsService,
     public dialogRef: MatDialogRef<QuestionNewEditDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public question: Question) {      
-      this.editMode = false;
-      if (question){
-        this.populateForm(question);
-        this.editMode = true;
-      }       
+    @Inject(MAT_DIALOG_DATA) public question: Question) {
+    this.editMode = false;
+    if (question) {
+      this.populateForm(question);
+      this.editMode = true;
+    }
   }
 
   ngOnInit() {
@@ -81,14 +81,13 @@ export class QuestionNewEditDialogComponent implements OnInit {
       if (!this.form.get('$id').value) {
         this.questionsSvc.add(
           this.mapFormToQuestionStub(),
-          this.form.value.broker);
-        this.notificationsSvc.success("La consulta ha sido creada exitosamente.");
-      }
-      else {
+          parseInt(this.form.value.broker, 10));
+        this.notificationsSvc.success('La consulta ha sido creada exitosamente.');
+      } else {
         this.questionsSvc.edit(
           this.question,
           this.mapFormToQuestionStub());
-        this.notificationsSvc.success("La consulta ha sido modificada exitosamente.");
+        this.notificationsSvc.success('La consulta ha sido modificada exitosamente.');
       }
       this.close();
     }

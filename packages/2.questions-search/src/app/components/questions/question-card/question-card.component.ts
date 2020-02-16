@@ -13,14 +13,12 @@ export class QuestionCardComponent implements OnInit {
   @Input() question: Question;
   public brokerName: string;
 
-  constructor(public brokersSvc: BrokersService) {
-   
-  }
+  constructor(public brokersSvc: BrokersService) { }
 
   ngOnInit() {
-    if(this.question){
+    if (this.question) {
       this.brokersSvc.getById(this.question.broker).subscribe(
-        b => { if (b) this.brokerName = b.name; }
+        b => { if (b) { this.brokerName = b.name; } }
       );
     }
   }

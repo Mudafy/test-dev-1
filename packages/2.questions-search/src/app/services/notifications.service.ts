@@ -8,19 +8,21 @@ export class NotificationsService {
 
   constructor(public snackBar: MatSnackBar) { }
 
+  panelClassKey = 'panelClass';
+
   config: MatSnackBarConfig = {
     duration: 3000,
     horizontalPosition: 'right',
     verticalPosition: 'bottom'
-  }
+  };
 
   success(msg: string) {
-    this.config['panelClass'] = ['notification', 'success'];
-    this.snackBar.open(msg, '',this.config);
+    this.config[this.panelClassKey] = ['notification', 'success'];
+    this.snackBar.open(msg, '', this.config);
   }
 
   warn(msg: string) {
-    this.config['panelClass'] = ['notification', 'warn'];
+    this.config[this.panelClassKey] = ['notification', 'warn'];
     this.snackBar.open(msg, '', this.config);
   }
 }

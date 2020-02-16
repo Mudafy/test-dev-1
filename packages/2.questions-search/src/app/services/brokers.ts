@@ -8,5 +8,4 @@ function fakeQuestion(id: number): Broker {
     };
 }
 
-export const brokers: Array<Broker> = [...Array(10).keys()]
-    .map(fakeQuestion);
+export const brokers: Array<Broker> = [...Array(10).keys()].map(fakeQuestion);

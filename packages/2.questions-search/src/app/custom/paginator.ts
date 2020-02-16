@@ -1,12 +1,12 @@
-import {MatPaginatorIntl} from '@angular/material';
+import { MatPaginatorIntl } from '@angular/material';
 export class Paginator extends MatPaginatorIntl {
   itemsPerPageLabel = 'Items por página';
-  nextPageLabel     = 'Próxima';
+  nextPageLabel = 'Próxima';
   previousPageLabel = 'Anterior';
   lastPageLabel = 'Última';
   firstPageLabel = 'Primera';
 
-  getRangeLabel = function (page, pageSize, length) {
+  getRangeLabel = (page, pageSize, length) => {
     if (length === 0 || pageSize === 0) {
       return '0 de ' + length;
     }
@@ -17,6 +17,6 @@ export class Paginator extends MatPaginatorIntl {
       Math.min(startIndex + pageSize, length) :
       startIndex + pageSize;
     return startIndex + 1 + ' - ' + endIndex + ' de ' + length;
-  };
+  }
 
 }

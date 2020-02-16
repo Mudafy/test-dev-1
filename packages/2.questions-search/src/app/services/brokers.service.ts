@@ -15,7 +15,7 @@ export class BrokersService {
   getById(brokerId: number): Observable<Broker> {
     return this.brokers$.pipe(
       switchAll(),
-      find(b => b.id == brokerId)
+      find(b => b.id === brokerId)
     );
   }
 }

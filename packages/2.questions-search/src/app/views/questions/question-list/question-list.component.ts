@@ -32,7 +32,7 @@ export class QuestionListComponent implements OnInit {
     brokersSvc: BrokersService,
     public dialog: MatDialog
   ) {
-    questionsSvc.questions$.subscribe(questions => {
+    questionsSvc.get().subscribe(questions => {
       const questionDataSource = questions.map(q => {
         let brokerName = '';
         brokersSvc.getById(q.broker).subscribe(b => { if (b) { brokerName = b.name; } });

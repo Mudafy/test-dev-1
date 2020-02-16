@@ -1,0 +1,81 @@
+[debug] [2020-02-16T04:40:11.733Z] ----------------------------------------------------------------------
+[debug] [2020-02-16T04:40:11.736Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Claudio\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve --only functions
+[debug] [2020-02-16T04:40:11.736Z] CLI Version:   7.13.0
+[debug] [2020-02-16T04:40:11.736Z] Platform:      win32
+[debug] [2020-02-16T04:40:11.736Z] Node Version:  v12.0.0
+[debug] [2020-02-16T04:40:11.737Z] Time:          Sun Feb 16 2020 01:40:11 GMT-0300 (GMT-03:00)
+[debug] [2020-02-16T04:40:11.737Z] ----------------------------------------------------------------------
+[debug] [2020-02-16T04:40:11.737Z] 
+[debug] [2020-02-16T04:40:11.746Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-16T04:40:11.747Z] > authorizing via signed-in user
+[debug] [2020-02-16T04:40:11.747Z] [iam] checking project questions-search for permissions ["firebase.projects.get"]
+[debug] [2020-02-16T04:40:11.749Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/questions-search:testIamPermissions  
+
+[debug] [2020-02-16T04:40:13.030Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-16T04:40:13.033Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/questions-search  
+ 
+[debug] [2020-02-16T04:40:14.152Z] <<< HTTP RESPONSE 200
+[warn] !  Your requested "node" version "8" doesn't match your global version "12"
+[info] +  functions: Emulator started at http://localhost:5000
+[info] i  functions: Watching "D:\Proyectos\Mudafy\test-dev-1\packages\2.questions-search\functions" for Cloud Functions...
+[debug] [2020-02-16T04:40:16.196Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-16T04:40:16.196Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-02-16T04:40:16.196Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-16T04:40:16.196Z] [worker-~diagnostic~-0643a097-8483-4d56-b6de-1f971d10624e]: Assigning socketPath: \\?\pipe\D:\Proyectos\Mudafy\test-dev-1\packages\2.questions-search\functions\20332
+[debug] [2020-02-16T04:40:16.197Z] [worker-~diagnostic~-0643a097-8483-4d56-b6de-1f971d10624e]: BUSY
+[debug] [2020-02-16T04:40:16.607Z] [runtime-status] [20332] Functions runtime initialized. {"cwd":"D:\\Proyectos\\Mudafy\\test-dev-1\\packages\\2.questions-search\\functions","node_version":"12.0.0"}
+[debug] [2020-02-16T04:40:16.608Z] [runtime-status] [20332] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-02-16T04:40:16.610Z] [runtime-status] [20332] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"D:\\Proyectos\\Mudafy\\test-dev-1\\packages\\2.questions-search\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-02-16T04:40:16.611Z] [runtime-status] [20332] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Proyectos\\Mudafy\\test-dev-1\\packages\\2.questions-search\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-02-16T04:40:16.612Z] [runtime-status] [20332] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Proyectos\\Mudafy\\test-dev-1\\packages\\2.questions-search\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[info] +  functions[questions_search]: http function initialized (http://localhost:5000/questions-search/us-central1/questions_search).
+[debug] [2020-02-16T04:40:16.818Z] [worker-~diagnostic~-0643a097-8483-4d56-b6de-1f971d10624e]: IDLE
+[debug] [2020-02-16T04:59:34.564Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-02-16T04:59:34.590Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-02-16T04:59:34.591Z] Accepted request GET /questions-search/us-central1/helloWorld --> helloWorld
+[debug] [2020-02-16T04:59:34.807Z] [worker-pool] addWorker(helloWorld)
+[debug] [2020-02-16T04:59:34.807Z] [worker-pool] Adding worker with key helloWorld, total=1
+[debug] [2020-02-16T04:59:34.807Z] [worker-pool] submitWork(triggerId=helloWorld)
+[debug] [2020-02-16T04:59:34.808Z] [worker-helloWorld-8724ef4f-735f-4ea0-b84b-c8ee51a338bc]: Assigning socketPath: \\?\pipe\D:\Proyectos\Mudafy\test-dev-1\packages\2.questions-search\functions\17656
+[debug] [2020-02-16T04:59:34.808Z] [worker-helloWorld-8724ef4f-735f-4ea0-b84b-c8ee51a338bc]: BUSY
+[debug] [2020-02-16T04:59:38.680Z] [runtime-status] [17656] Functions runtime initialized. {"cwd":"D:\\Proyectos\\Mudafy\\test-dev-1\\packages\\2.questions-search\\functions","node_version":"12.0.0"}
+[debug] [2020-02-16T04:59:38.681Z] [runtime-status] [17656] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-02-16T04:59:38.684Z] [runtime-status] [17656] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"D:\\Proyectos\\Mudafy\\test-dev-1\\packages\\2.questions-search\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-02-16T04:59:38.685Z] [runtime-status] [17656] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Proyectos\\Mudafy\\test-dev-1\\packages\\2.questions-search\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-02-16T04:59:38.686Z] [runtime-status] [17656] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Proyectos\\Mudafy\\test-dev-1\\packages\\2.questions-search\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[warn] !  functions: Could not find trigger "helloWorld" in your functions directory.
+[warn] !  Your function was killed because it raised an unhandled error.
+[debug] [2020-02-16T04:59:38.919Z] [worker-helloWorld-8724ef4f-735f-4ea0-b84b-c8ee51a338bc]: exited
+[debug] [2020-02-16T04:59:38.919Z] [worker-helloWorld-8724ef4f-735f-4ea0-b84b-c8ee51a338bc]: FINISHED
+[debug] [2020-02-16T05:12:44.225Z] ----------------------------------------------------------------------
+[debug] [2020-02-16T05:12:44.227Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Claudio\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve --only functions
+[debug] [2020-02-16T05:12:44.227Z] CLI Version:   7.13.0
+[debug] [2020-02-16T05:12:44.227Z] Platform:      win32
+[debug] [2020-02-16T05:12:44.227Z] Node Version:  v12.0.0
+[debug] [2020-02-16T05:12:44.231Z] Time:          Sun Feb 16 2020 02:12:44 GMT-0300 (GMT-03:00)
+[debug] [2020-02-16T05:12:44.231Z] ----------------------------------------------------------------------
+[debug] [2020-02-16T05:12:44.231Z] 
+[debug] [2020-02-16T05:12:44.240Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-16T05:12:44.241Z] > authorizing via signed-in user
+[debug] [2020-02-16T05:12:44.241Z] [iam] checking project questions-search for permissions ["firebase.projects.get"]
+[debug] [2020-02-16T05:12:44.243Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/questions-search:testIamPermissions  
+
+[debug] [2020-02-16T05:12:45.450Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-16T05:12:45.452Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/questions-search  
+ 
+[debug] [2020-02-16T05:12:46.576Z] <<< HTTP RESPONSE 200
+[warn] !  Your requested "node" version "8" doesn't match your global version "12"
+[info] +  functions: Emulator started at http://localhost:5000
+[info] i  functions: Watching "D:\Proyectos\Mudafy\test-dev-1\packages\2.questions-search\functions" for Cloud Functions...
+[debug] [2020-02-16T05:12:48.608Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-16T05:12:48.608Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-02-16T05:12:48.608Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-16T05:12:48.608Z] [worker-~diagnostic~-4eb80c1b-7b83-440f-81a3-12cd95919c48]: Assigning socketPath: \\?\pipe\D:\Proyectos\Mudafy\test-dev-1\packages\2.questions-search\functions\9804
+[debug] [2020-02-16T05:12:48.608Z] [worker-~diagnostic~-4eb80c1b-7b83-440f-81a3-12cd95919c48]: BUSY
+[debug] [2020-02-16T05:12:48.978Z] [runtime-status] [9804] Functions runtime initialized. {"cwd":"D:\\Proyectos\\Mudafy\\test-dev-1\\packages\\2.questions-search\\functions","node_version":"12.0.0"}
+[debug] [2020-02-16T05:12:48.979Z] [runtime-status] [9804] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-02-16T05:12:48.981Z] [runtime-status] [9804] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"D:\\Proyectos\\Mudafy\\test-dev-1\\packages\\2.questions-search\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-02-16T05:12:48.982Z] [runtime-status] [9804] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Proyectos\\Mudafy\\test-dev-1\\packages\\2.questions-search\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-02-16T05:12:48.983Z] [runtime-status] [9804] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"D:\\Proyectos\\Mudafy\\test-dev-1\\packages\\2.questions-search\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[info] +  functions[questions_search]: http function initialized (http://localhost:5000/questions-search/us-central1/questions_search).
+[debug] [2020-02-16T05:12:49.166Z] [worker-~diagnostic~-4eb80c1b-7b83-440f-81a3-12cd95919c48]: IDLE

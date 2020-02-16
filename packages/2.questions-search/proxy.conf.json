@@ -1,6 +1,6 @@
 {
     "/api/*":{
-        "target": "http://localhost:5000/questions-search/us-central1/",
+        "target": "http://localhost:5000/questions-search/us-central1/questions_search/",
         "secure": false,
         "logLevel": "debug",
         "changeOrigin": true,

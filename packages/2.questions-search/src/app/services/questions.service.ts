@@ -5,6 +5,7 @@ import { Question } from '../models/question';
 import { QuestionStub } from '../models/question-stub';
 import { questions } from './questions';
 import { FormGroup, FormControl, Validators, RequiredValidator } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -13,7 +14,11 @@ import { FormGroup, FormControl, Validators, RequiredValidator } from '@angular/
 export class QuestionsService {
 
   questions$ = new BehaviorSubject<Array<Question>>(questions);
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  get() : Observable<Array<Question>>{
+    return this.http.get<Question[]>('api/questions/')
+  }
 
   add(question: QuestionStub, broker: number) {
     const allQuestions = this.questions$.getValue();

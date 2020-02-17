@@ -15,7 +15,7 @@ export class QuestionDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private questionsSvc: QuestionsService) { }
 
   ngOnInit() {
-    const id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+    const id = String(this.route.snapshot.paramMap.get('id'));
     this.questionsSvc.getById(id).subscribe(q => this.question = q);
   }
 

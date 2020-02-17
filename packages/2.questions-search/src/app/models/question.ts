@@ -4,5 +4,5 @@ export interface Question {
     email: string;
     message?: string;
     readonly broker?: number;
-    readonly id?: number;
+    readonly id?: string;
 }

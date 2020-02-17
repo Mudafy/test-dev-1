@@ -19,6 +19,10 @@ import { QuestionDeleteDialogComponent } from './components/questions/question-d
 import { QuestionNewEditDialogComponent } from './components/questions/question-new-edit-dialog/question-new-edit-dialog.component';
 import { BrokersService } from './services/brokers.service';
 import { NotificationsService } from './services/notifications.service';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -41,9 +45,11 @@ import { NotificationsService } from './services/notifications.service';
     MaterialUiModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
   entryComponents: [QuestionDeleteDialogComponent, QuestionNewEditDialogComponent],
-  providers: [QuestionsService, BrokersService, NotificationsService, { provide: MatPaginatorIntl, useClass: Paginator }],
+  providers: [AngularFirestore, QuestionsService, BrokersService, NotificationsService, { provide: MatPaginatorIntl, useClass: Paginator }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

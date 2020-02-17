@@ -2,9 +2,8 @@ import * as Faker from 'faker';
 import { brokers } from './brokers';
 import { Question } from '../models/question';
 
-function fakeQuestion(id: number): Question {
+function fakeQuestion(id: string): Question {
     return {
-        id,
         name: `${Faker.name.firstName()} ${Faker.name.lastName()}`,
         phone: Faker.phone.phoneNumber(),
         email: Faker.internet.email(),
@@ -14,5 +13,5 @@ function fakeQuestion(id: number): Question {
 }
 
 // export const brokers = [1, 2, 3, 40, 6];
-export const questions: Array<Question> = [...Array(100).keys()]
-    .map(fakeQuestion);
+export const fakeQuestions: Array<Question> = [...Array(20).keys()]
+    .map(x => fakeQuestion(String(x)));

@@ -28,14 +28,18 @@ export class QuestionListComponent implements OnInit {
   brokerFilter = new FormControl();
   emailFilter = new FormControl();
   constructor(
-    questionsSvc: QuestionsService,
-    brokersSvc: BrokersService,
+    public questionsSvc: QuestionsService,
+    public brokersSvc: BrokersService,
     public dialog: MatDialog
   ) {
-    questionsSvc.questions$.subscribe(questions => {
+  }
+
+  ngOnInit() {
+
+    this.questionsSvc.get().subscribe(questions => {
       const questionDataSource = questions.map(q => {
         let brokerName = '';
-        brokersSvc.getById(q.broker).subscribe(b => { if (b) { brokerName = b.name; } });
+        this.brokersSvc.getById(q.broker).subscribe(b => { if (b) { brokerName = b.name; } });
         return {
           brokerName,
           ...q
@@ -44,10 +48,7 @@ export class QuestionListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(questionDataSource);
       this.refreshTable();
     });
-  }
 
-  ngOnInit() {
-    this.refreshTable();
     this.subscribeFilter(this.nameFilter, 'name');
     this.subscribeFilter(this.phoneFilter, 'phone');
     this.subscribeFilter(this.emailFilter, 'email');
@@ -69,7 +70,7 @@ export class QuestionListComponent implements OnInit {
     this.dataSource.filter = JSON.stringify(this.filteredValues);
   }
 
-  getQuestionId(index: number, item: Question): number {
+  getQuestionId(index: number, item: Question): string {
     return item.id;
   }
 

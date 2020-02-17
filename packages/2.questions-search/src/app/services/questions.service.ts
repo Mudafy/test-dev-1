@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { find, switchAll } from 'rxjs/operators';
+import { find, switchAll, map } from 'rxjs/operators';
 import { Question } from '../models/question';
 import { QuestionStub } from '../models/question-stub';
-import { questions } from './questions';
-import { FormGroup, FormControl, Validators, RequiredValidator } from '@angular/forms';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { fakeQuestions } from './questions';
 
 
 @Injectable({
@@ -12,38 +12,50 @@ import { FormGroup, FormControl, Validators, RequiredValidator } from '@angular/
 })
 export class QuestionsService {
 
-  questions$ = new BehaviorSubject<Array<Question>>(questions);
-  constructor() { }
+  questionsCollection: AngularFirestoreCollection<Question>;
+  questions = new BehaviorSubject<Array<Question>>([]);
+
+  constructor(private firestore: AngularFirestore) {
+    this.questionsCollection = firestore.collection<Question>('questions');
+    this.questionsCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        return {
+          id: a.payload.doc.id,
+          ...a.payload.doc.data() as Question
+        }
+      }))
+    ).subscribe(x => this.questions.next(x));
+  }
+
+  get() {
+    return this.questions;
+  }
 
   add(question: QuestionStub, broker: number) {
-    const allQuestions = this.questions$.getValue();
-    const lastId = Math.max(...allQuestions.map(q => q.id));
-    const last: Question = { ...question, broker, id: lastId + 1 };
-    this.questions$.next([...allQuestions, last]);
+    this.questionsCollection.add({ ...question, broker });
   }
 
   remove(question: Question) {
-    const allQuestions = this.questions$.getValue();
-    this.questions$.next(allQuestions.filter(q => q.id !== question.id));
-    return of('ok');
+    this.questionsCollection.doc(question.id).delete();
   }
 
   edit(question: Question, newContent: QuestionStub) {
-    const allQuestions = this.questions$.getValue()
-      .map(q => {
-        if (q.id === question.id) {
-          return { ...question, ...newContent };
-        }
-        return q;
-      });
-    this.questions$.next(allQuestions);
-    return of('ok');
+    this.questionsCollection.doc(question.id).update({ ...question, ...newContent });
   }
 
-  getById(questionId: number): Observable<Question> {
-    return this.questions$.pipe(
+  getById(questionId: string): Observable<Question> {
+    return this.questions.pipe(
       switchAll(),
       find(q => q.id === questionId)
     );
   }
+
+  // loadFakeData(){
+  //   fakeQuestions.forEach((q, index) => { this.add({
+  //     name: q.name,
+  //     phone: q.phone,
+  //     message: q.message,
+  //     email: q.email
+  //   }, q.broker)});
+  // }
 }

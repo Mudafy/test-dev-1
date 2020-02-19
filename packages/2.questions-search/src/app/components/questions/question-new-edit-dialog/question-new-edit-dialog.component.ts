@@ -81,7 +81,7 @@ export class QuestionNewEditDialogComponent implements OnInit {
       if (!this.form.get('$id').value) {
         this.questionsSvc.add(
           this.mapFormToQuestionStub(),
-          parseInt(this.form.value.broker, 10));
+          String(this.form.value.broker));
         this.notificationsSvc.success('La consulta ha sido creada exitosamente.');
       } else {
         this.questionsSvc.edit(

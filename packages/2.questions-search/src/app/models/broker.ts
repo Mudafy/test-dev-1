@@ -1,4 +1,4 @@
 export interface Broker {
     name: string;
-    readonly id?: number;
+    readonly id?: string;
 }

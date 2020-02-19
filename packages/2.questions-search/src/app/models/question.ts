@@ -3,6 +3,6 @@ export interface Question {
     phone?: string;
     email: string;
     message?: string;
-    readonly broker?: number;
+    readonly broker?: string;
     readonly id?: string;
 }

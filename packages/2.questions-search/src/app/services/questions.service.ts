@@ -13,8 +13,7 @@ import { fakeQuestions } from './questions';
 export class QuestionsService {
 
   questionsCollection: AngularFirestoreCollection<Question>;
-  questions = new BehaviorSubject<Array<Question>>([]);
-
+  questions$ = new BehaviorSubject<Array<Question>>([]);
   constructor(private firestore: AngularFirestore) {
     this.questionsCollection = firestore.collection<Question>('questions');
     this.questionsCollection.snapshotChanges().pipe(
@@ -22,16 +21,16 @@ export class QuestionsService {
         return {
           id: a.payload.doc.id,
           ...a.payload.doc.data() as Question
-        }
+        };
       }))
-    ).subscribe(x => this.questions.next(x));
+    ).subscribe(x => this.questions$.next(x));
   }
 
   get() {
-    return this.questions;
+    return this.questions$;
   }
 
-  add(question: QuestionStub, broker: number) {
+  add(question: QuestionStub, broker: string) {
     this.questionsCollection.add({ ...question, broker });
   }
 
@@ -40,11 +39,11 @@ export class QuestionsService {
   }
 
   edit(question: Question, newContent: QuestionStub) {
-    this.questionsCollection.doc(question.id).update({ ...question, ...newContent });
+    this.questionsCollection.doc(question.id).update({ ...newContent });
   }
 
   getById(questionId: string): Observable<Question> {
-    return this.questions.pipe(
+    return this.questions$.pipe(
       switchAll(),
       find(q => q.id === questionId)
     );

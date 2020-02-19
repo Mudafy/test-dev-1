@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { QuestionDeleteDialogComponent } from 'src/app/components/questions/question-delete-dialog/question-delete-dialog.component';
 import { QuestionNewEditDialogComponent } from 'src/app/components/questions/question-new-edit-dialog/question-new-edit-dialog.component';
 import { BrokersService } from 'src/app/services/brokers.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-question-list',
@@ -34,19 +35,24 @@ export class QuestionListComponent implements OnInit {
   ) {
   }
 
+
+
   ngOnInit() {
 
-    this.questionsSvc.get().subscribe(questions => {
-      const questionDataSource = questions.map(q => {
-        let brokerName = '';
-        this.brokersSvc.getById(q.broker).subscribe(b => { if (b) { brokerName = b.name; } });
-        return {
-          brokerName,
-          ...q
-        };
+    this.brokersSvc.get().subscribe(brokers => {
+      this.questionsSvc.get().subscribe(questions => {
+        const questionDataSource = new Array<any>();
+        questions.forEach(question => {
+          const broker = brokers.find(b => b.id === question.broker);
+          questionDataSource.push(
+            {
+              brokerName: broker ? broker.name : '',
+              ...question
+            });
+          this.dataSource = new MatTableDataSource(questionDataSource);
+          this.refreshTable();
+        });
       });
-      this.dataSource = new MatTableDataSource(questionDataSource);
-      this.refreshTable();
     });
 
     this.subscribeFilter(this.nameFilter, 'name');

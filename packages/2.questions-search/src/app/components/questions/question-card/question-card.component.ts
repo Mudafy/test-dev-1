@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { Question } from 'src/app/models/question';
 import { BrokersService } from 'src/app/services/brokers.service';
 
@@ -7,14 +7,15 @@ import { BrokersService } from 'src/app/services/brokers.service';
   templateUrl: './question-card.component.html',
   styleUrls: ['./question-card.component.scss']
 })
-export class QuestionCardComponent implements OnInit {
+export class QuestionCardComponent implements OnChanges {
 
   @Input() question: Question;
   public brokerName: string;
 
-  constructor(public brokersSvc: BrokersService) { }
+  constructor(public brokersSvc: BrokersService) {
+  }
 
-  ngOnInit() {
+  ngOnChanges() {
     if (this.question) {
       this.brokersSvc.getById(this.question.broker).subscribe(
         b => { if (b) { this.brokerName = b.name; } }

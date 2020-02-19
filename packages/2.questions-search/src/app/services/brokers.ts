@@ -1,11 +1,12 @@
 import * as Faker from 'faker';
 import { Broker } from '../models/broker';
 
-function fakeQuestion(id: number): Broker {
+function fakeBroker(id: string): Broker {
     return {
         id,
         name: `${Faker.company.companyName()}`
     };
 }
 
-export const brokers: Array<Broker> = [...Array(10).keys()].map(fakeQuestion);
+export const fakeBrokers: Array<Broker> = [...Array(10).keys()]
+    .map(x => fakeBroker(String(x)));

@@ -36,9 +36,14 @@ Necesitás NodeJs 9 o más nuevo, Yarn, Angular CLI y seguir estos pasos:
 - `ng generate` para generar componentes y otros.
 
 
+## Antes de commitear
+- `yarn lint` para comprobar la calidad estructural del nuevo código
+- `yarn test` para verificar el correcto funcionamiento de los tests
+
+
 ## Levantar con Docker 
-- `docker build -t questions-search-frontend .`
-- `docker run -p 4200:4200 questions-search-frontend`
+- `docker build -t questions-search-frontend .` construir la imágen docker.
+- `docker run -p 4200:4200 questions-search-frontend` levantar el contenedor de manera local.
 
 
 ## Deployar en Firebase hosting

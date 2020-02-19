@@ -22,7 +22,7 @@ import { NotificationsService } from './services/notifications.service';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -46,6 +46,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
     ReactiveFormsModule,
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
     AngularFireDatabaseModule
   ],
   entryComponents: [QuestionDeleteDialogComponent, QuestionNewEditDialogComponent],

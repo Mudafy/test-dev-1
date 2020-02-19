@@ -40,3 +40,15 @@ Necesitás NodeJs 9 o más nuevo, Yarn, Angular CLI y seguir estos pasos:
 - `docker build -t questions-search-frontend .`
 - `docker run -p 4200:4200 questions-search-frontend`
 
+
+## Deployar en Firebase hosting
+
+### Prerequisitos
+
+- `npm install -g firebase-tools` instalar firebase tools globalmente.
+- `firebase login` loguearse en firebase.
+
+### Realizar el deploy
+
+- `yarn deploy` dev environment.
+- `yarn deploy:prod` prod environment.

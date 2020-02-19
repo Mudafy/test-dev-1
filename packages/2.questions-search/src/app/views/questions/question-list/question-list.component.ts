@@ -84,7 +84,7 @@ export class QuestionListComponent implements OnInit {
     this.dialog.open(QuestionNewEditDialogComponent, {
       disableClose: true,
       autoFocus: true,
-      width: '50%'
+      minWidth: '50%'
     });
   }
 
@@ -92,7 +92,7 @@ export class QuestionListComponent implements OnInit {
     this.dialog.open(QuestionNewEditDialogComponent, {
       disableClose: true,
       autoFocus: true,
-      width: '50%',
+      minWidth: '50%',
       data: item
     });
   }

@@ -1,4 +1,6 @@
-<div>
+<div style="border: 1px solid black; margin: 2rem; padding: 1rem; width: 50%;">
   <h4>{{question.id}} - {{question.name}}</h4>
+  <hr>
+  <p>{{question.message}}</p>
   <a [routerLink]="['/', 'questions', question.id]">Ir a la consulta {{question.id}}</a>
 </div>

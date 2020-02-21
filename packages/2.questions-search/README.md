@@ -57,3 +57,7 @@ Necesitás NodeJs 9 o más nuevo, Yarn, Angular CLI y seguir estos pasos:
 
 - `yarn deploy` dev environment.
 - `yarn deploy:prod` prod environment.
+
+### SSR con Angular Universal (Node Express Server)
+
+- `yarn start-ssr` para levantar localmente con ssr.

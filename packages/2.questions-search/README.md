@@ -43,7 +43,7 @@ Necesitás NodeJs 9 o más nuevo, Yarn, Angular CLI y seguir estos pasos:
 
 ## Levantar con Docker 
 - `docker build -t questions-search-frontend .` construir la imágen docker.
-- `docker run -p 4200:4200 questions-search-frontend` levantar el contenedor de manera local.
+- `docker run -p 4000:4000 questions-search-frontend` levantar el contenedor de manera local.
 
 
 ## Deployar en Firebase hosting
@@ -58,6 +58,7 @@ Necesitás NodeJs 9 o más nuevo, Yarn, Angular CLI y seguir estos pasos:
 - `yarn deploy` dev environment.
 - `yarn deploy:prod` prod environment.
 
-### SSR con Angular Universal (Node Express Server)
+## SSR con Angular Universal (Node Express Server)
 
 - `yarn start-ssr` para levantar localmente con ssr.
+* Se requiere versión de Node 13.x ya que con la versión 12 no funciona *

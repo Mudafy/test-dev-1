@@ -1,13 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Question } from 'src/app/models/question';
-import { QuestionsService } from 'src/app/services/questions.service';
+import { Question } from '../../../../app/models/question';
+import { QuestionsService } from '../../../../app/services/questions.service';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { FormControl } from '@angular/forms';
-import { QuestionDeleteDialogComponent } from 'src/app/components/questions/question-delete-dialog/question-delete-dialog.component';
-import { QuestionNewEditDialogComponent } from 'src/app/components/questions/question-new-edit-dialog/question-new-edit-dialog.component';
-import { BrokersService } from 'src/app/services/brokers.service';
-import { forkJoin } from 'rxjs';
-
+import { QuestionDeleteDialogComponent } from '../../../../app/components/questions/question-delete-dialog/question-delete-dialog.component';
+import { QuestionNewEditDialogComponent } from '../../../../app/components/questions/question-new-edit-dialog/question-new-edit-dialog.component';
+import { BrokersService } from '../../../../app/services/brokers.service';
 @Component({
   selector: 'app-question-list',
   templateUrl: './question-list.component.html',

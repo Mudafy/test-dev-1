@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
-import { Question } from 'src/app/models/question';
-import { BrokersService } from 'src/app/services/brokers.service';
+import { Question } from '../../../../app/models/question';
+import { BrokersService } from '../../../../app/services/brokers.service';
 
 @Component({
   selector: 'app-question-card',

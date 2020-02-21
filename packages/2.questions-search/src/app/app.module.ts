@@ -38,7 +38,7 @@ import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestor
     QuestionNewEditDialogComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,

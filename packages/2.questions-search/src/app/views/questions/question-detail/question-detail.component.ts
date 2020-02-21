@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { QuestionsService } from 'src/app/services/questions.service';
-import { Question } from 'src/app/models/question';
+import { QuestionsService } from '../../../../app/services/questions.service';
+import { Question } from '../../../../app/models/question';
 
 
 @Component({

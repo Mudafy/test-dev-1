@@ -1,11 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { QuestionsService } from 'src/app/services/questions.service';
-import { Question } from 'src/app/models/question';
+import { QuestionsService } from '../../../../app/services/questions.service';
+import { Question } from '../../../../app/models/question';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { BrokersService } from 'src/app/services/brokers.service';
+import { BrokersService } from '../../../../app/services/brokers.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { QuestionStub } from 'src/app/models/question-stub';
-import { NotificationsService } from 'src/app/services/notifications.service';
+import { QuestionStub } from '../../../../app/models/question-stub';
+import { NotificationsService } from '../../../../app/services/notifications.service';
 
 @Component({
   selector: 'app-question-new-edit-dialog',

@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { QuestionsService } from 'src/app/services/questions.service';
+import { QuestionsService } from '../../../../app/services/questions.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Question } from 'src/app/models/question';
-import { NotificationsService } from 'src/app/services/notifications.service';
+import { Question } from '../../../../app/models/question';
+import { NotificationsService } from '../../../../app/services/notifications.service';
 
 @Component({
   selector: 'app-question-delete',

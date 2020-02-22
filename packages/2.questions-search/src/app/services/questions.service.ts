@@ -9,7 +9,8 @@ import { questions } from './questions';
   providedIn: 'root'
 })
 export class QuestionsService {
-  selectedQuestion = new EventEmitter<Question>();
+  selectedQuestion$ = new EventEmitter<Question>();
+  currentAction$ = new EventEmitter<string>();
   
   questions$ = new BehaviorSubject<Array<Question>>(questions);
   constructor() { }

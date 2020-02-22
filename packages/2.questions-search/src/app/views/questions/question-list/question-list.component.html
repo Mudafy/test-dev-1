@@ -23,10 +23,10 @@
                 <ng-container matColumnDef="id-actions">
                     <th mat-header-cell *matHeaderCellDef> Acciones </th>
                     <td mat-cell *matCellDef="let element">
-                        <button mat-icon-button color="primary" (click)="onSelectQuestion(element)" title="Ir a Consulta">
+                        <button mat-icon-button color="primary" (click)="onSelectQuestion(element,'view')" title="Ir a Consulta">
                             <mat-icon aria-label="Ir a consulta">play_arrow</mat-icon>
                         </button>
-                        <button mat-icon-button color="primary" title="Editar Consulta">
+                        <button mat-icon-button color="primary" (click)="onSelectQuestion(element,'edit')" title="Editar Consulta">
                             <mat-icon aria-label="Editar consulta">edit</mat-icon>
                         </button>
                         <button mat-icon-button color="primary" (click)="onDeleteQuestion(element)" title="Borrar Consulta">

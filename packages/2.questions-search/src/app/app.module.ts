@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule} from '@angular/forms';
 import { MaterialModule} from './material'
 
 import { AppComponent } from './app.component';
@@ -27,6 +28,7 @@ import { QuestionListComponent } from './views/questions/question-list/question-
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     MaterialModule
   ],
   providers: [QuestionsService],

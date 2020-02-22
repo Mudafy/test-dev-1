@@ -1,21 +1,52 @@
-<div *ngIf="selectedQuestion != null">
-  <mat-card class="question-details">
-    <mat-card-header>
-      <mat-card-title>Consulta #{{selectedQuestion.id}}</mat-card-title>
-      <mat-card-subtitle>Enviada por {{selectedQuestion.name}}</mat-card-subtitle>
-    </mat-card-header>
-    <hr>
-    <h5>Email: {{selectedQuestion.email}}</h5>
-    <h5 *ngIf="selectedQuestion.phone !== null">Teléfono: {{selectedQuestion.phone}}</h5>
-    <h5 *ngIf="selectedQuestion.broker !== null">Broker: {{selectedQuestion.broker}}</h5>
-    <mat-card-content>
-      <div *ngIf="selectedQuestion.message !== null">
-        <p>
-          {{selectedQuestion.message}}
-        </p>
-      </div>     
-    </mat-card-content>
-  </mat-card>
+<div [hidden]="currentAction != 'view'">
+  <div *ngIf="selectedQuestion != null">
+    <mat-card class="question-details">
+      <mat-card-header>
+        <mat-card-title>Consulta #{{selectedQuestion.id}}</mat-card-title>
+        <mat-card-subtitle>Enviada por {{selectedQuestion.name}}</mat-card-subtitle>
+      </mat-card-header>
+      <hr>
+      <h5>Email: {{selectedQuestion.email}}</h5>
+      <h5 *ngIf="selectedQuestion.phone !== null">Teléfono: {{selectedQuestion.phone}}</h5>
+      <h5 *ngIf="selectedQuestion.broker !== null">Broker: {{selectedQuestion.broker}}</h5>
+      <mat-card-content>
+        <div *ngIf="selectedQuestion.message !== null">
+          <p>
+            {{selectedQuestion.message}}
+          </p>
+        </div>     
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
+
+<div [hidden]="currentAction != 'edit'">
+  <div *ngIf="selectedQuestion != null">
+    <mat-card class="question-details">
+      <mat-card-header>
+        <mat-card-title>Editando consulta #{{selectedQuestion.id}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field class="edit-field">
+          <input matInput placeholder="Nombre" [(ngModel)] ='editedQuestion.name' value={{selectedQuestion.name}}>
+        </mat-form-field>  
+        <mat-form-field class="edit-field">
+          <input matInput placeholder="Email" [(ngModel)] ='editedQuestion.email' value={{selectedQuestion.email}}>
+        </mat-form-field> 
+        <mat-form-field class="edit-field">
+          <input matInput placeholder="Teléfono" [(ngModel)] ='editedQuestion.phone' value={{selectedQuestion.phone}}>
+        </mat-form-field>  
+        <mat-form-field class="edit-field">
+         <textarea matInput placeholder="Mensaje" [(ngModel)] ='editedQuestion.message' value={{selectedQuestion.message}} rows="5"></textarea>
+        </mat-form-field>  
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="saveChanges()">Aceptar</button>
+        <button mat-raised-button (click)="cancel()">Cancelar</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
 
 

@@ -31,9 +31,12 @@ export class QuestionListComponent implements OnInit {
     return item.id;
   }
 
-  onSelectQuestion(question: Question, action:string){
-    this.questionsSvc.selectedQuestion$.emit(question);
+  onSelectQuestion(action:string, question?: Question){
     this.questionsSvc.currentAction$.emit(action);
+
+    if(action != 'create'){
+      this.questionsSvc.selectedQuestion$.emit(question);
+    }
   }
 
   onDeleteQuestion(question: Question){

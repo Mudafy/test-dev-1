@@ -13,12 +13,13 @@ export class QuestionDetailComponent implements OnInit {
   selectedQuestion: Question;
   currentAction: string;
   editedQuestion: QuestionStub;
+  newBroker: number;
 
   constructor(private questionService: QuestionsService) { }
 
   ngOnInit() {
     this.cleanQuestionStub();
-
+    
     this.questionService.selectedQuestion$.subscribe( 
       (q: Question)=>{
         this.selectedQuestion = q;
@@ -32,6 +33,9 @@ export class QuestionDetailComponent implements OnInit {
     this.questionService.currentAction$.subscribe( 
       (a: string)=>{
         this.currentAction = a;
+        if(this.currentAction =='create'){
+          this.cleanQuestionStub();
+        }
       }
     )
   }
@@ -46,10 +50,15 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   saveChanges(){
-    this.questionService.edit(this.selectedQuestion, this.editedQuestion)
-    .subscribe(r => {
-      console.info(`Edited question ${this.selectedQuestion.id} with status ${r}`);
-    });
+    if(this.currentAction == 'edit'){
+      this.questionService.edit(this.selectedQuestion, this.editedQuestion)
+      .subscribe(r => {
+        console.info(`Edited question ${this.selectedQuestion.id} with status ${r}`);
+      });
+    }else{
+      this.questionService.add(this.editedQuestion, this.newBroker)
+    }
+
   }
 
   cancel(){

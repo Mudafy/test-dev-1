@@ -1,3 +1,21 @@
-<p>
-  question-detail works!
-</p>
+<div *ngIf="selectedQuestion.id !== null">
+  <mat-card class="question-details">
+    <mat-card-header>
+      <mat-card-title>Consulta #{{selectedQuestion.id}}</mat-card-title>
+      <mat-card-subtitle>Enviada por {{selectedQuestion.name}}</mat-card-subtitle>
+    </mat-card-header>
+    <hr>
+    <h5>Email: {{selectedQuestion.email}}</h5>
+    <h5 *ngIf="selectedQuestion.phone !== null">Teléfono: {{selectedQuestion.phone}}</h5>
+    <h5 *ngIf="selectedQuestion.broker !== null">Broker: {{selectedQuestion.broker}}</h5>
+    <mat-card-content>
+      <div *ngIf="selectedQuestion.message !== null">
+        <p>
+          {{selectedQuestion.message}}
+        </p>
+      </div>     
+    </mat-card-content>
+  </mat-card>
+</div>
+
+

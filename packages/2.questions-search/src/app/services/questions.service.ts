@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { find, switchAll } from 'rxjs/operators';
 import { Question } from './question';
 import { QuestionStub } from './question-stub';
 import { questions } from './questions';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionsService {
-
+  selectedQuestion = new EventEmitter<Question>();
+  
   questions$ = new BehaviorSubject<Array<Question>>(questions);
   constructor() { }
 

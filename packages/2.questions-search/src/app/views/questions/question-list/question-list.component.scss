@@ -1,8 +1,14 @@
+.main-grid{
+    height: 45rem;
+}
+
 table {
     width: 100%;
 }
 
 .question-table{
-    width: 40%;
-    margin: 2rem;
+    width: 40rem;
+    max-height: 40rem;
+    overflow: scroll;
+    margin-left: 10rem;
 }

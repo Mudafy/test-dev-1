@@ -14,7 +14,7 @@ export class QuestionListComponent implements OnInit {
   questions: Array<Question>;
   dataSource: MatTableDataSource<Question>;
 
-  constructor(questionsSvc: QuestionsService) {
+  constructor(private questionsSvc: QuestionsService) {
     questionsSvc.questions$.subscribe(q => {
       this.questions = q;
     });
@@ -32,5 +32,9 @@ export class QuestionListComponent implements OnInit {
 
   getQuestionId(index: number, item: Question): number {
     return item.id;
+  }
+
+  onSelectQuestion(question: Question){
+    this.questionsSvc.selectedQuestion.emit(question);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Question } from 'src/app/services/question';
 import { QuestionsService } from 'src/app/services/questions.service';
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { questions } from 'src/app/services/questions';
 
 @Component({
@@ -23,10 +23,12 @@ export class QuestionListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'id-actions'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
+  @ViewChild(MatSort) sort: MatSort;
+  
   ngOnInit() {
     this.dataSource = new MatTableDataSource<Question>(questions);
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
 
@@ -36,5 +38,9 @@ export class QuestionListComponent implements OnInit {
 
   onSelectQuestion(question: Question){
     this.questionsSvc.selectedQuestion.emit(question);
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

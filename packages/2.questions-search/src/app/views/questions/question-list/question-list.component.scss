@@ -6,9 +6,19 @@ table {
     width: 100%;
 }
 
+th.mat-sort-header-sorted {
+    color: black;
+}
+
 .question-table{
     width: 40rem;
     max-height: 40rem;
     overflow: scroll;
     margin-left: 10rem;
+}
+
+.filter-input{
+    font-size: 14px;
+    width: 90%;
+    margin: 2rem;
 }

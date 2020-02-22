@@ -1,10 +1,12 @@
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { MatTableModule } from '@angular/material/table'; 
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort'; 
 import { MatButtonModule } from '@angular/material/button'; 
 import { MatIconModule } from '@angular/material/icon'; 
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card'; 
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
 
 import { NgModule } from '@angular/core';
 
@@ -13,19 +15,23 @@ import { NgModule } from '@angular/core';
         MatToolbarModule,
         MatTableModule,
         MatPaginatorModule,
+        MatSortModule,
         MatButtonModule,
         MatIconModule,
         MatGridListModule,
-        MatCardModule
+        MatCardModule,
+        MatInputModule
     ],
     exports: [
         MatToolbarModule,
         MatTableModule,
         MatPaginatorModule,
+        MatSortModule,
         MatButtonModule,
         MatIconModule,
         MatGridListModule,
-        MatCardModule
+        MatCardModule,
+        MatInputModule
     ]
 })
 

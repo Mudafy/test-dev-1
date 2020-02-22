@@ -29,7 +29,7 @@
                         <button mat-icon-button color="primary" title="Editar Consulta">
                             <mat-icon aria-label="Editar consulta">edit</mat-icon>
                         </button>
-                        <button mat-icon-button color="primary" title="Borrar Consulta">
+                        <button mat-icon-button color="primary" (click)="onDeleteQuestion(element)" title="Borrar Consulta">
                             <mat-icon aria-label="Borrar consulta">delete</mat-icon>
                         </button>
                     </td>

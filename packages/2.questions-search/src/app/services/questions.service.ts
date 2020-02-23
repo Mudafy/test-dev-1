@@ -9,17 +9,18 @@ import { questions } from './questions';
   providedIn: 'root'
 })
 export class QuestionsService {
-  selectedQuestion$ = new EventEmitter<Question>();
-  currentAction$ = new EventEmitter<string>();
+  selectedQuestion$ = new BehaviorSubject<Question>(null);
+  currentAction$ = new BehaviorSubject<string>('view');
   
   questions$ = new BehaviorSubject<Array<Question>>(questions);
   constructor() { }
 
   add(question: QuestionStub, broker: number) {
     const allQuestions = this.questions$.getValue();
-    const lastId = Math.max(...allQuestions.map(q => q.id));
-    const last: Question = { ...question, broker, id: lastId + 1 };
+    const newId = Math.max(...allQuestions.map(q => q.id)) + 1;
+    const last: Question = { ...question, broker, id: newId };
     this.questions$.next([...allQuestions, last]);
+    this.updateSelectedQuestionById(newId);
   }
 
   remove(question: Question) {
@@ -37,6 +38,7 @@ export class QuestionsService {
         return q;
       });
     this.questions$.next(allQuestions);
+    this.updateSelectedQuestionById(question.id);
     return of('ok');
   }
 
@@ -46,5 +48,22 @@ export class QuestionsService {
       find(q => q.id === questionId)
     );
   }
+
+  updateSelectedQuestionById(id:number){
+
+    if(!id){
+      this.selectedQuestion$.next(null);
+    }else{
+      this.getById(id).subscribe(
+        q => this.selectedQuestion$.next(q)
+      );
+    }
+  }
+
+  updateCurrentAction(action){
+    this.currentAction$.next(action);
+  }
+
+
 
 }

@@ -19,14 +19,16 @@ export class QuestionDetailComponent implements OnInit {
 
   ngOnInit() {
     this.cleanQuestionStub();
-    
+
     this.questionService.selectedQuestion$.subscribe( 
       (q: Question)=>{
         this.selectedQuestion = q;
-        this.editedQuestion.email = q.email;
-        this.editedQuestion.message = q.message;
-        this.editedQuestion.phone = q.phone;
-        this.editedQuestion.name = q.name;
+        if(q){
+          this.editedQuestion.email = q.email;
+          this.editedQuestion.message = q.message;
+          this.editedQuestion.phone = q.phone;
+          this.editedQuestion.name = q.name;
+        }
       }
     )
 
@@ -34,6 +36,7 @@ export class QuestionDetailComponent implements OnInit {
       (a: string)=>{
         this.currentAction = a;
         if(this.currentAction =='create'){
+          this.newBroker = null;
           this.cleanQuestionStub();
         }
       }
@@ -58,11 +61,11 @@ export class QuestionDetailComponent implements OnInit {
     }else{
       this.questionService.add(this.editedQuestion, this.newBroker)
     }
-
+    this.cancel();
   }
 
   cancel(){
-    this.questionService.currentAction$.emit('view');
+    this.questionService.updateCurrentAction('view');
   }
 
   

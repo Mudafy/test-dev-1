@@ -32,17 +32,24 @@ export class QuestionListComponent implements OnInit {
   }
 
   onSelectQuestion(action:string, question?: Question){
-    this.questionsSvc.currentAction$.emit(action);
+    this.questionsSvc.updateCurrentAction(action);
 
     if(action != 'create'){
-      this.questionsSvc.selectedQuestion$.emit(question);
+      this.questionsSvc.updateSelectedQuestionById(question.id);
     }
   }
 
   onDeleteQuestion(question: Question){
     this.questionsSvc.remove(question).subscribe(
-      r => console.log(`Deleted question ${question.id} with status: ${r}`)
-    );
+      r => {
+        console.log(`Deleted question ${question.id} with status: ${r}`);
+
+        const selectedQuestion = this.questionsSvc.selectedQuestion$.value;
+
+        if(selectedQuestion && question.id == selectedQuestion.id){
+          this.questionsSvc.updateSelectedQuestionById(null);
+        }
+    });
   }
 
   applyFilter(filterValue: string) {

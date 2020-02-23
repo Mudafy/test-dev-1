@@ -10,7 +10,7 @@
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar consultas">
             </mat-form-field>
 
-            <button mat-icon-button mat-raised-button color="primary" (click)="onSelectQuestion('create')" title="Agregar nueva consulta">
+            <button mat-icon-button mat-raised-button color="primary" (click)="onSelectQuestion('create')" matTooltip="Agregar nueva consulta">
                 <mat-icon aria-label="Agregar nueva consulta">add</mat-icon>
             </button>
 
@@ -31,7 +31,7 @@
                 <ng-container matColumnDef="id-details">
                     <th mat-header-cell *matHeaderCellDef> Detalles </th>
                     <td mat-cell *matCellDef="let element">
-                        <button mat-icon-button color="primary" (click)="onSelectQuestion('view', element)" title="Ir a Consulta">
+                        <button mat-icon-button color="primary" (click)="onSelectQuestion('view', element)" matTooltip="Ir a Consulta">
                             <mat-icon aria-label="Ir a consulta">menu</mat-icon>
                         </button>
                     </td>
@@ -40,7 +40,7 @@
                 <ng-container matColumnDef="id-edit">
                     <th mat-header-cell *matHeaderCellDef> Editar </th>
                     <td mat-cell *matCellDef="let element">
-                        <button mat-icon-button color="primary" (click)="onSelectQuestion('edit', element)" title="Editar Consulta">
+                        <button mat-icon-button color="primary" (click)="onSelectQuestion('edit', element)" matTooltip="Editar Consulta">
                             <mat-icon aria-label="Editar consulta">edit</mat-icon>
                         </button>
                     </td>
@@ -49,7 +49,7 @@
                 <ng-container matColumnDef="id-delete">
                     <th mat-header-cell *matHeaderCellDef> Borrar </th>
                     <td mat-cell *matCellDef="let element">
-                        <button mat-icon-button color="warn" (click)="onDeleteQuestion(element)" title="Borrar Consulta">
+                        <button mat-icon-button color="warn" (click)="onDeleteQuestion(element)" matTooltip="Borrar Consulta">
                             <mat-icon aria-label="Borrar consulta">delete</mat-icon>
                         </button>
                     </td>

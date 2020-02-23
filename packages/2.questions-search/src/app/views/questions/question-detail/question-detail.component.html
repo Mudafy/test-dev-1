@@ -1,9 +1,10 @@
 <div *ngIf="selectedQuestion == null && currentAction != 'create'">
   <mat-card class="question-details">
-    <mat-card-content>
-        <p>
-          No se ha seleccionado ninguna consulta
-        </p>
+    <mat-card-content class="empty-question">
+      <mat-icon color="primary">info</mat-icon>
+        <h3>
+           No se ha seleccionado ninguna consulta
+        </h3>
     </mat-card-content>
   </mat-card>
 </div>

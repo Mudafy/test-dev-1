@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { NgModule } from '@angular/core';
 
@@ -20,7 +21,8 @@ import { NgModule } from '@angular/core';
         MatIconModule,
         MatGridListModule,
         MatCardModule,
-        MatInputModule
+        MatInputModule,
+        MatTooltipModule
     ],
     exports: [
         MatToolbarModule,
@@ -31,7 +33,8 @@ import { NgModule } from '@angular/core';
         MatIconModule,
         MatGridListModule,
         MatCardModule,
-        MatInputModule
+        MatInputModule,
+        MatTooltipModule
     ]
 })
 

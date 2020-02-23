@@ -50,8 +50,7 @@ export class QuestionsService {
   }
 
   updateSelectedQuestionById(id:number){
-
-    if(!id){
+    if(id === null){
       this.selectedQuestion$.next(null);
     }else{
       this.getById(id).subscribe(

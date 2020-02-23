@@ -32,7 +32,6 @@ export class QuestionListComponent implements OnInit {
   }
 
   onSelectQuestion(action:string, question?: Question){
-    console.log('selected ', question)
     this.questionsSvc.updateCurrentAction(action);
 
     if(action != 'create'){

@@ -2,6 +2,9 @@
   <div *ngIf="selectedQuestion != null">
     <mat-card class="question-details">
       <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon>help_outline</mat-icon>
+        </div>
         <mat-card-title>Consulta #{{selectedQuestion.id}}</mat-card-title>
         <mat-card-subtitle>Enviada por {{selectedQuestion.name}}</mat-card-subtitle>
       </mat-card-header>
@@ -24,7 +27,11 @@
   <div *ngIf="selectedQuestion != null">
     <mat-card class="question-details">
       <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon>edit</mat-icon>
+        </div>
         <mat-card-title>Editando consulta #{{selectedQuestion.id}}</mat-card-title>
+        <mat-card-subtitle>Selecione Aceptar para guardar los cambios</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <mat-form-field class="edit-field">
@@ -51,7 +58,11 @@
 <div [hidden]="currentAction != 'create'">
     <mat-card class="question-details">
       <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon>add</mat-icon>
+        </div>
         <mat-card-title>Nueva consulta</mat-card-title>
+        <mat-card-subtitle>Selecione Aceptar para guardar los cambios</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <mat-form-field class="edit-field">

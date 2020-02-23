@@ -36,3 +36,33 @@ Necesitás NodeJs 9 o más nuevo, Yarn, Angular CLI y seguir estos pasos:
 - `ng generate` para generar componentes y otros.
 
 
+## Cosas hechas
+- Se hizo una unica vista dividida en 2
+    - La mitad izquierda muestra una tabla con todas las consultas disponibles y las diferentes acciones disponibles:
+        - Filtrar
+        - Crear una consulta
+        - Ver los detalles de una consulta
+        - Editar una consulta
+        - Borrar una consulta
+        - Ordernar consultas por id o nombre
+    - La mitad derecha mostrara un card con la información de la consulta seleccionada (ya sea para ver o editar) o bien, un formulario vacio para crear una nueva.
+        - Para editar y crear, se mostraran 2 botones:
+            - Aceptar: guardara los cambios y pasará a mostrar la card de detalles
+            - Cancelar: vuelve a la card de detalles sin guardar ningun cambioç
+        - Tanto para editar como crear, los campos nombre y email son requeridos
+- Todo se hizo utilizando angular material
+    - cree un archivo específico para los imports de los modules de angular material ("material.ts")
+    - la tabla principal es un data table con paginator y sort header
+    - los detalles son cards
+    - botones, iconos y tooltips
+- Se agregaron unos pequeños cambios de estilos tanto al header como al footer que estaban por defecto
+
+## Cosas para mejorar/implementar
+- Mejorar el filtrado
+- Mensaje de confirmación antes de borrar una consulta
+- Mejorar compatibilidad mobile (en portrait mode puede que la pagina no se vea correctamente)
+- La pantalla en si puede que se vea un poco vacia, explorar mejores alternativas en el estilado
+- Soporte multilenguaje en lugar de hardcodear frases en español
+- Implementar algun enmascaramiento en los inputs de teléfono, email para que no puedan ingresar datos incorrectos
+- Mejorar el management de los brokers (crear una clase con datos mas significativos, un service y mostrar un dropdown al momento de crear una consulta)
+

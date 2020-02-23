@@ -53,6 +53,8 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   saveChanges(){
+    if(this.editedQuestion.email.length < 1 || this.editedQuestion.name.length < 1 ) return false;
+
     if(this.currentAction == 'edit'){
       this.questionService.edit(this.selectedQuestion, this.editedQuestion)
       .subscribe(r => {

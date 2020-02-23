@@ -1,6 +1,10 @@
 <mat-grid-list cols="2" rowHeight="45rem">
     <mat-grid-tile>
         <div class="mat-elevation-z8 question-table">
+            <mat-toolbar>
+                <span>Consultas Actuales: {{dataSource.data.length}}</span>
+            </mat-toolbar>
+
             <!--Filter-->
             <mat-form-field class="filter-input">
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar consultas">
@@ -24,16 +28,28 @@
                 </ng-container>
         
                 <!-- Actions Column -->
-                <ng-container matColumnDef="id-actions">
-                    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                <ng-container matColumnDef="id-details">
+                    <th mat-header-cell *matHeaderCellDef> Detalles </th>
                     <td mat-cell *matCellDef="let element">
                         <button mat-icon-button color="primary" (click)="onSelectQuestion('view', element)" title="Ir a Consulta">
-                            <mat-icon aria-label="Ir a consulta">play_arrow</mat-icon>
+                            <mat-icon aria-label="Ir a consulta">menu</mat-icon>
                         </button>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="id-edit">
+                    <th mat-header-cell *matHeaderCellDef> Editar </th>
+                    <td mat-cell *matCellDef="let element">
                         <button mat-icon-button color="primary" (click)="onSelectQuestion('edit', element)" title="Editar Consulta">
                             <mat-icon aria-label="Editar consulta">edit</mat-icon>
                         </button>
-                        <button mat-icon-button color="primary" (click)="onDeleteQuestion(element)" title="Borrar Consulta">
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="id-delete">
+                    <th mat-header-cell *matHeaderCellDef> Borrar </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button color="warn" (click)="onDeleteQuestion(element)" title="Borrar Consulta">
                             <mat-icon aria-label="Borrar consulta">delete</mat-icon>
                         </button>
                     </td>

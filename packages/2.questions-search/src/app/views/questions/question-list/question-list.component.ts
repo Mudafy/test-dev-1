@@ -11,7 +11,7 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 export class QuestionListComponent implements OnInit {
 
   dataSource = new MatTableDataSource<Question>();
-  displayedColumns: string[] = ['id', 'name', 'id-actions'];
+  displayedColumns: string[] = ['id', 'name', 'id-details', 'id-edit', 'id-delete'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -32,6 +32,7 @@ export class QuestionListComponent implements OnInit {
   }
 
   onSelectQuestion(action:string, question?: Question){
+    console.log('selected ', question)
     this.questionsSvc.updateCurrentAction(action);
 
     if(action != 'create'){

@@ -328,7 +328,18 @@ class QuestionResource(Resource):
 
         :raises Unauthorized: When current user has insufficient permissions
         """
-        return None
+        ## check if user is a broker 
+        ## note: Admins can't check questions???
+        current_user = assert_broker()
+
+        ## get broker's id by his/her email address
+        broker = get_broker_by_email(current_user.email)
+
+        ## get all the questions the current broker is able to check
+        broker_questions = get_questions_by_broker(broker.id)
+
+        ## returns the question (or an empty object if not found)
+        return [question for question in broker_questions if question['id'] == int(question_id)]
 
     @jwt_required
     @questions_ns.doc('remove_question', expect=[auth_parser])

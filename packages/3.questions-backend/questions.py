@@ -5,3 +5,6 @@ questions = [
     {"id": 2, "name" : "Ashlynn Kiehn", "email" : "Kurtis.Fadel20@yahoo.com", "phone" : "001-362-5275 x687", "message" : "Error blanditiis quasi quia voluptate omnis pariatur reiciendis soluta.", "broker" : 40},
     {"id": 3, "name" : "Leland Batz", "email" : "Betty.Davis63@gmail.com", "phone" : "1-838-940-1210 x8122", "message" : "Maiores inventore consequatur harum voluptatem quod et pariatur.", "broker" : 1},
 ]
+
+def get_questions_by_broker(broker_id):
+    return [question for question in questions if question['broker'] == broker_id]

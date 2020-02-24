@@ -19,7 +19,7 @@ brokers = [
     User("faralla", "admin@faralla.com.ar", "1231231", BROKER),
     User("fasebonne", "admin@casebonne.com.ar", "maybe123", BROKER),
     User("icortese", "admin@icortese.com.ar", "not123", BROKER),
-    User("Fernando C", "fcellinAdmin@broker.com", "asd123", BROKER),
+    User("Fernando C", "fcellini@broker.com", "asd123", BROKER),
 ]
 
 everyone = admins + brokers

@@ -25,8 +25,8 @@ from config import config_by_name
 from api_config import authorizations, config as swagger_config
 
 from users import User, admins, brokers, everyone, get_user, save_user, check_user
-from questions import questions
-from brokers import brokersIdList
+from questions import questions, get_questions_by_broker
+from brokers import brokersIdList, get_broker_by_email
 
 logger = get_logger(__name__)
 
@@ -264,9 +264,11 @@ class QuestionsResource(Resource):
         """
         List available questions
         """
-        assert_broker()
-        ### TODO: brokers should only be able to read their own questions, not others'
-        return []
+        current_user = assert_broker()
+
+        broker = get_broker_by_email(current_user.email)
+
+        return get_questions_by_broker(broker.id)
 
     @questions_ns.doc('ask_a_question', body=submit_question_fields)
     @api.expect(submit_question_fields)

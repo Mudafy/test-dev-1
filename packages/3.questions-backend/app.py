@@ -82,6 +82,10 @@ def assert_broker():
         raise Unauthorized("Access denied, you have to be a broker to read this")
     return current_user
 
+def assert_question(new_question):
+    if (not new_question['name']) or (not new_question['email']):
+        raise BadRequest("name and email are required")
+
 
 @jwt.expired_token_loader
 def my_expired_token_callback(expired_token=None):
@@ -264,10 +268,14 @@ class QuestionsResource(Resource):
         """
         List available questions
         """
+        ## check if user is a broker 
+        ## note: Admins can't check questions???
         current_user = assert_broker()
 
+        ## get broker's id by his/her email address
         broker = get_broker_by_email(current_user.email)
 
+        ## return only questions with the broker id
         return get_questions_by_broker(broker.id)
 
     @questions_ns.doc('ask_a_question', body=submit_question_fields)
@@ -278,9 +286,30 @@ class QuestionsResource(Resource):
         """
         Creates a question
         """
-        question = api.payload
 
-        return None, 200
+        ## get's the last id on the questions list and adds 1
+        ## note: this is an awful way to generate ids, this should be a uuid
+        ## for simplycity sake, i'll just stick with numbers
+        new_id = questions[-1]["id"] + 1
+
+        ## parse payload into an object and add the new id
+        new_question = {
+            "id" : new_id,
+            "name" : api.payload["name"],
+            "email" : api.payload["email"],
+            "phone" : api.payload["phone"],
+            "message" : api.payload["message"],
+            "broker" : api.payload["broker"]
+        }
+
+        ## reject new question if required fields are empty
+        assert_question(new_question)
+
+        ## add new question to the list
+        ## when using a db, a more "fancy" way to insert the questions MUST be implemented
+        questions.append(new_question)
+
+        return new_question
 
 
 @questions_ns.param('question_id', 'The question ID')

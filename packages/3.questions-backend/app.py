@@ -25,7 +25,8 @@ from config import config_by_name
 from api_config import authorizations, config as swagger_config
 
 from users import User, admins, brokers, everyone, get_user, save_user, check_user
-
+from questions import questions
+from brokers import brokersIdList
 
 logger = get_logger(__name__)
 
@@ -237,10 +238,20 @@ class RefreshResource(Resource):
 questions_ns = api.namespace('questions', description='Questions')
 
 submit_question_fields = api.model('AskAQuestion', {
+    'name': fields.String(required=True, description='Client\'s name (required)'),
+    'email': fields.String(required=True, description='Client\'s email address (required)'),
+    'phone': fields.String(required=False, description='Client\'s phone number'),
+    'message': fields.String(required=False, description='Client\'s message'),
+    'broker': fields.Integer(required=False, description='Broker id'),
 })
 
 question_fields = api.model('Question', {
-
+    'id': fields.Integer(required=True, readOnly=True, description='Question Id (required)'),
+    'name': fields.String(required=True, description='Client\'s name (required)'),
+    'email': fields.String(required=True, description='Client\'s email address (required)'),
+    'phone': fields.String(required=False, description='Client\'s phone number'),
+    'message': fields.String(required=False, description='Client\'s message'),
+    'broker': fields.Integer(required=False, readOnly=True, description='Broker id'),
 })
 
 @questions_ns.route('')

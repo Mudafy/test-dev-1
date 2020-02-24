@@ -25,7 +25,7 @@ from config import config_by_name
 from api_config import authorizations, config as swagger_config
 
 from users import User, admins, brokers, everyone, get_user, save_user, check_user
-from questions import questions, get_questions_by_broker
+from questions import questions, get_questions_by_broker, get_question_by_id, delete_question_by_value
 from brokers import brokersIdList, get_broker_by_email
 
 logger = get_logger(__name__)
@@ -339,7 +339,7 @@ class QuestionResource(Resource):
         broker_questions = get_questions_by_broker(broker.id)
 
         ## returns the question (or an empty object if not found)
-        return [question for question in broker_questions if question['id'] == int(question_id)]
+        return get_question_by_id(int(question_id), broker_questions), 200
 
     @jwt_required
     @questions_ns.doc('remove_question', expect=[auth_parser])
@@ -351,8 +351,24 @@ class QuestionResource(Resource):
         :raises Unauthorized: When current user has insufficient permissions
         :raises BadRequest: When couldn't delete the question
         """
+        current_user = assert_broker()
+
         try:
-            return '', 200
+            ## get broker's id by his/her email address
+            broker = get_broker_by_email(current_user.email)
+
+            ## get all the questions the current broker is able to check
+            broker_questions = get_questions_by_broker(broker.id)
+
+            ## tries to find the marked question on the pool of questions for the current broker
+            marked_question = get_question_by_id(int(question_id), broker_questions)
+
+            if marked_question:
+                delete_question_by_value(marked_question)
+
+            ## returns the question deleted or null if there was nothing to delete
+            return marked_question, 200
+
         except:
             raise BadRequest("There was a problem deleting the question")
 

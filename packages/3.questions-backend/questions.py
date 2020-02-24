@@ -8,3 +8,10 @@ questions = [
 
 def get_questions_by_broker(broker_id):
     return [question for question in questions if question['broker'] == broker_id]
+
+def get_question_by_id(id, collection):
+    result = [question for question in collection if question['id'] == id]
+    return result[0] if len(result)>0 else None
+
+def delete_question_by_value(question):
+    return questions.remove(question)

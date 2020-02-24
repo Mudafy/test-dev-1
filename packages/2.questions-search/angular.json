@@ -89,7 +89,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "test-questions-search:build"
+            "browserTarget": "test-questions-search:build",
+            "host": "0.0.0.0"
           },
           "configurations": {
             "production": {

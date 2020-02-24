@@ -1,3 +1,20 @@
-<p>
-  question-detail works!
-</p>
+<h2>
+  Detalles de la consulta
+</h2>
+
+<mat-card>
+  <span>
+    <div class="inline">
+      <b>Nombre:</b> {{question.name}} <br><br>
+      <b>Teléfono:</b> {{question.phone}} <br><br>
+      <b>e-mail:</b> {{question.email}} <br><br>
+    </div>
+    <button class="inline float-right" mat-raised-button color="warn" (click)="deleteQuestionAndReturnToList(question)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </span>
+  <div class="message">
+    <b>Consulta:</b>
+    {{question.message}}
+  </div>
+</mat-card>

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
-import { MatToolbarModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
+import { MatToolbarModule, MatCardModule, MatTableModule ,  MatSortModule, MatButtonModule} from '@angular/material';
+import { MatDialogModule, MatFormFieldModule, MatInputModule , MatIconModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,25 +13,37 @@ import { QuestionsService } from './services/questions.service';
 import { NotFoundComponent } from './views/questions/not-found/not-found.component';
 import { QuestionDetailComponent } from './views/questions/question-detail/question-detail.component';
 import { QuestionListComponent } from './views/questions/question-list/question-list.component';
+import { CreateQuestionDialogComponent } from './components/create question dialog/create-question-dialog.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     QuestionListComponent,
+    CreateQuestionDialogComponent,
     QuestionDetailComponent,
     QuestionCardComponent,
     NavbarComponent,
     FooterComponent,
-    NotFoundComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTableModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSortModule,
+    FormsModule
   ],
   providers: [QuestionsService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ CreateQuestionDialogComponent ]
 })
 export class AppModule { }

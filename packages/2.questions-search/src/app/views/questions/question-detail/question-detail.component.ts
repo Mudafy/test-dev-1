@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { QuestionsService } from 'src/app/services/questions.service';
+import { Question } from 'src/app/services/question';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-question-detail',
@@ -7,7 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionDetailComponent implements OnInit {
 
-  constructor() { }
+  questionId: number;
+  question: Question;
+
+  constructor(private router: Router, private activatedroute: ActivatedRoute, private questionSvc: QuestionsService) {
+    this.questionId = parseInt(activatedroute.snapshot.paramMap.get("id"));
+    questionSvc.getById(this.questionId).subscribe(q => {
+      this.question = q;
+    });
+  }
+
+  deleteQuestionAndReturnToList(question: Question){
+    this.questionSvc.remove(question);
+    this.router.navigate(['/questions']);
+  }
 
   ngOnInit() {
   }

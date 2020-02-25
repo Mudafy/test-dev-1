@@ -1,12 +1,10 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { find, switchAll } from 'rxjs/operators';
 import { Question } from './question';
 import { QuestionStub } from './question-stub';
-import { questions } from './questions';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { LoginService } from './login.service';
-import { AuthData } from './login-data';
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +21,21 @@ export class QuestionsService {
   constructor(private httpClient: HttpClient, private loginService: LoginService) {}
 
   add(question: QuestionStub, broker: number) {
-    const allQuestions = this.questions$.getValue();
-    const newId = Math.max(...allQuestions.map(q => q.id)) + 1;
-    const last: Question = { ...question, broker, id: newId };
-    this.questions$.next([...allQuestions, last]);
-    this.updateSelectedQuestionById(newId);
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': this.loginService.authToken.access_token
+      })
+    }
+
+    this.httpClient.post<Question>(this.QUESTIONS_ENPOINTS, {...question, broker } ,httpOptions)
+      .subscribe(response => {
+        const allQuestions = this.questions$.getValue();
+        this.questions$.next([...allQuestions, response]);
+        this.updateSelectedQuestionById(response.id);
+      });
+
   }
 
   remove(question: Question) {

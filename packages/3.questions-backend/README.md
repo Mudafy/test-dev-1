@@ -50,3 +50,14 @@ Sólo basta hacer `docker-compose up`.
     - endpoint para obtener una question en particular por id
     - endpoint para agregar una question
     - endpoint para eliminar una question
+- Conectado frontend con backend
+    - Login (automatico por ahora)
+    - Agregar consulta
+    - Borrar consulta
+    - Lista de consultas disponibles para usuario logueado
+
+## Lo que falta/me hubiese gustado hacer
+- Modal de login
+- implementado un endpoint para edit
+- Ordenar un poco mas los servicios
+- Unit testing para el backend

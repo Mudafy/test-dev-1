@@ -4,16 +4,23 @@ import { find, switchAll } from 'rxjs/operators';
 import { Question } from './question';
 import { QuestionStub } from './question-stub';
 import { questions } from './questions';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoginService } from './login.service';
+import { AuthData } from './login-data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionsService {
+  //API ENDPOINTS
+  QUESTIONS_ENPOINTS = 'http://0.0.0.0:8000/questions';
+ 
   selectedQuestion$ = new BehaviorSubject<Question>(null);
   currentAction$ = new BehaviorSubject<string>('view');
   
-  questions$ = new BehaviorSubject<Array<Question>>(questions);
-  constructor() { }
+  questions$ = new BehaviorSubject<Array<Question>>([]);
+
+  constructor(private httpClient: HttpClient, private loginService: LoginService) {}
 
   add(question: QuestionStub, broker: number) {
     const allQuestions = this.questions$.getValue();
@@ -63,6 +70,18 @@ export class QuestionsService {
     this.currentAction$.next(action);
   }
 
+  getAllQuestions(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': this.loginService.authToken.access_token
+      })
+    }
 
+    this.httpClient.get<Array<Question>>(this.QUESTIONS_ENPOINTS, httpOptions)
+    .subscribe(response => {
+      this.questions$.next(response)
+    })
+  }
 
 }

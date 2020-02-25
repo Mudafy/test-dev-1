@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Question } from 'src/app/services/question';
 import { QuestionsService } from 'src/app/services/questions.service';
 import { QuestionStub } from 'src/app/services/question-stub';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-question-detail',
@@ -15,9 +16,19 @@ export class QuestionDetailComponent implements OnInit {
   editedQuestion: QuestionStub;
   newBroker: number;
 
-  constructor(private questionService: QuestionsService) { }
+  constructor(private questionService: QuestionsService, private loginService: LoginService) { }
 
   ngOnInit() {
+
+
+    this.loginService.login("fcellini@broker.com", "asd123")
+    .subscribe(
+      response => {
+        this.loginService.updateAuth(response)
+        this.questionService.getAllQuestions()
+      }
+    )
+
     this.cleanQuestionStub();
 
     this.questionService.selectedQuestion$.subscribe( 

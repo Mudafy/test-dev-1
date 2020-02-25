@@ -44,3 +44,9 @@ Recomendamos usar un virtualenv.
 
 Sólo basta hacer `docker-compose up`.
 
+## Lo que se hizo
+- Implementado los 4 endpoints solicitados
+    - endpoint para obtener todas las questions (solo las habilitadas para el broker logeado)
+    - endpoint para obtener una question en particular por id
+    - endpoint para agregar una question
+    - endpoint para eliminar una question

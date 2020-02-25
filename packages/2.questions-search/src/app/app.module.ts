@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule} from '@angular/forms';
 import { MaterialModule} from './material'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -29,7 +30,8 @@ import { QuestionListComponent } from './views/questions/question-list/question-
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [QuestionsService],
   bootstrap: [AppComponent]

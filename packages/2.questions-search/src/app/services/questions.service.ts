@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { find, switchAll } from 'rxjs/operators';
 import { Question } from './question';
 import { QuestionStub } from './question-stub';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginService } from './login.service';
 
 @Injectable({
@@ -39,9 +39,29 @@ export class QuestionsService {
   }
 
   remove(question: Question) {
-    const allQuestions = this.questions$.getValue();
-    this.questions$.next(allQuestions.filter(q => q.id !== question.id));
-    return of('ok');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': this.loginService.authToken.access_token
+      })
+    }
+
+    this.httpClient.delete<Question>(this.QUESTIONS_ENPOINTS+`/${question.id}`, httpOptions)
+      .subscribe(response => {
+        if(response == null) return of ('nothing to delete');
+
+        const allQuestions = this.questions$.getValue();
+        this.questions$.next(allQuestions.filter(q => q.id !== question.id));
+
+        const selectedQuestion = this.selectedQuestion$.value;
+        
+        //If there was a question selected AND it's the one being deleted, then unselect it
+        if(selectedQuestion && question.id == selectedQuestion.id){
+          this.updateSelectedQuestionById(null);
+        }
+
+        return of('ok');
+      });
   }
 
   edit(question: Question, newContent: QuestionStub) {

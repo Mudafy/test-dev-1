@@ -40,16 +40,7 @@ export class QuestionListComponent implements OnInit {
   }
 
   onDeleteQuestion(question: Question){
-    this.questionsSvc.remove(question).subscribe(
-      r => {
-        console.log(`Deleted question ${question.id} with status: ${r}`);
-
-        const selectedQuestion = this.questionsSvc.selectedQuestion$.value;
-
-        if(selectedQuestion && question.id == selectedQuestion.id){
-          this.questionsSvc.updateSelectedQuestionById(null);
-        }
-    });
+    this.questionsSvc.remove(question);
   }
 
   applyFilter(filterValue: string) {

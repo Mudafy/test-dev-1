@@ -11,7 +11,11 @@ import { QuestionsService } from './services/questions.service';
 import { NotFoundComponent } from './views/questions/not-found/not-found.component';
 import { QuestionDetailComponent } from './views/questions/question-detail/question-detail.component';
 import { QuestionListComponent } from './views/questions/question-list/question-list.component';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { QuestionTableComponent } from './views/questions/question-table/question-table.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -22,12 +26,17 @@ import { QuestionListComponent } from './views/questions/question-list/question-
     NavbarComponent,
     FooterComponent,
     NotFoundComponent,
+    QuestionTableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [QuestionsService],
   bootstrap: [AppComponent]

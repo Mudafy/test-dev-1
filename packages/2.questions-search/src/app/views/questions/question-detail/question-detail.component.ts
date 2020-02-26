@@ -30,7 +30,5 @@ export class QuestionDetailComponent implements OnInit {
       console.log(q)
     })
   }
-  public saludar(){
-    this.questionsSvc.remove(this.questionDetail)
-  }
+
 }

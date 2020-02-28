@@ -42,4 +42,3 @@ Se debe contar con **docker** y **docker-compose** instalados para poder realiza
 - `docker-compose up --build -d` en la raíz del proyecto
 - Ingresar a [Servidor Local](http://localhost:4201/) _(port: 4201)_
 - Todo cambio efectuado sobre la raíz del proyecto se encuentra compartida como _volumes_ con el container.
-

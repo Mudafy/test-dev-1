@@ -35,4 +35,11 @@ Necesitás NodeJs 9 o más nuevo, Yarn, Angular CLI y seguir estos pasos:
 - `yarn start` para correrlo.
 - `ng generate` para generar componentes y otros.
 
+## Ejecución en entorno de desarrollo con Docker
+
+Se debe contar con **docker** y **docker-compose** instalados para poder realizar los siguientes pasos
+
+- `docker-compose up --build -d` en la raíz del proyecto
+- Ingresar a [Servidor Local](http://localhost:4201/) _(port: 4201)_
+- Todo cambio efectuado sobre la raíz del proyecto se encuentra compartida como _volumes_ con el container.
 

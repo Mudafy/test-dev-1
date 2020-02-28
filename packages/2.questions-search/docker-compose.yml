@@ -1,0 +1,11 @@
+version: "3.5"
+services:
+ app-angular:
+   container_name: app-angular-dev
+   build: .
+   volumes:
+    - '.:/usr/app'
+   ports:
+    - '4201:4200'
+   command: >
+    bash -c "yarn install && yarn start"

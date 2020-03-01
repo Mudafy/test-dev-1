@@ -1,0 +1,45 @@
+<div class="form-container">
+  <form class="form" (ngSubmit)="onSubmit()">
+      <mat-form-field class="full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput [formControl]="nameFormControl" [errorStateMatcher]="matcher" required>
+          <mat-error *ngIf="nameFormControl.hasError('required')">
+            El nombre es <strong>obligatorio</strong>
+          </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+          <mat-label>Teléfono</mat-label>
+          <input matInput name="phone" [formControl]="phoneFormControl" >
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+              placeholder="Ej: mail@domain.com" required>
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Por favor ingrese un email valido.
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          El email es <strong>obligatorio</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+          <mat-label>Pregunta</mat-label>
+          <input matInput name="question" [formControl]="questionFormControl" >
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+          <mat-label>Corredor</mat-label>
+          <input matInput [formControl]="brokerFormControl" [errorStateMatcher]="matcher" required>
+          <mat-error *ngIf="brokerFormControl.hasError('required')">
+            El corredor es <strong>obligatorio</strong>
+          </mat-error>
+          <mat-error *ngIf="!brokerFormControl.hasError('required')">
+            El corredor debe ser un número.
+          </mat-error>
+      </mat-form-field>
+      <button type="submit">CREAR</button>
+  </form>
+</div>

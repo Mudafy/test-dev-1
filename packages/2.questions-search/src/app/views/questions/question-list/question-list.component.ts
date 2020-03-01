@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { Question } from 'src/app/services/question';
 import { QuestionsService } from 'src/app/services/questions.service';
 import { MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
-import { questions } from 'src/app/services/questions';
 
 @Component({
   selector: 'app-question-list',
@@ -12,15 +11,22 @@ import { questions } from 'src/app/services/questions';
 })
 export class QuestionListComponent implements OnInit {
   columnsTitles: string[] = ['id', 'name', 'email', 'broker', 'actions'];
-  questions: Array<Question>;
-  dataSource = new MatTableDataSource(questions);
+  questions: Array<Question> = [];
+  dataSource = new MatTableDataSource(this.questions);
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
-  constructor(questionsSvc: QuestionsService, private router: Router) {
-    questionsSvc.questions$.subscribe(q => {
+  constructor(private questionsService: QuestionsService, private router: Router) {
+    questionsService.questions$.subscribe(q => {
       this.questions = q;
+      this.updateDataSource();
     });
+  }
+
+  updateDataSource() {
+    this.dataSource = new MatTableDataSource(this.questions);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit() {
@@ -35,10 +41,13 @@ export class QuestionListComponent implements OnInit {
 
   deleteQuestion(event: Event, questionToDelete: Question): void {
     event.stopPropagation();
-    this.questions = this.questions.filter(question => question.id !== questionToDelete.id);
-    this.dataSource = new MatTableDataSource(this.questions);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    this.questionsService.remove(questionToDelete).subscribe(data => {
+      this.questions = this.questions.filter(question => question.id !== questionToDelete.id);
+      this.dataSource = new MatTableDataSource(this.questions);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    },
+    error => console.error(error));
   }
 
   editQuestion(event: Event, questionToEdit: Question): void {

@@ -1,49 +1,50 @@
 table {
-    margin-top: 30px;
-    width:100%;
-    justify-self: center
+  margin-top: 30px;
+  width:100%;
+  justify-self: center
 }
 
 .mat-header-cell {
-    flex-direction: column;
-    justify-content: right;
-    font-size: 2rem;
+  flex-direction: column;
+  justify-content: right;
+  font-size: 2rem;
 }
 
 .mat-cell {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .mat-cell button {
-    margin: 10px;
+  margin: 10px;
 }
 
 .delete-button:hover {
-    background-color:rgba(242, 38, 38, 0.8);
-    color: #742E2F
+  background-color:rgba(242, 38, 38, 0.8);
+  color: #742E2F
 }
 
 .edit-button:hover {
-    background-color:rgba(115, 108, 108, 0.8);
+  background-color:rgba(115, 108, 108, 0.8);
 }
 
 .mat-row:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .mat-paginator {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .mat-form-field {
-    padding-left: 30px; 
-    font-size: 1.4rem;
+  padding: 30px; 
+  width: 40%;
+  font-size: 1.4rem;
 }
 
 ::ng-deep .mat-select-value-text {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 ::ng-deep .mat-option-text {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }

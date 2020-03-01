@@ -12,6 +12,8 @@ import { QuestionsService } from './services/questions.service';
 import { NotFoundComponent } from './views/questions/not-found/not-found.component';
 import { QuestionDetailComponent } from './views/questions/question-detail/question-detail.component';
 import { QuestionListComponent } from './views/questions/question-list/question-list.component';
+import { CreateQuestionComponent } from './forms/create-question/create-question.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import { QuestionListComponent } from './views/questions/question-list/question-
     NavbarComponent,
     FooterComponent,
     NotFoundComponent,
+    CreateQuestionComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,9 @@ import { QuestionListComponent } from './views/questions/question-list/question-
     MatIconModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [QuestionsService],
   bootstrap: [AppComponent]

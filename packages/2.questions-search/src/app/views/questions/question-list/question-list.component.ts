@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from "@angular/router";
 import { Question } from 'src/app/services/question';
 import { QuestionsService } from 'src/app/services/questions.service';
-import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
 import { questions } from 'src/app/services/questions';
 
 @Component({
@@ -10,12 +11,13 @@ import { questions } from 'src/app/services/questions';
   styleUrls: ['./question-list.component.scss']
 })
 export class QuestionListComponent implements OnInit {
-  columnsTitles: string[] = ['id', 'name', 'email'];
+  columnsTitles: string[] = ['id', 'name', 'email', 'broker', 'actions'];
   questions: Array<Question>;
   dataSource = new MatTableDataSource(questions);
-  @ViewChild(MatSort) sort: MatSort
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   
-  constructor(questionsSvc: QuestionsService) {
+  constructor(questionsSvc: QuestionsService, private router: Router) {
     questionsSvc.questions$.subscribe(q => {
       this.questions = q;
     });
@@ -23,11 +25,29 @@ export class QuestionListComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource.sort = this.sort;
-
+    this.paginator._intl.itemsPerPageLabel = 'Cantidad de filas';
+    this.dataSource.paginator = this.paginator;
   }
-
 
   getQuestionId(index: number, item: Question): number {
     return item.id;
+  }
+
+  deleteQuestion(event: Event, questionToDelete: Question): void {
+    event.stopPropagation();
+    this.questions = this.questions.filter(question => question.id !== questionToDelete.id);
+    this.dataSource= new MatTableDataSource(this.questions);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
+
+  editQuestion(event: Event, questionToEdit: Question): void {
+    event.stopPropagation();
+    console.log("editing question with id: ", questionToEdit.id);
+  }
+
+  showDetail(question: Question): void {
+    this.router.navigate(['/', 'questions', question.id]);
+    console.log("show detail: ", question.id);
   }
 }

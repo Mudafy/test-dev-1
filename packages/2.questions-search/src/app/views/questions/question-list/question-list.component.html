@@ -1,22 +1,44 @@
 <!-- <app-question-card *ngFor="let question of questions; trackBy getQuestionId" [question]="question"></app-question-card> -->
 <div class="basic-container">
-  <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="id">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> Id </th>
-        <td mat-cell *matCellDef="let question"> {{question.id}} </td>
-    </ng-container>
+  <div class="mat-elevation-z8">
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Id </th>
+          <td mat-cell *matCellDef="let question"> {{question.id}} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="name">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let question"> {{question.name}} </td>
-    </ng-container>
+      <ng-container matColumnDef="name">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let question"> {{question.name}} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="email">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> Email </th>
-        <td mat-cell *matCellDef="let question"> {{question.email}} </td>
-    </ng-container>
+      <ng-container matColumnDef="email">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let question"> {{question.email}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="broker">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Corredor </th>
+          <td mat-cell *matCellDef="let question"> {{question.broker}} </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columnsTitles"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnsTitles;"></tr>
-  </table>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Acciones </th>
+        <td mat-cell *matCellDef="let question">
+          <button mat-icon-button matTooltip="Click to Edit" (click)="editQuestion($event, question)"
+                  class="iconbutton edit-button" color="primary">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Click to Delete" (click)="deleteQuestion($event, question)"
+                  class="iconbutton delete-button" color="warn">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="columnsTitles"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsTitles;" (click)="showDetail(row)"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[10, 20, 30, 40]" showFirstLastButton></mat-paginator>
+  </div>
 </div>

@@ -2,7 +2,7 @@
   Detalles de la consulta
 </h2>
 
-<mat-card>
+<mat-card *ngIf="question">
   <span>
     <div class="inline">
       <b>Nombre:</b> {{question.name}} <br><br>

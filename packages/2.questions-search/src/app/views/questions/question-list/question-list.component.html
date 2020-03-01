@@ -2,9 +2,15 @@
   <mat-icon>add</mat-icon> Crear consulta
 </button>
 
+
+<!-- Search section -->
+<mat-label>Filtrar por:</mat-label>
+<mat-checkbox [(ngModel)]="filterId" (change)="applyFilter()">ID</mat-checkbox>
+<mat-checkbox [(ngModel)]="filterName" (change)="applyFilter()">Nombre</mat-checkbox>
+<mat-checkbox [(ngModel)]="filterEmail" (change)="applyFilter()">E-mail</mat-checkbox>
 <mat-form-field>
   <mat-label>Filtrar</mat-label>
-  <input matInput (keyup)="applyFilter($event)">
+  <input matInput [(ngModel)]="filterText" (keyup)="applyFilter()">
 </mat-form-field>
 
 <table mat-table matSort [dataSource]="tableDataSource" class="mat-elevation-z8">

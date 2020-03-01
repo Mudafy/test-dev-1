@@ -1,26 +1,28 @@
 <h1 mat-dialog-title>Crear consulta</h1>
-<div mat-dialog-content>
-  <mat-form-field>
-    <label>Nombre:</label>
-    <input matInput [(ngModel)]="name">
-  </mat-form-field>
-  <br>
-  <mat-form-field>
-    <label>Teléfono:</label>
-    <input matInput [(ngModel)]="phone">
-  </mat-form-field>
-  <br>
-  <mat-form-field>
-    <label>e-mail:</label>
-    <input matInput [(ngModel)]="email">
-  </mat-form-field>
-  <br>
-  <mat-form-field>
-    <label>Consulta:</label>
-    <textarea matInput [(ngModel)]="message"></textarea>
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onCancelClick()">Cancelar</button>
-  <button mat-button (click)="onCreateClick()" cdkFocusInitial>Crear</button>
-</div>
+<form [formGroup]="questionForm" (ngSubmit)="onSubmit(questionForm.value)">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <label>Nombre:</label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <label>Teléfono:</label>
+      <input matInput formControlName="phone">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <label>e-mail:</label>
+      <input matInput formControlName="email">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <label>Consulta:</label>
+      <textarea matInput formControlName="message"></textarea>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancelClick()">Cancelar</button>
+    <button mat-button type="submit" cdkFocusInitial>Crear</button>
+  </div>
+</form>

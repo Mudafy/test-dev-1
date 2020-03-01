@@ -11,22 +11,17 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class QuestionDetailComponent implements OnInit {
 
-  questionId: number;
   question: Question;
 
-  constructor(private router: Router, private activatedroute: ActivatedRoute, private questionSvc: QuestionsService) {
-    this.questionId = parseInt(activatedroute.snapshot.paramMap.get("id"));
-    questionSvc.getById(this.questionId).subscribe(q => {
-      this.question = q;
-    });
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private questionSvc: QuestionsService) {
+    this.question = this.activatedRoute.snapshot.data['question'];
   }
+
+  ngOnInit() {}
 
   deleteQuestionAndReturnToList(question: Question){
     this.questionSvc.remove(question);
     this.router.navigate(['/questions']);
-  }
-
-  ngOnInit() {
   }
 
 }

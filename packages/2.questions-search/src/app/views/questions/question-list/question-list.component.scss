@@ -11,35 +11,17 @@ table {
   margin:1%;
 }
 
-@-webkit-keyframes hover_animation {
-  to { background-color: #e0e0e0; }
-}
-@-moz-keyframes hover_animation {
-  to { background-color: #e0e0e0; }
-}
-
-@-ms-keyframes hover_animation {
-  to { background-color: #e0e0e0; }
-}
-@-o-keyframes hover_animation {
-  to { background-color: #e0e0e0; }
-}
 @keyframes hover_animation {
   to { background-color: #e0e0e0; }
 }
 
 .mat-row:hover {
   cursor: pointer;
-  -webkit-animation: hover_animation 0.25s;
-	-moz-animation: hover_animation 0.25s;
-	-ms-animation: hover_animation 0.25s;
-	-o-animation: hover_animation 0.25s;
-  animation: hover_animation 1s;
-
-  -webkit-animation-fill-mode:forwards; 
-  -moz-animation-fill-mode:forwards; 
-  -ms-animation-fill-mode:forwards;
-  -o-animation-fill-mode:forwards;
+  animation: hover_animation 0.3s;
   animation-fill-mode:forwards; 
+}
+
+.mat-checkbox{
+  margin: 0.3%;
 }
 

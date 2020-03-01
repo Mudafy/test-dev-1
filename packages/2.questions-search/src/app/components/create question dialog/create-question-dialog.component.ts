@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import { QuestionsService } from 'src/app/services/questions.service';
-import { QuestionStub } from 'src/app/services/question-stub';
+import { FormBuilder } from '@angular/forms';
+
+const CURRENT_BROKER_ID = 1;
 
 @Component({
   selector: 'create-question-dialog',
@@ -9,16 +11,19 @@ import { QuestionStub } from 'src/app/services/question-stub';
   styleUrls: ['./create-question-dialog.component.scss']
 })
 export class CreateQuestionDialogComponent {
+  questionForm;
 
-  name: string;
-  phone: string;
-  email: string;
-  message: string;
+  constructor(public dialogRef: MatDialogRef<CreateQuestionDialogComponent>, private questionsSvc: QuestionsService, private formBuilder: FormBuilder) {
+    this.questionForm = this.formBuilder.group({
+      name: '',
+      phone: '',
+      email: '',
+      message: ''
+    });
+  }
 
-  constructor(public dialogRef: MatDialogRef<CreateQuestionDialogComponent>, private questionsSvc: QuestionsService) {}
-
-  onCreateClick(): void{
-    this.questionsSvc.add({name: this.name, phone: this.phone, email: this.email, message: this.message}, 2);
+  onSubmit(questionData) {
+    this.questionsSvc.add({name: questionData.name, phone: questionData.phone, email: questionData.email, message: questionData.message}, CURRENT_BROKER_ID);
     this.dialogRef.close();
   }
 

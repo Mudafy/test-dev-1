@@ -13,4 +13,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  isOnQuestionsPage(): boolean{
+    return this.router.url == '/questions';
+  }
+
 }

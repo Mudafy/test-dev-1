@@ -1,6 +1,6 @@
 <mat-toolbar>
-  <button mat-icon-button [routerLink]="['/', 'questions']" class="inline" *ngIf="this.router.url != '/questions'">
+  <a mat-icon-button [routerLink]="['/', 'questions']" class="inline" *ngIf="!isOnQuestionsPage()">
     <mat-icon>arrow_back_ios</mat-icon>
-  </button>
+  </a>
   <h3 class="inline">Consultas a propiedades</h3>
 </mat-toolbar>

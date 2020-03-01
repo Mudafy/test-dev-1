@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { MatToolbarModule, MatTableModule, MatSortModule, MatIconModule, MatPaginatorModule } from '@angular/material';
+import { MatToolbarModule, MatTableModule, MatSortModule,
+          MatIconModule, MatPaginatorModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -31,7 +32,9 @@ import { QuestionListComponent } from './views/questions/question-list/question-
     MatTableModule,
     MatSortModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [QuestionsService],
   bootstrap: [AppComponent]

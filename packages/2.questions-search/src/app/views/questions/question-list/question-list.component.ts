@@ -36,7 +36,7 @@ export class QuestionListComponent implements OnInit {
   deleteQuestion(event: Event, questionToDelete: Question): void {
     event.stopPropagation();
     this.questions = this.questions.filter(question => question.id !== questionToDelete.id);
-    this.dataSource= new MatTableDataSource(this.questions);
+    this.dataSource = new MatTableDataSource(this.questions);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
@@ -49,5 +49,9 @@ export class QuestionListComponent implements OnInit {
   showDetail(question: Question): void {
     this.router.navigate(['/', 'questions', question.id]);
     console.log("show detail: ", question.id);
+  }
+
+  applyFilter(filter: string) {
+    this.dataSource.filter = filter.trim().toLocaleLowerCase();
   }
 }

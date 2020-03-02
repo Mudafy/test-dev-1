@@ -13,6 +13,8 @@ export class QuestionListComponent implements OnInit {
   columnsTitles: string[] = ['id', 'name', 'email', 'broker', 'actions'];
   questions: Array<Question> = [];
   dataSource = new MatTableDataSource(this.questions);
+  executing: boolean;
+  deletingId: number;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
@@ -41,23 +43,25 @@ export class QuestionListComponent implements OnInit {
 
   deleteQuestion(event: Event, questionToDelete: Question): void {
     event.stopPropagation();
+    this.executing = true;
+    this.deletingId = questionToDelete.id;
     this.questionsService.remove(questionToDelete).subscribe(data => {
       this.questions = this.questions.filter(question => question.id !== questionToDelete.id);
       this.dataSource = new MatTableDataSource(this.questions);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+      this.executing = false;
     },
     error => console.error(error));
   }
 
   editQuestion(event: Event, questionToEdit: Question): void {
     event.stopPropagation();
-    console.log("editing question with id: ", questionToEdit.id);
+    this.router.navigate(['/', 'questions', questionToEdit.id, 'edit']);
   }
 
   showDetail(question: Question): void {
     this.router.navigate(['/', 'questions', question.id]);
-    console.log("show detail: ", question.id);
   }
 
   applyFilter(filter: string) {

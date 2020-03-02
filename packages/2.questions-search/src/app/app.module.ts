@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatToolbarModule, MatTableModule, MatSortModule,
-          MatIconModule, MatPaginatorModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+          MatIconModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -41,7 +41,8 @@ import { EditQuestionComponent } from './forms/edit-question/edit-question.compo
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [QuestionsService],
   bootstrap: [AppComponent]

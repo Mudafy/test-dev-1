@@ -34,8 +34,10 @@
           </button>
           <button mat-icon-button matTooltip="Click to Delete" (click)="deleteQuestion($event, question)"
                   class="iconbutton delete-button" color="warn">
+            <img *ngIf="executing && deletingId === question.id" src="/assets/images/customSpinner.gif" />
             <mat-icon aria-label="Delete">delete</mat-icon>
           </button>
+
         </td>
       </ng-container>
       

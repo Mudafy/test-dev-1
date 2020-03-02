@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { find, switchAll } from 'rxjs/operators';
+import { find, switchAll, filter } from 'rxjs/operators';
 import { Question } from './question';
 import { QuestionStub } from './question-stub';
 import { questions } from './questions';
@@ -14,11 +14,12 @@ export class QuestionsService {
   questions$ = new BehaviorSubject<Array<Question>>(questions);
   constructor() { }
 
-  add(question: QuestionStub, broker: number) {
+  add(question: QuestionStub, broker: number): Observable<string> {
     const allQuestions = this.questions$.getValue();
     const lastId = Math.max(...allQuestions.map(q => q.id));
     const last: Question = { ...question, broker, id: lastId + 1 };
     this.questions$.next([...allQuestions, last]);
+    return of('ok');
   }
 
   remove(question: Question) {
@@ -27,7 +28,7 @@ export class QuestionsService {
     return of('ok');
   }
 
-  edit(question: Question, newContent: QuestionStub) {
+  edit(question: Question, newContent: QuestionStub): Observable<string> {
     const allQuestions = this.questions$.getValue()
       .map(q => {
         if (q.id === question.id) {
@@ -40,10 +41,8 @@ export class QuestionsService {
   }
 
   getById(questionId: number): Observable<Question> {
-    return this.questions$.pipe(
-      switchAll(),
-      find(q => q.id === questionId)
-    );
+    const requestedQuestion = this.questions$.value.find(question => question.id === questionId);
+    return of (requestedQuestion);
   }
 
 }

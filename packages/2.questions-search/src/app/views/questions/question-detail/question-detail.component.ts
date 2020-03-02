@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Question } from 'src/app/services/question';
+import { Router, ActivatedRoute } from '@angular/router';
+import { QuestionsService } from 'src/app/services/questions.service';
 
 @Component({
   selector: 'app-question-detail',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionDetailComponent implements OnInit {
 
-  constructor() { }
+  question: Question;
+  id: number;
+  notFound: boolean = false;
+
+  constructor(private questionsService: QuestionsService, private router: Router,
+              private activeRoute: ActivatedRoute) {}
 
   ngOnInit() {
+    this.id = parseInt(this.activeRoute.snapshot.paramMap.get('id'));
+    this.questionsService.getById(this.id).subscribe(
+      data => {
+        if (data) {
+          this.question = data;
+        }
+        else {
+          this.notFound = true;
+        }
+      },
+      error => this.notFound = true,
+    );
   }
 
 }

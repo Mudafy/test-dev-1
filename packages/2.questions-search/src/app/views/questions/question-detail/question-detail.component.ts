@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionsService } from 'src/app/services/questions.service';
 import { Question } from 'src/app/services/question';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { pluck } from 'rxjs/operators';
 
 
 @Component({
@@ -11,10 +13,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class QuestionDetailComponent implements OnInit {
 
-  question: Question;
+  question$: Observable<Question>;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private questionSvc: QuestionsService) {
-    this.question = this.activatedRoute.snapshot.data['question'];
+    this.question$ = this.activatedRoute.data.pipe(pluck('question'));
   }
 
   ngOnInit() {}

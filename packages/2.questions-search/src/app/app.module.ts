@@ -14,6 +14,7 @@ import { QuestionDetailComponent } from './views/questions/question-detail/quest
 import { QuestionListComponent } from './views/questions/question-list/question-list.component';
 import { CreateQuestionComponent } from './forms/create-question/create-question.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { EditQuestionComponent } from './forms/edit-question/edit-question.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     FooterComponent,
     NotFoundComponent,
     CreateQuestionComponent,
+    EditQuestionComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,38 @@
+.form-container {
+    display: flex;
+    padding-top: 30px;
+    justify-content: center;
+    align-content: center;
+  }
+  
+  .form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    margin-top: 30px;
+    font-size: 1.5rem;
+  }
+  
+  button {
+    width:100%;
+    margin-top: 30px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.5rem;
+  }
+  
+  button:hover{
+    background-color: rgb(68, 126, 70);
+    cursor: pointer;
+  }

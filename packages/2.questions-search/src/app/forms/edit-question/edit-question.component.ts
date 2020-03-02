@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { QuestionsService } from 'src/app/services/questions.service';
 import { QuestionStub } from 'src/app/services/question-stub';
@@ -6,14 +6,16 @@ import { Router } from "@angular/router";
 import { CustomErrorStateMatcher } from '../custom-error-matcher';
 import { numberValidator } from '../validators/number-validator';
 import { Question } from 'src/app/services/question';
+import { questions } from 'src/app/services/questions';
 
 @Component({
-  selector: 'app-create-question',
-  templateUrl: './create-question.component.html',
-  styleUrls: ['./create-question.component.scss']
+  selector: 'app-edit-question',
+  templateUrl: './edit-question.component.html',
+  styleUrls: ['./edit-question.component.scss']
 })
-export class CreateQuestionComponent implements OnInit {
-  
+export class EditQuestionComponent implements OnInit {
+
+  question: Question = questions[0];
   nameFormControl = new FormControl('', [
     Validators.required,
   ]);
@@ -54,3 +56,4 @@ export class CreateQuestionComponent implements OnInit {
     }
   }
 }
+  

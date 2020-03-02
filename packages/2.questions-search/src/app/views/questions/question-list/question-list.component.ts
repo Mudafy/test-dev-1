@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, SimpleChanges, OnChanges } from '@angular/core';
 import { Router } from "@angular/router";
 import { Question } from 'src/app/services/question';
 import { QuestionsService } from 'src/app/services/questions.service';
@@ -15,26 +15,30 @@ export class QuestionListComponent implements OnInit {
   dataSource = new MatTableDataSource(this.questions);
   executing: boolean;
   deletingId: number;
+  loading: boolean;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  
+
   constructor(private questionsService: QuestionsService, private router: Router) {
+    this.loading = true;
     questionsService.questions$.subscribe(q => {
+      this.loading = false;
       this.questions = q;
-      this.updateDataSource();
+      this.initializeDataSource();
     });
   }
 
-  updateDataSource() {
+  initializeDataSource() {
     this.dataSource = new MatTableDataSource(this.questions);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit() {
-    this.dataSource.sort = this.sort;
-    this.paginator._intl.itemsPerPageLabel = 'Cantidad de filas';
-    this.dataSource.paginator = this.paginator;
+    if (this.paginator) {
+      this.paginator._intl.itemsPerPageLabel = 'Cantidad de filas';
+      this.dataSource.paginator = this.paginator;
+    }
   }
 
   getQuestionId(index: number, item: Question): number {

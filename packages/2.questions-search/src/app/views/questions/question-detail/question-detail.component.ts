@@ -12,7 +12,8 @@ export class QuestionDetailComponent implements OnInit {
 
   question: Question;
   id: number;
-  notFound: boolean = false;
+  notFound: boolean;
+  loading: boolean;
 
   constructor(private questionsService: QuestionsService, private router: Router,
               private activeRoute: ActivatedRoute) {}
@@ -21,6 +22,7 @@ export class QuestionDetailComponent implements OnInit {
     this.id = parseInt(this.activeRoute.snapshot.paramMap.get('id'));
     this.questionsService.getById(this.id).subscribe(
       data => {
+        this.loading = false;
         if (data) {
           this.question = data;
         }

@@ -1,0 +1,10 @@
+.spinner-container {
+  height: 100%;
+  display: flex;
+  align-content: center;   
+}
+
+mat-spinner {
+  z-index: 2;
+  margin: 0 auto; 
+}

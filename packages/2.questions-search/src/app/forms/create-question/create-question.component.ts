@@ -28,6 +28,7 @@ export class CreateQuestionComponent implements OnInit {
     numberValidator
   ]);
   matcher = new CustomErrorStateMatcher();
+  executing: boolean;
 
   constructor(private questionsService: QuestionsService, private router: Router) {}
 
@@ -42,6 +43,7 @@ export class CreateQuestionComponent implements OnInit {
 
   onSubmit() {
     if (this.isValidForm()) {
+      this.executing = true;
       const newQuestion: QuestionStub = {
         name: this.nameFormControl.value,
         phone: this.phoneFormControl.value ? this.phoneFormControl.value : undefined,
@@ -49,7 +51,10 @@ export class CreateQuestionComponent implements OnInit {
         message: this.questionFormControl.value ? this.questionFormControl.value : undefined,
       }
       this.questionsService.add(newQuestion, this.brokerFormControl.value).subscribe(
-        data => this.router.navigate(['/', 'questions']),
+        data => {
+          this.executing = false;
+          this.router.navigate(['/', 'questions']);
+        },
         error => console.error(error)
       );
     }

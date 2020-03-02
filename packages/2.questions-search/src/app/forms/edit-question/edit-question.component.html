@@ -1,5 +1,6 @@
 <app-not-found *ngIf="notFound"></app-not-found>
-<div class="form-container" *ngIf="question">
+<app-spinner *ngIf="!notFound && loading"></app-spinner>
+<div class="form-container" *ngIf="question && !loading">
   <form class="form" (ngSubmit)="onSubmit()">
       <mat-form-field class="full-width">
           <mat-label>Nombre</mat-label>
@@ -41,6 +42,9 @@
             El corredor debe ser un número.
           </mat-error>
       </mat-form-field>
-      <button type="submit">EDITAR</button>
+      <button type="submit">
+        EDITAR
+        <img *ngIf="executing" src="/assets/images/customSpinner.gif" />        
+      </button>
   </form>
 </div>

@@ -15,7 +15,7 @@ import { QuestionListComponent } from './views/questions/question-list/question-
 import { CreateQuestionComponent } from './forms/create-question/create-question.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { EditQuestionComponent } from './forms/edit-question/edit-question.component';
-
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +28,7 @@ import { EditQuestionComponent } from './forms/edit-question/edit-question.compo
     NotFoundComponent,
     CreateQuestionComponent,
     EditQuestionComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

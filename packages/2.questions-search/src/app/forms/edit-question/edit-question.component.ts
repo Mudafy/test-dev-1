@@ -26,13 +26,16 @@ export class EditQuestionComponent implements OnInit {
   questionFormControl = new FormControl('', []);
   brokerFormControl: FormControl;
   matcher = new CustomErrorStateMatcher();
-  notFound: boolean = false;
+  notFound: boolean;
   id: number;
+  loading: boolean;
+  executing: boolean;
 
   constructor(private questionsService: QuestionsService, private router: Router,
               private activeRoute: ActivatedRoute) {}
 
   ngOnInit() {
+    this.loading = true;
     this.id = parseInt(this.activeRoute.snapshot.paramMap.get('id'));
     this.questionsService.getById(this.id).subscribe(
       data => {
@@ -46,6 +49,7 @@ export class EditQuestionComponent implements OnInit {
             Validators.required,
             numberValidator
           ]);
+          this.loading = false;
         }
         else {
           this.notFound = true;
@@ -64,15 +68,18 @@ export class EditQuestionComponent implements OnInit {
 
   onSubmit() {
     if (this.isValidForm()) {
+      this.executing = true;
       const newQuestion: QuestionStub = {
         name: this.nameFormControl.value,
         phone: this.phoneFormControl.value ? this.phoneFormControl.value : undefined,
         email: this.emailFormControl.value,
         message: this.questionFormControl.value ? this.questionFormControl.value : undefined,
-      }
-      console.log(newQuestion);
+      };
       this.questionsService.edit(this.question, newQuestion).subscribe(
-        data => this.router.navigate(['/', 'questions', this.question.id]),
+        data => {
+          this.executing = false;
+          this.router.navigate(['/', 'questions', this.question.id]);
+        },
         error => console.error(error)
       );
     }

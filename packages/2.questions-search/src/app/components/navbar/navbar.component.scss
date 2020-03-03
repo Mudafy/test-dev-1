@@ -12,3 +12,10 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+@media (max-width: 500px) {
+    .mat-toolbar span {
+        padding: 20px;
+        font-size: 1.8rem;
+    }
+}

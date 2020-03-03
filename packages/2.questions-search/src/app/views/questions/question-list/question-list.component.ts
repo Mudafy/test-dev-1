@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, SimpleChanges, OnChanges } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { Question } from 'src/app/services/question';
 import { QuestionsService } from 'src/app/services/questions.service';
 import { MatSort, MatTableDataSource, MatPaginator } from '@angular/material';

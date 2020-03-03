@@ -19,12 +19,14 @@ export class QuestionCardComponent implements OnInit {
   }
 
   deleteQuestion(): void {
-    this.executing = true;
-    this.questionsService.remove(this.question).subscribe(data => {
-      this.executing = false;
-      this.router.navigate(['/', 'questions']);
-    },
-    error => console.error(error));
+    if (!this.executing) {
+      this.executing = true;
+      this.questionsService.remove(this.question).subscribe(data => {
+        this.executing = false;
+        this.router.navigate(['/', 'questions']);
+      },
+      error => console.error(error));
+    }
   }
 
   editQuestion(): void {

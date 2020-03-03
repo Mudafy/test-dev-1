@@ -40,9 +40,12 @@
             El corredor debe ser un número.
           </mat-error>
       </mat-form-field>
-      <button type="submit">
+      <button type="submit" class="submit-button" *ngIf="!executing">
         CREAR
-        <img *ngIf="executing" src="/assets/images/customSpinner.gif" />
+      </button>
+      <button type="submit" class="submit-button-disabled" *ngIf="executing">
+          CREAR
+          <img src="/assets/images/customSpinner.gif" />
       </button>
   </form>
 </div>

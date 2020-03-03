@@ -20,7 +20,7 @@
   font-size: 1.5rem;
 }
 
-button {
+.submit-button {
   width:100%;
   margin-top: 30px;
   background-color: #4CAF50;
@@ -32,7 +32,19 @@ button {
   font-size: 1.5rem;
 }
 
-button:hover{
+.submit-button:hover{
   background-color: rgb(68, 126, 70);
   cursor: pointer;
+}
+
+.submit-button-disabled {
+  width:100%;
+  margin-top: 30px;
+  background-color: rgb(68, 126, 70);;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.5rem;
 }

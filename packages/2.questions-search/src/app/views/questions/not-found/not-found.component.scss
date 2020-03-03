@@ -1,0 +1,59 @@
+.askButton {
+    text-decoration: none;
+    background-color: rgb(64, 151, 67);
+    color: white;
+    padding: 4px 10px 4px 10px;
+    border-radius: 4px;
+    font-size: 2rem;
+  }
+  
+  .askButton:hover {
+    background-color: rgb(68, 126, 70);
+    cursor: pointer;
+  }
+
+
+  .details-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-right: 30px;
+  }
+  
+  .mat-card {
+    margin: 2px;
+  }
+
+  .card {
+    width: 50%;
+    margin-top: 30px;
+  }
+  
+  .card-content {
+    width: 100%;
+  }
+  
+  .card-content-container {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    font-size: 2.5rem;
+    align-items: center;
+  }
+  
+  .card-content-container div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+  }
+  
+  .second-item {
+    margin-left: 20px;
+  }
+  
+  a {
+      margin: auto;
+  }
+  
+  
+  

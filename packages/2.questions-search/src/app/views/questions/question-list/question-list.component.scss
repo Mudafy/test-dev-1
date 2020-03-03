@@ -4,6 +4,37 @@ table {
   justify-self: center
 }
 
+.card {
+  display: flex;
+  align-items: center;
+  width: 25%;
+  justify-self: center;
+  align-self: center;
+  margin-bottom: 30px;
+}
+
+.card p {
+  font-size: 2rem;
+}
+
+.askButton {
+  text-decoration: none;
+  background-color: rgb(64, 151, 67);
+  color: white;
+  padding: 4px 10px 4px 10px;
+  border-radius: 4px;
+  font-size: 2rem;
+}
+
+.askButton:hover {
+  background-color: rgb(68, 126, 70);
+  cursor: pointer;
+}
+
+.askButton span {
+  letter-spacing: 2px;
+}
+
 .mat-header-cell {
   flex-direction: column;
   justify-content: right;

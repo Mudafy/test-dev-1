@@ -1,5 +1,13 @@
 <app-spinner *ngIf="loading"></app-spinner>
 <div class="basic-container">
+  <mat-card class="card">
+    <mat-card-content>
+      <p>
+        ¿ Tenés más preguntas ?
+      </p>
+      <a [routerLink]="['/', 'questions', 'create']" class="askButton"> <span>PREGUNTA</span></a>
+    </mat-card-content>
+  </mat-card>
   <div class="mat-elevation-z8">
     <mat-form-field>
       <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filtrar"/>

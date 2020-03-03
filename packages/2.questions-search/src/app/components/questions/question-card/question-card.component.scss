@@ -1,0 +1,63 @@
+.details-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-right: 30px;
+}
+
+.mat-card {
+  margin: 2px;
+}
+.card {
+  width: 50%;
+  margin-top: 30px;
+}
+
+.card-title {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.card-title span{
+  font-size: 2.2rem;
+}
+
+.card-content {
+  width: 100%;
+}
+
+.card-content-container {
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  align-items: center;
+}
+
+.card-content-container div {
+  display: flex;
+}
+
+.second-item {
+  margin-left: 20px;
+}
+
+.delete-button:hover {
+  background-color:rgba(242, 38, 38, 0.8);
+  color: #742E2F
+}
+
+.edit-button:hover {
+  background-color:rgba(115, 108, 108, 0.8);
+}
+
+.buttons-container {
+  margin-top: 20px;
+}
+
+button{
+  font-size: 1.5rem;
+}
+
+

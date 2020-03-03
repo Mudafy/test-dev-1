@@ -1,4 +1,44 @@
-<div>
-  <h4>{{question.id}} - {{question.name}}</h4>
-  <a [routerLink]="['/', 'questions', question.id]">Ir a la consulta {{question.id}}</a>
+<div class="details-container">
+  <mat-card class="card">
+    <mat-card-title class="card-title">
+      <span>{{question.message}}</span>
+    </mat-card-title>
+    <hr>
+    <mat-card-content class="card-content">
+      <div class="card-content-container">
+        <div class="info-container">
+          <p>ID: </p>
+          <p class="second-item">{{question.id}}</p>
+        </div>
+        <div class="info-container">
+            <p><i class="fas fa-phone"></i></p>
+            <p class="second-item">{{question.phone}}</p>
+        </div>
+        <div class="info-container">
+            <p><i class="fas fa-user"></i></p>
+            <p class="second-item">{{question.name}}</p>
+        </div>
+        <div class="info-container">
+          <p><i class="fas fa-envelope"></i></p>
+          <p class="second-item">{{question.email}}</p>
+        </div>
+        <div class="info-container">
+          <p>Corredor: </p>
+          <p class="second-item">{{question.broker}}</p>
+        </div>
+        <div class="buttons-container">
+          <button mat-icon-button matTooltip="Click to Edit" (click)="editQuestion()"
+            class="iconbutton edit-button" color="primary">
+            <mat-icon aria-label="Edit">edit</mat-icon> EDITAR
+          </button>
+          <button mat-icon-button matTooltip="Click to Delete" (click)="deleteQuestion()"
+                  class="iconbutton delete-button second-item" color="warn">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+            BORRAR
+            <img *ngIf="executing" src="/assets/images/customSpinner.gif" />
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

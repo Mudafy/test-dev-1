@@ -13,7 +13,7 @@ import { Question } from 'src/app/services/question';
   styleUrls: ['./create-question.component.scss']
 })
 export class CreateQuestionComponent implements OnInit {
-  
+
   nameFormControl = new FormControl('', [
     Validators.required,
   ]);

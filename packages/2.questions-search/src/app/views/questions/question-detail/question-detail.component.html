@@ -1,4 +1,2 @@
 <app-spinner *ngIf="loading"></app-spinner>
-<p *ngIf="!loading">
-  question-detail works!
-</p>
+<app-question-card *ngIf="!loading" [question]="question"></app-question-card>

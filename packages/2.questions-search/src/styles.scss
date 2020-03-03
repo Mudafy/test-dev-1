@@ -27,7 +27,9 @@ $test-questions-search-theme: mat-light-theme($test-questions-search-primary, $t
 @include angular-material-theme($test-questions-search-theme);
 
 /* You can add global styles to this file, and also import other style files */
-
+* {
+    box-sizing: border-box;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .basic-container {

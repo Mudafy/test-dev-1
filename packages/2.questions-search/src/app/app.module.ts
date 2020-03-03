@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MatToolbarModule, MatTableModule, MatSortModule,
-          MatIconModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule } from '@angular/material';
+          MatIconModule, MatPaginatorModule, MatFormFieldModule,
+          MatInputModule, MatProgressSpinnerModule, MatCardModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -43,7 +44,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatCardModule
   ],
   providers: [QuestionsService],
   bootstrap: [AppComponent]

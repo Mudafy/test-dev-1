@@ -2,53 +2,56 @@
 <app-spinner *ngIf="!notFound && loading"></app-spinner>
 <div class="form-container" *ngIf="question && !loading">
   <form class="form" (ngSubmit)="onSubmit()">
-      <mat-form-field class="full-width">
-          <mat-label>Nombre</mat-label>
-          <input matInput [formControl]="nameFormControl" [errorStateMatcher]="matcher" required>
-          <mat-error *ngIf="nameFormControl.hasError('required')">
-            El nombre es <strong>obligatorio</strong>
-          </mat-error>
-      </mat-form-field>
 
-      <mat-form-field class="full-width">
-          <mat-label>Teléfono</mat-label>
-          <input matInput name="phone" [formControl]="phoneFormControl" >
-      </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>ID</mat-label>
+        <input matInput [formControl]="idFormControl">
+    </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Email</mat-label>
-        <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-              placeholder="Ej: mail@domain.com" required>
-        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-          Por favor ingrese un email valido.
+    <mat-form-field class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput [formControl]="nameFormControl" [errorStateMatcher]="matcher" required>
+        <mat-error *ngIf="nameFormControl.hasError('required')">
+          El nombre es <strong>obligatorio</strong>
         </mat-error>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
-          El email es <strong>obligatorio</strong>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Teléfono</mat-label>
+        <input matInput name="phone" [formControl]="phoneFormControl" >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+            placeholder="Ej: mail@domain.com" required>
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Por favor ingrese un email valido.
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        El email es <strong>obligatorio</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Pregunta</mat-label>
+        <input matInput name="question" [formControl]="questionFormControl" [errorStateMatcher]="matcher" required>
+        <mat-error *ngIf="questionFormControl.hasError('required')">
+          La pregunta es <strong>obligatoria</strong>
         </mat-error>
-      </mat-form-field>
+    </mat-form-field>
 
-      <mat-form-field class="full-width">
-          <mat-label>Pregunta</mat-label>
-          <input matInput name="question" [formControl]="questionFormControl" >
-      </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Corredor</mat-label>
+        <input matInput [formControl]="brokerFormControl" [errorStateMatcher]="matcher" required>
+    </mat-form-field>
 
-      <mat-form-field class="full-width">
-          <mat-label>Corredor</mat-label>
-          <input matInput [formControl]="brokerFormControl" [errorStateMatcher]="matcher" required>
-          <mat-error *ngIf="brokerFormControl.hasError('required')">
-            El corredor es <strong>obligatorio</strong>
-          </mat-error>
-          <mat-error *ngIf="!brokerFormControl.hasError('required')">
-            El corredor debe ser un número.
-          </mat-error>
-      </mat-form-field>
-      <button type="submit" class="submit-button" *ngIf="!executing">
+    <button type="submit" class="submit-button" *ngIf="!executing">
+      EDITAR
+    </button>
+    <button type="submit" class="submit-button-disabled" *ngIf="executing"  disabled>
         EDITAR
-      </button>
-      <button type="submit" class="submit-button-disabled" *ngIf="executing"  disabled>
-          EDITAR
-          <img src="/assets/images/customSpinner.gif" />        
-      </button>
-      
+        <img src="/assets/images/customSpinner.gif" />        
+    </button>
   </form>
 </div>

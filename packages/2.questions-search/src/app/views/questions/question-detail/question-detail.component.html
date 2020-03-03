@@ -1,2 +1,3 @@
 <app-spinner *ngIf="loading"></app-spinner>
-<app-question-card *ngIf="!loading" [question]="question"></app-question-card>
+<app-not-found *ngIf="notFound"></app-not-found>
+<app-question-card *ngIf="!loading && !notFound" [question]="question"></app-question-card>

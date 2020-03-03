@@ -27,7 +27,10 @@
 
       <mat-form-field class="full-width">
           <mat-label>Pregunta</mat-label>
-          <input matInput name="question" [formControl]="questionFormControl" >
+          <input matInput name="question" [formControl]="questionFormControl" [errorStateMatcher]="matcher" required>
+          <mat-error *ngIf="questionFormControl.hasError('required')">
+            La pregunta es <strong>obligatoria</strong>
+          </mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">

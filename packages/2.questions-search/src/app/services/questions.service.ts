@@ -14,12 +14,12 @@ export class QuestionsService {
   questions$ = new BehaviorSubject<Array<Question>>(questions);
   constructor() { }
 
-  add(question: QuestionStub, broker: number): Observable<string> {
+  add(question: QuestionStub, broker: number): Observable<Question> {
     const allQuestions = this.questions$.getValue();
     const lastId = Math.max(...allQuestions.map(q => q.id));
     const last: Question = { ...question, broker, id: lastId + 1 };
     this.questions$.next([...allQuestions, last]);
-    return of('ok');
+    return of(last);
   }
 
   remove(question: Question) {

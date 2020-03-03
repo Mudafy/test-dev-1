@@ -15,6 +15,7 @@ import { Question } from 'src/app/services/question';
 export class EditQuestionComponent implements OnInit {
 
   question: Question = undefined;
+  idFormControl: FormControl;
   nameFormControl = new FormControl('', [
     Validators.required,
   ]);
@@ -23,7 +24,9 @@ export class EditQuestionComponent implements OnInit {
     Validators.required,
     Validators.email,
   ]);
-  questionFormControl = new FormControl('', []);
+  questionFormControl = new FormControl('', [
+    Validators.required,
+  ]);
   brokerFormControl: FormControl;
   matcher = new CustomErrorStateMatcher();
   notFound: boolean;
@@ -41,14 +44,12 @@ export class EditQuestionComponent implements OnInit {
       data => {
         if (data) {
           this.question = data;
+          this.idFormControl = new FormControl({ value: `${this.question.id}`, disabled: true }, []);
           this.nameFormControl.setValue(`${this.question.name}`);
           this.phoneFormControl.setValue(`${this.question.phone}`);
           this.emailFormControl.setValue(`${this.question.email}`);
           this.questionFormControl.setValue(`${this.question.message}`);
-          this.brokerFormControl = new FormControl({ value: `${this.question.broker}`, disabled: true }, [
-            Validators.required,
-            numberValidator
-          ]);
+          this.brokerFormControl = new FormControl({ value: `${this.question.broker}`, disabled: true }, []);
           this.loading = false;
         }
         else {
@@ -73,7 +74,7 @@ export class EditQuestionComponent implements OnInit {
         name: this.nameFormControl.value,
         phone: this.phoneFormControl.value ? this.phoneFormControl.value : undefined,
         email: this.emailFormControl.value,
-        message: this.questionFormControl.value ? this.questionFormControl.value : undefined,
+        message: this.questionFormControl.value,
       };
       this.questionsService.edit(this.question, newQuestion).subscribe(
         data => {

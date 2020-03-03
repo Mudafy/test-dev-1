@@ -12,7 +12,7 @@ export class QuestionDetailComponent implements OnInit {
 
   question: Question;
   id: number;
-  notFound: boolean;
+  notFound: boolean = false;
   loading: boolean;
 
   constructor(private questionsService: QuestionsService, private router: Router,

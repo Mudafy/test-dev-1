@@ -22,7 +22,9 @@ export class CreateQuestionComponent implements OnInit {
     Validators.required,
     Validators.email,
   ]);
-  questionFormControl = new FormControl('', []);
+  questionFormControl = new FormControl('', [
+    Validators.required,
+  ]);
   brokerFormControl = new FormControl('', [
     Validators.required,
     numberValidator
@@ -48,12 +50,12 @@ export class CreateQuestionComponent implements OnInit {
         name: this.nameFormControl.value,
         phone: this.phoneFormControl.value ? this.phoneFormControl.value : undefined,
         email: this.emailFormControl.value,
-        message: this.questionFormControl.value ? this.questionFormControl.value : undefined,
+        message: this.questionFormControl.value,
       }
       this.questionsService.add(newQuestion, this.brokerFormControl.value).subscribe(
         data => {
           this.executing = false;
-          this.router.navigate(['/', 'questions']);
+          this.router.navigate(['/', 'questions', data.id]);
         },
         error => console.error(error)
       );

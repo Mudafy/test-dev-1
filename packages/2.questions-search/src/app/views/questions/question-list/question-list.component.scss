@@ -72,10 +72,49 @@ table {
   font-size: 1.4rem;
 }
 
+.mat-column-question {
+  flex: 7;
+  width: 35%;
+}
+
+.mat-column-id {
+  flex: 2;
+  width: 10%;
+}
+
+.mat-column-broker {
+  flex: 2;
+  width: 10%;
+  justify-content: center;
+}
+
+.mat-column-actions {
+  flex: 4;
+  width: 20%;
+}
+
+.mat-column-name {
+  flex: 5;
+  width: 25%;
+}
+
+th.mat-header-cell {
+  text-align: center !important;
+}
+
+td {
+  text-align: center;
+}
+
 ::ng-deep .mat-select-value-text {
   font-size: 1.2rem;
 }
 
 ::ng-deep .mat-option-text {
   font-size: 1.2rem;
+}
+
+::ng-deep .mat-sort-header-container {
+  display:flex;
+  justify-content:center;
 }

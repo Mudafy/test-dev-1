@@ -14,23 +14,23 @@
     </mat-form-field>
     <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="id">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> Id </th>
-          <td mat-cell *matCellDef="let question"> {{question.id}} </td>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let question"> {{question.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="message">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Pregunta </th>
+        <td mat-cell *matCellDef="let question"> {{question.message}} </td>
       </ng-container>
 
       <ng-container matColumnDef="name">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> Nombre </th>
-          <td mat-cell *matCellDef="let question"> {{question.name}} </td>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let question"> {{question.name}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="email">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> Email </th>
-          <td mat-cell *matCellDef="let question"> {{question.email}} </td>
-      </ng-container>
-      
       <ng-container matColumnDef="broker">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> Corredor </th>
-          <td mat-cell *matCellDef="let question"> {{question.broker}} </td>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Corredor </th>
+        <td mat-cell *matCellDef="let question"> {{question.broker}} </td>
       </ng-container>
 
       <ng-container matColumnDef="actions">

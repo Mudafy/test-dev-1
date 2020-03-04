@@ -10,7 +10,9 @@ import { MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
   styleUrls: ['./question-list.component.scss']
 })
 export class QuestionListComponent implements OnInit {
-  columnsTitles: string[] = ['id', 'name', 'email', 'broker', 'actions'];
+  // columnsTitles: string[] = ['id', 'name', 'email', 'broker', 'actions'];
+  columnsTitles: string[] = ['id', 'message', 'name', 'broker', 'actions'];
+
   questions: Array<Question> = [];
   dataSource = new MatTableDataSource(this.questions);
   executing: boolean;
@@ -30,11 +32,11 @@ export class QuestionListComponent implements OnInit {
 
   initializeDataSource() {
     this.dataSource = new MatTableDataSource(this.questions);
-    this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit() {
+    this.dataSource.sort = this.sort;
     if (this.paginator) {
       this.paginator._intl.itemsPerPageLabel = 'Cantidad de filas';
       this.dataSource.paginator = this.paginator;

@@ -1,11 +1,14 @@
-# Node.js image to build and compile Angular
-FROM node:latest as node
+FROM node:lts
+LABEL maintainer="shibli049.com"
+# set working directory
 WORKDIR /app
-COPY ./ /app/
-RUN npm install
-RUN npm run build -- --prod=false
-
-# Nginx image, to have only the compiled app, ready for production with Nginx
-FROM nginx:alpine
-COPY --from=node /app/dist/test-questions-search /usr/share/nginx/html
-COPY ./nginx-conf.conf /etc/nginx/conf.d/default.conf
+# copy and install app dependencies
+COPY package.json /app/package.json
+RUN NODE_ENV=development npm install
+# ENV NODE_ENV=${DOCKER_ENV}
+RUN npm install -g @angular/cli@latest
+# add app
+COPY . /app
+EXPOSE 4200
+# start app
+CMD ["ng",  "serve", "--host", "0.0.0.0"]

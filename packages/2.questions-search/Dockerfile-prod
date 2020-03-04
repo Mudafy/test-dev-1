@@ -1,0 +1,10 @@
+# Node.js image to build and compile Angular
+FROM node:latest as node
+WORKDIR /app
+COPY ./ /app/
+RUN NODE_ENV=development npm install
+
+# Nginx image, to have only the compiled app, ready for production with Nginx
+FROM nginx:alpine
+COPY --from=node /app/dist/test-questions-search /usr/share/nginx/html
+COPY ./nginx-conf.conf /etc/nginx/conf.d/default.conf

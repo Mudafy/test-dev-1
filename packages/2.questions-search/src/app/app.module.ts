@@ -14,8 +14,12 @@ import { QuestionListComponent } from './views/questions/question-list/question-
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { QuestionTableComponent } from './views/questions/question-table/question-table.component';
+import { QuestionTabsComponent } from './views/questions/question-tabs/question-tabs.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,8 @@ import {MatButtonModule} from '@angular/material/button';
     NavbarComponent,
     FooterComponent,
     NotFoundComponent,
-    QuestionTableComponent
+    QuestionTableComponent,
+    QuestionTabsComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule,
+    MatIconModule
   ],
   providers: [QuestionsService],
   bootstrap: [AppComponent]

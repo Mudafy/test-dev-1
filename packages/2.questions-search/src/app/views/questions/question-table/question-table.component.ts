@@ -37,10 +37,15 @@ export class QuestionTableComponent implements OnInit{
   
   public borrar(element){
     this.questionsSvc.getById(parseInt(element)).subscribe(q => {
-      this.selectedQuestion = q
+      this.selectedQuestion = q;
     })
-    this.questionsSvc.remove(this.selectedQuestion)
-    this.refresh()
-    this.dataSource.paginator = this.paginator
+    this.questionsSvc.remove(this.selectedQuestion);
+    this.refresh();
+    this.dataSource.paginator = this.paginator;
+  }
+
+  applyFilter(event: Event){
+    const value = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = value.trim().toLowerCase();
   }
 }

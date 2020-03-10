@@ -1,4 +1,8 @@
 <div>
+    <mat-form-field>
+        <mat-label>Buscar en consultas</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Buscador">
+    </mat-form-field>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     
         <ng-container matColumnDef="id">

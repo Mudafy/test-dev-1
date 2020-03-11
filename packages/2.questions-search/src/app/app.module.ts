@@ -15,6 +15,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { QuestionTableComponent } from './views/questions/question-table/question-table.component';
 import { QuestionTabsComponent } from './views/questions/question-tabs/question-tabs.component';
+import { QuestionFormComponent } from './views/questions/question-form/question-form.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 
@@ -23,6 +24,7 @@ import {MatIconModule} from '@angular/material/icon';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import {MatInputModule} from '@angular/material/input';
     FooterComponent,
     NotFoundComponent,
     QuestionTableComponent,
-    QuestionTabsComponent
+    QuestionTabsComponent,
+    QuestionFormComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import {MatInputModule} from '@angular/material/input';
     MatTabsModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule
   ],
   providers: [QuestionsService],
   bootstrap: [AppComponent]

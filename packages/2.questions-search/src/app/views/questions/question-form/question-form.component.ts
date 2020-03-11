@@ -1,10 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-// import { Question } from 'src/app/services/question';
-// import { QuestionsService } from 'src/app/services/questions.service';
-// import {MatPaginator} from '@angular/material/paginator';
-// import {MatTableDataSource} from '@angular/material/table';
+import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
+import { QuestionStub } from 'src/app/services/question-stub';
+import { QuestionsService } from 'src/app/services/questions.service';
 
-
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'question-form',
@@ -13,10 +11,24 @@ import {Component, OnInit} from '@angular/core';
 })
 
 export class QuestionFormComponent implements OnInit{
-  constructor() {  }
+  addQuestion = {} as QuestionStub
+  @Input() table;
+  
+  constructor(private questionSrv: QuestionsService) { 
+  }
   
   ngOnInit() {
   
+  }
+
+  emitAddQuestion(questionForm: NgForm){
+    this.addQuestion.email = questionForm.value.email
+    this.addQuestion.phone = questionForm.value.phone
+    this.addQuestion.name = questionForm.value.name
+    this.addQuestion.message = questionForm.value.message
+    this.questionSrv.add(this.addQuestion,999)
+    this.table.refresh();
+    this.table.reloadPaginator();
   }
   
 }

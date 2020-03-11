@@ -20,19 +20,24 @@ export class QuestionTableComponent implements OnInit{
   questions: Array<Question>
   selectedQuestion: Question
   dataSource = new MatTableDataSource<Question>(data);
-
+  public myCount: number = 0
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private questionsSvc: QuestionsService) {
     this.refresh()
   }
-  refresh() {
+  
+  public refresh() {
     this.questionsSvc.questions$.subscribe(q => {
       this.questions = q;
     });
     this.dataSource = new MatTableDataSource<Question>(this.questions);
   }
-  ngOnInit() {
+
+  public reloadPaginator(){
     this.dataSource.paginator = this.paginator;
+  }
+  ngOnInit() {
+    this.reloadPaginator();
   }
   
   public borrar(element){
@@ -41,7 +46,7 @@ export class QuestionTableComponent implements OnInit{
     })
     this.questionsSvc.remove(this.selectedQuestion);
     this.refresh();
-    this.dataSource.paginator = this.paginator;
+    this.reloadPaginator();
   }
 
   applyFilter(event: Event){

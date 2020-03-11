@@ -27,7 +27,6 @@ export class QuestionDetailComponent implements OnInit {
   ngOnInit() {
     this.questionsSvc.getById(parseInt(this.route.snapshot.paramMap.get('id'))).subscribe(q => {
       this.questionDetail = q
-      console.log(q)
     })
   }
 

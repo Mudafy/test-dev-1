@@ -1,20 +1,50 @@
-<div class="mat-elevation-z8" style="margin:2em">
-    <mat-tab-group>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="margin-icon">add</mat-icon>
-            Nueva Consulta
-          </ng-template>
-          
-        </mat-tab>
-      
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="margin-icon">list</mat-icon>
-            Consultas
-          </ng-template>
-          <question-table></question-table>
-        </mat-tab>
-      
-    </mat-tab-group>
-</div>
+<mat-card class="m-card">
+    <mat-card-title>Añadir una nueva consulta</mat-card-title>
+    <br>
+    <!-- <mat-card-subtitle>Mensaje</mat-card-subtitle> -->
+    <mat-card-content>
+      <form #questionForm="ngForm">
+        <mat-form-field >
+          <mat-label>Nombre y Apellido</mat-label>
+          <input matInput 
+          type="text"
+          name="name"
+          #name="ngModel"
+          [(ngModel)]="questionSrv.selectedQuestion.name"
+          >
+        </mat-form-field>
+  
+        <mat-form-field style="margin-left: 10px;">
+            <mat-label>Email</mat-label>
+            <input matInput 
+            name="email"
+            #email="ngModel"
+            [(ngModel)]="questionSrv.selectedQuestion.email"
+            >
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Teléfono</mat-label>
+          <!-- <span matPrefix>+54 &nbsp;</span> -->
+          <input type="tel" matInput
+            name="phone"
+            #phone="ngModel"
+            [(ngModel)]="questionSrv.selectedQuestion.phone"
+          >
+        </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <mat-label>Mensaje</mat-label>
+            <textarea matInput
+            name="message"
+            #message="ngModel"
+            [(ngModel)]="questionSrv.selectedQuestion.message"
+            ></textarea>
+          </mat-form-field>
+        
+          <button mat-flat-button (click)="emitAddQuestion(questionForm)" type="submit" color="primary">Enviar</button>
+          <button mat-flat-button color="primary" style="margin-left: 10px;">Vaciar campos</button>
+      </form>
+    </mat-card-content>
+    
+</mat-card>

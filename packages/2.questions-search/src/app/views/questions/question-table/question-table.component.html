@@ -3,25 +3,25 @@
         <mat-label>Buscar en consultas</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Buscador">
     </mat-form-field>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
     
         <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> Nro. Consulta </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nro. Consulta </th>
             <td mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
     
         <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
     
         <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
         <td mat-cell *matCellDef="let element"> {{element.email}} </td>
         </ng-container>
     
         <ng-container matColumnDef="phone">
-        <th mat-header-cell *matHeaderCellDef> Teléfono </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Teléfono </th>
         <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
         </ng-container>
     

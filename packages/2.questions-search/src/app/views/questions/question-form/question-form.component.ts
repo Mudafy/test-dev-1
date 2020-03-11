@@ -1,7 +1,7 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import { QuestionStub } from 'src/app/services/question-stub';
 import { QuestionsService } from 'src/app/services/questions.service';
-
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {NgForm} from '@angular/forms';
 
 @Component({
@@ -14,7 +14,7 @@ export class QuestionFormComponent implements OnInit{
   addQuestion = {} as QuestionStub
   @Input() table;
   
-  constructor(private questionSrv: QuestionsService) { 
+  constructor(private questionSrv: QuestionsService, private _snackBar: MatSnackBar) { 
   }
   
   ngOnInit() {
@@ -29,6 +29,13 @@ export class QuestionFormComponent implements OnInit{
     this.questionSrv.add(this.addQuestion,999)
     this.table.refresh();
     this.table.reloadPaginator();
+    this.openSnackBar()
+  }
+
+  openSnackBar(){
+    this._snackBar.open("Consulta agregada","", {
+      duration: 2000,
+    });
   }
   
 }

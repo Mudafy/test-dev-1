@@ -42,8 +42,8 @@
             ></textarea>
           </mat-form-field>
         
-          <button mat-flat-button (click)="emitAddQuestion(questionForm)" type="submit" color="primary">Enviar</button>
-          <button mat-flat-button color="primary" style="margin-left: 10px;">Vaciar campos</button>
+          <button mat-flat-button (click)="onAddQuestion(questionForm)" type="submit" color="primary">Enviar</button>
+          <button mat-flat-button (click)="onResetForm(questionForm)" color="primary" style="margin-left: 10px;">Vaciar campos</button>
       </form>
     </mat-card-content>
     

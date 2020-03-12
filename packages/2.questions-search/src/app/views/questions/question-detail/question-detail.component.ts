@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Question } from 'src/app/services/question';
 import { QuestionsService } from 'src/app/services/questions.service';
-
+import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 
 @Component({
   selector: 'app-question-detail',
@@ -17,17 +17,21 @@ export class QuestionDetailComponent implements OnInit {
   public id: string;
   
   questionDetail: Question;
-  constructor(private route: ActivatedRoute, private questionsSvc: QuestionsService) {
-    this.questionsSvc.questions$.subscribe(q => {
-      this.questions = q;
-    });
+  constructor(private route: ActivatedRoute, private questionsSvc: FirestoreService) {
+    // this.questionsSvc.questions$.subscribe(q => {
+    //   this.questions = q;
+    // });
 
   }
   
   ngOnInit() {
-    this.questionsSvc.getById(parseInt(this.route.snapshot.paramMap.get('id'))).subscribe(q => {
-      this.questionDetail = q
+    const questionsData = this.questionsSvc.getQuestion(this.route.snapshot.paramMap.get('id'));
+    questionsData.subscribe(q => {
+      this.questionDetail = q.payload.data() as Question
     })
+    // this.questionsSvc.getById(parseInt(this.route.snapshot.paramMap.get('id'))).subscribe(q => {
+    //   this.questionDetail = q
+    // })
   }
 
 }

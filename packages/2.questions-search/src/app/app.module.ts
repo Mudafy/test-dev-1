@@ -28,6 +28,10 @@ import {FormsModule} from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSortModule} from '@angular/material/sort';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule , AngularFirestore } from '@angular/fire/firestore';
+import { environment } from '../environments/environment.hmr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,9 +60,12 @@ import {MatSortModule} from '@angular/material/sort';
     MatInputModule,
     FormsModule,
     MatSnackBarModule,
-    MatSortModule
+    MatSortModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
+
   ],
-  providers: [QuestionsService],
+  providers: [QuestionsService, AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

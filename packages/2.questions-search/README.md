@@ -56,4 +56,4 @@ Ya estamos listos para iniciar el hosting del Firebase:
 - 	Y por ultimo ejecutamos `yarn firedev` para iniciar nuestro [Servidor Local](http://localhost:5000/) _(port: 5000)_
 
 ### Deployando la aplicación con acceso online
-- Utilizando el comando `yarn firedev:deploy` se publicará aplicación en el proyecto seteado. `https://<project_id>.firebaseapp.com`
+- Utilizando el comando `yarn firedev:deploy` se publicará aplicación en el proyecto seleccionado. `https://<project_id>.firebaseapp.com`

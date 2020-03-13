@@ -2,3 +2,4 @@ node_modules
 yarn.lock
 Dockerfile
 docker-compose.yml
+dist

@@ -1,0 +1,50 @@
+<mat-card class="m-card">
+    <mat-card-title>Añadir una nueva consulta</mat-card-title>
+    <br>
+    <!-- <mat-card-subtitle>Mensaje</mat-card-subtitle> -->
+    <mat-card-content>
+      <form #questionForm="ngForm">
+        <mat-form-field >
+          <mat-label>Nombre y Apellido</mat-label>
+          <input matInput 
+          type="text"
+          name="name"
+          #name="ngModel"
+          [(ngModel)]="questionSrv.selectedQuestion.name"
+          >
+        </mat-form-field>
+  
+        <mat-form-field style="margin-left: 10px;">
+            <mat-label>Email</mat-label>
+            <input matInput 
+            name="email"
+            #email="ngModel"
+            [(ngModel)]="questionSrv.selectedQuestion.email"
+            >
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Teléfono</mat-label>
+          <!-- <span matPrefix>+54 &nbsp;</span> -->
+          <input type="tel" matInput
+            name="phone"
+            #phone="ngModel"
+            [(ngModel)]="questionSrv.selectedQuestion.phone"
+          >
+        </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <mat-label>Mensaje</mat-label>
+            <textarea matInput
+            name="message"
+            #message="ngModel"
+            [(ngModel)]="questionSrv.selectedQuestion.message"
+            ></textarea>
+          </mat-form-field>
+        
+          <button mat-flat-button (click)="onAddQuestion(questionForm)" type="submit" color="primary">Enviar</button>
+          <button mat-flat-button (click)="onResetForm(questionForm)" color="primary" style="margin-left: 10px;">Vaciar campos</button>
+      </form>
+    </mat-card-content>
+    
+</mat-card>

@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/test-questions-search",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

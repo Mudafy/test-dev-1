@@ -11,26 +11,7 @@ import { QuestionsService } from './services/questions.service';
 import { NotFoundComponent } from './views/questions/not-found/not-found.component';
 import { QuestionDetailComponent } from './views/questions/question-detail/question-detail.component';
 import { QuestionListComponent } from './views/questions/question-list/question-list.component';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import { QuestionTableComponent } from './views/questions/question-table/question-table.component';
-import { QuestionTabsComponent } from './views/questions/question-tabs/question-tabs.component';
-import { QuestionFormComponent } from './views/questions/question-form/question-form.component';
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
 
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatIconModule} from '@angular/material/icon';
-
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {FormsModule} from '@angular/forms';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatSortModule} from '@angular/material/sort';
-
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule , AngularFirestore } from '@angular/fire/firestore';
-import { environment } from '../environments/environment.hmr';
 
 @NgModule({
   declarations: [
@@ -41,31 +22,14 @@ import { environment } from '../environments/environment.hmr';
     NavbarComponent,
     FooterComponent,
     NotFoundComponent,
-    QuestionTableComponent,
-    QuestionTabsComponent,
-    QuestionFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatCardModule,
-    MatButtonModule,
-    MatTabsModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatSnackBarModule,
-    MatSortModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
-
+    MatToolbarModule
   ],
-  providers: [QuestionsService, AngularFirestore],
+  providers: [QuestionsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 import * as Faker from 'faker';
-import { Question } from './question';
+import { Question } from '../../models/question';
 
 function fakeQuestion(id: number): Question {
     return {

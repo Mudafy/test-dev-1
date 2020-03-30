@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { find, switchAll } from 'rxjs/operators';
-import { Question } from './question';
-import { QuestionStub } from './question-stub';
-import { questions } from './questions';
+import { Question } from '../../models/question';
+import { QuestionStub } from '../../models/question-stub';
+import { questions } from '../factory/questions';
 
 
 @Injectable({

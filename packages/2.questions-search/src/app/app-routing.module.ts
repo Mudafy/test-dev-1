@@ -7,6 +7,7 @@ import { QuestionListComponent } from './views/questions/question-list/question-
 const routes: Routes = [
 
   { path: 'questions', component: QuestionListComponent },
+  { path: 'questions', component: QuestionListComponent },
   { path: 'questions/:id', component: QuestionDetailComponent },
   { path: '', redirectTo: '/questions', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }

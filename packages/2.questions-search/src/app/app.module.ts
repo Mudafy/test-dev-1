@@ -16,6 +16,7 @@ import { ViewsModule } from './views/views.module';
 // Components
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './views/questions/not-found/not-found.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 
@@ -25,6 +26,7 @@ import { NotFoundComponent } from './views/questions/not-found/not-found.compone
     NotFoundComponent,
   ],
   imports: [
+    MatSidenavModule,
     ViewsModule,
     RouterModule,
     ComponentsModule,

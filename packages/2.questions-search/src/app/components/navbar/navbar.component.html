@@ -1,3 +1,24 @@
-<mat-toolbar>
-  <span>Consultas a propiedades</span>
+<mat-toolbar class="color">
+<!-- openClose Sidebar -->
+<button mat-icon-button (click)="closeOpenSidebar()">
+  <mat-icon class="icon m-r-20 m-l-n10">menu</mat-icon>
+</button>
+<!--title -->
+  <span class="spacer">Consultas a propiedades</span>
+<!-- Questions counter -->
+<button mat-icon-button routerLink="/questions">
+  <h1 class="color d-if m-l-n10">{{questions}}</h1>
+  <mat-icon class="icon m-r-20 m-l-n10">question_answer</mat-icon>
+</button>
+
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon class="icon">more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+<mat-divider></mat-divider>
+  <button mat-menu-item>
+    <mat-icon>logout</mat-icon>
+    <span>Cerrar sesión</span>
+  </button>
+</mat-menu>
 </mat-toolbar>

@@ -1,0 +1,21 @@
+  <ol class="breadcrumb" style="background:transparent" >
+    <li class="breadcrumb-item"><a href="/questions"><mat-icon class="m-r-10" style="color: #E74C3C" aria-hidden="false" aria-label="Example home icon">home</mat-icon></a></li>
+    <li class="breadcrumb-item" style="margin-right:23px;margin-top:-8px">
+      <a>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          Questions
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/questions">
+            <mat-icon style="color: #2C3E50 ">list</mat-icon>
+            <span>Todas</span>
+          </button>
+          <button mat-menu-item routerLink="/questions/create">
+            <mat-icon style="color: #2C3E50 ">create</mat-icon>
+            <span>Crear</span>
+          </button>
+        </mat-menu>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">{{titulo}}</li>
+  </ol>

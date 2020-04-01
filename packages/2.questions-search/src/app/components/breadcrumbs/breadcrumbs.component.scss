@@ -1,0 +1,19 @@
+.navbar .breadcrumb-item+.breadcrumb-item::before {
+    color: #bdbdbd;
+}
+
+.navbar .breadcrumb-item.active {
+    color: #bdbdbd;
+}
+
+.navbar.no-content .breadcrumb-item+.breadcrumb-item::before {
+    content: none;
+}
+
+.b-t {
+    background-color: transparent;
+}
+
+.m-r-10 {
+    margin-right: 10px;
+}

@@ -1,0 +1,9 @@
+  <mat-expansion-panel *ngFor="let item of menu" (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon class="">{{item.icon}}</mat-icon><h4>{{item.title}}</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="row" *ngFor="let i of item.submenu"><mat-icon>{{i.icon}}</mat-icon><h6>{{i.titulo}}</h6></div>
+  </mat-expansion-panel>

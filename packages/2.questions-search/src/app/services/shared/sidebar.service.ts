@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SidebarService {
+  open$ = new BehaviorSubject<boolean>(true);
   menu: any = [
     {
       title: 'Consultas',
@@ -15,4 +17,11 @@ export class SidebarService {
      }
   ];
   constructor() { }
+
+
+  openCloseSidebar(){
+    this.open$.next(!this.open$.getValue());
+    return of('ok');
+  }
+
 }

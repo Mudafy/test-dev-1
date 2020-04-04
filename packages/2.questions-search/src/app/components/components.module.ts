@@ -2,41 +2,32 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Components
-import { FooterComponent } from './footer/footer.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { MaterialModule } from '../material/material.module';
 import { QuestionCardComponent } from './questions/question-card/question-card.component';
 import { QuestionMakerComponent } from './questions/question-maker/question-maker.component';
-import { MaterialModule } from '../material/material.module';
-import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { QuestionItemComponent } from './sidebar/question-item/question-item.component';
-import { SecureDeleteComponent } from './secure-delete/secure-delete.component';
+import { SecureDeleteComponent } from './questions/secure-delete/secure-delete.component';
+import { TableComponent } from './questions/table/table.component';
 @NgModule({
   declarations: [
     QuestionCardComponent,
-    NavbarComponent,
-    FooterComponent,
     QuestionMakerComponent,
-    BreadcrumbsComponent,
-    SidebarComponent,
-    QuestionItemComponent,
-    SecureDeleteComponent
+    SecureDeleteComponent,
+    TableComponent
   ],
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports: [
     QuestionCardComponent,
-    NavbarComponent,
-    FooterComponent,
     QuestionMakerComponent,
-    BreadcrumbsComponent,
-    SidebarComponent,
-    QuestionItemComponent,
-    SecureDeleteComponent
+    SecureDeleteComponent,
+    TableComponent
   ]
 })
 export class ComponentsModule { }

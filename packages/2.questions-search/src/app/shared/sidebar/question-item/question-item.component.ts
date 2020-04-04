@@ -8,7 +8,6 @@ import { Question } from 'src/app/models/question';
 })
 export class QuestionItemComponent implements OnInit {
 
-  questions: Question<Array>;
   constructor() { }
 
   ngOnInit() {

@@ -11,7 +11,7 @@
   <!-- SideBar -->
   <!-- ============================================================== -->
 
-  <mat-drawer class="sidebar" mode="side" opened>Drawer content</mat-drawer>
+  <mat-drawer *ngIf="open==true" class="sidebar" mode="side" opened><app-sidebar></app-sidebar></mat-drawer>
 
   <!-- ============================================================== -->
   <!-- Content -->

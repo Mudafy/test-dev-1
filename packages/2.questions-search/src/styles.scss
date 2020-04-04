@@ -35,9 +35,28 @@
         color: #E74C3C;
     }
     
+    .center {
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+    }
+    
+    .m-20 {
+        margin: 20px;
+    }
+    
+    .m-t-20 {
+        margin-top: 20px;
+    }
+    
     .color {
         background: #E74C3C;
         color: white
+    }
+    
+    .color2 {
+        background-color: rgba(245, 183, 177, 0.1);
+        color: white;
     }
     
     .d-if {

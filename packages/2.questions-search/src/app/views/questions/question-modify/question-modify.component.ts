@@ -11,8 +11,11 @@ export class QuestionModifyComponent implements OnInit {
   question: Question;
   constructor(private _route: ActivatedRoute,
               private questionService: QuestionsService) {
-        this.questionService.getById(0).subscribe(q =>
-        this.question = q);
+        this._route
+        .params.subscribe( params => {
+          this.questionService.getById(+params['id']).subscribe(q =>
+          this.question = q);
+        });
    }
 
   ngOnInit() {

@@ -9,14 +9,19 @@ import { QuestionsService } from '../../../services/data/questions.service';
   styleUrls: ['./question-card.component.scss']
 })
 export class QuestionCardComponent implements OnInit {
-  question: Question;
-  constructor(
-              // private _route: ActivatedRoute,
-              // private questionService: QuestionsService
-              ) {
-    //  console.log(this.questionService.getById(Number(this._route.snapshot.paramMap.get('id'))));
+  w;
+  @Input('question') question: Question;
+  constructor(private _route: ActivatedRoute,
+              private questionService: QuestionsService) {
+      this._route
+        .params.subscribe( params => {
+          this.w = +params['id'];
+        });
+      questionService.getById(this.w).subscribe(q =>{
+          this.question = q
+        });
+        // console.log(this.question);
    }
-
   ngOnInit() {
   }
 

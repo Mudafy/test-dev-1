@@ -9,5 +9,32 @@
 }
 
 .sidebar {
-    min-width: 200px;
+    min-width: auto;
+}
+
+.vertical-scroll {
+    overflow-y: scroll;
+}
+
+.h-100p {
+    min-height: 1000px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+
+.vertical-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Hide scrollbar for IE and Edge */
+
+.vertical-scroll {
+    -ms-overflow-style: none;
 }

@@ -1,9 +1,23 @@
+<div class="m-b-20">
   <mat-expansion-panel *ngFor="let item of menu" (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <mat-icon class="">{{item.icon}}</mat-icon><h4>{{item.title}}</h4>
+        <mat-icon>{{item.icon}}</mat-icon><h4 class="m-l-10">{{item.title}}</h4>
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <div class="row" *ngFor="let i of item.submenu"><mat-icon>{{i.icon}}</mat-icon><h6>{{i.titulo}}</h6></div>
+    <div class="row" *ngFor="let i of item.submenu">
+      <a routerLink="{{i.url}}" class="d-if c-b">
+        <mat-icon>{{i.icon}}</mat-icon>
+        <h6 class="m-l-10 m-t-2">{{i.titulo}}</h6>
+      </a>
+      </div>
   </mat-expansion-panel>
+  </div>
+  <!--
+  <mat-form-field class="m-l-20">
+    <mat-label><mat-icon>search</mat-icon></mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Consulta">
+  </mat-form-field>
+  -->
+  <app-question-item *ngFor="let question of questions" [question]="question"></app-question-item>

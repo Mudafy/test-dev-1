@@ -1,10 +1,9 @@
 <div class="row m-20">
   <div class="col">
-    <app-question-maker></app-question-maker>
+    <app-question-maker [questionId]="question.id"></app-question-maker>
   </div>
-  <!--
-  <div class="row m-t-20">
-    <app-question-card></app-question-card>
+
+  <div class="col">
+    <app-question-card [question]="question"></app-question-card>
   </div>
-  -->
 </div>

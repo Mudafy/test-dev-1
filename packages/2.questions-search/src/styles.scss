@@ -31,8 +31,20 @@
         font-family: Roboto, "Helvetica Neue", sans-serif;
     }
     
+    .m-a {
+        margin: auto;
+    }
+    
+    .c-b {
+        color: black;
+    }
+    
     .c-r {
         color: #E74C3C;
+    }
+    
+    .bc-grey {
+        background-color: #fafafa;
     }
     
     .center {
@@ -52,6 +64,32 @@
     .color {
         background: #E74C3C;
         color: white
+    }
+    
+    .m-l-20 {
+        margin-left: 20px;
+    }
+    
+    .m-t-20 {
+        margin-top: 20px;
+    }
+    
+    .m-t-2 {
+        margin-top: 2px;
+    }
+    
+    .m-b-20 {
+        margin-bottom: 20px;
+    }
+    
+    .b-b {
+        border: 1px solid #300000;
+    }
+    
+    .imagBackground {
+        background-image: url(https://image.shutterstock.com/image-photo/happy-family-taking-keys-their-260nw-670537624.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
     }
     
     .color2 {

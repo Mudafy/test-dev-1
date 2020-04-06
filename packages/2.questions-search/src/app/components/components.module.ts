@@ -9,12 +9,14 @@ import { QuestionCardComponent } from './questions/question-card/question-card.c
 import { QuestionMakerComponent } from './questions/question-maker/question-maker.component';
 import { SecureDeleteComponent } from './questions/secure-delete/secure-delete.component';
 import { TableComponent } from './questions/table/table.component';
+
+
 @NgModule({
   declarations: [
     QuestionCardComponent,
     QuestionMakerComponent,
     SecureDeleteComponent,
-    TableComponent
+    TableComponent,
   ],
   imports: [
     ReactiveFormsModule,

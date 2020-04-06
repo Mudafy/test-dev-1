@@ -1,17 +1,11 @@
+import { ActivatedRoute } from '@angular/router';
+import { QuestionStub } from '../../../models/question-stub';
+import { Question } from '../../../models/question';
 import { FormGroup, FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
-import { Question } from '../../../models/question';
 import { QuestionsService } from '../../../services/data/questions.service';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { brokers as brokerList, brokers } from '../../../services/factory/questions';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
-
+import { brokers as brokerList } from '../../../services/factory/questions';
 
 @Component({
   selector: 'app-question-maker',
@@ -20,49 +14,81 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class QuestionMakerComponent implements OnInit {
 
-  // @Input(question)
-
-
-  matcher = new MyErrorStateMatcher();
-  question: Question = {
-    name:"",
-    email: "",
-    phone: "",
-    message: "",
-    broker: null
-  };
+  questionForm = new FormGroup({
+    'id': new FormControl(),
+    'name': new FormControl('', [
+                Validators.required
+              ]),
+    'email': new FormControl('', [
+                Validators.required,
+                Validators.pattern("[a-z0-9._%+-]+@[a-z0-9._+-]+\.[a-z]{2,3}$")
+              ]),
+    'phone': new FormControl(),
+    'broker': new FormControl(),
+    'message': new FormControl()
+  });
   brokers: Array<number> = [];
-  questionForm:FormGroup;
-
-
-
-  constructor(private questionsService: QuestionsService) {
-    this.brokers = brokerList;
-    this.questionForm = new FormGroup({
-      'name': new FormControl('', [
-                  Validators.required
-                ]),
-      'email': new FormControl('', [
-                  Validators.required,
-                  Validators.pattern("[a-z0-9._%+-]+@[a-z0-9._+-]+\.[a-z]{2,3}$")
-                ]),
-      'phone': new FormControl(),
-      'broker': new FormControl('',[
-                  Validators.required,
-                  // this.containBroker
-                ]),
-      'message': new FormControl()
+  modificerOn = false;
+  q:Question;
+  @Input('questionId') questionId: number = null;
+  constructor( private _route: ActivatedRoute,
+               private questionsService: QuestionsService) {
+    this._route
+      .params.subscribe( params => {
+            this.questionsService.getById(+params['id']).subscribe(q =>{
+              this.questionId = q.id;
+              if( q.id !== null){
+                this.modificerOn = true;
+              }
+          });
     });
+    if (this.modificerOn) {
+      this.questionsService.getById(this.questionId).subscribe( q => {
+        this.q = q;
+      });
+      this.questionForm.setValue({
+        id: this.questionId,
+        name: this.q.name,
+        email: this.q.email,
+        message: this.q.message,
+        phone: this.q.phone,
+        broker: this.q.broker
+      });
+    }
+    this.brokers = brokerList;
   }
 
   ngOnInit() {
   }
-  clearQuestion() {}
+  clearQuestion() {
+    this.questionForm.setValue({
+      id: '',
+      name: '',
+      email: '',
+      message: '',
+      phone: '',
+      broker: ''
+    })
+  }
+  edit(): void {
+    if (this.questionForm.value.name && this.questionForm.value.email) {
+      let questionStuf: QuestionStub = {
+        name: this.questionForm.value.name,
+        phone: this.questionForm.value.phone,
+        email: this.questionForm.value.email,
+        message: this.questionForm.value.message,
+      }
+      this.questionsService.edit(this.q, questionStuf);
+    }else{
+      alert('El email o el nombre no estan completados.');
+    }
+  }
   create(): void {
-    if(!brokerList.includes(this.questionForm.value.broker)) this.questionForm.value.broker = null;
+    if(!brokerList.includes(this.questionForm.value.broker)) {this.questionForm.value.broker = null}
     if (this.questionForm.value.name && this.questionForm.value.email) {
       this.questionsService.add(this.questionForm.value,this.questionForm.value.broker);
     }
+    this.clearQuestion();
   }
 
 }

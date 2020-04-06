@@ -11,6 +11,7 @@ import { QuestionModifyComponent } from './questions/question-modify/question-mo
 import { QuestionMakeComponent } from './questions/question-make/question-make.component';
 import { QuestionDetailComponent } from './questions/question-detail/question-detail.component';
 import { QuestionListComponent } from './questions/question-list/question-list.component';
+import { QuestionItemComponent } from '../shared/sidebar/question-item/question-item.component';
 import { SecureDeleteComponent } from '../components/questions/secure-delete/secure-delete.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -21,7 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     QuestionMakeComponent,
     QuestionModifyComponent,
   ],
-  entryComponents: [QuestionListComponent, SecureDeleteComponent],
+  entryComponents: [QuestionListComponent, SecureDeleteComponent, QuestionItemComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,

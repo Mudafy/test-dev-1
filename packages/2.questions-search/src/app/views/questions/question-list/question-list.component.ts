@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Question } from 'src/app/services/question';
-import { QuestionsService } from 'src/app/services/questions.service';
 
 @Component({
   selector: 'app-question-list',
@@ -9,18 +7,10 @@ import { QuestionsService } from 'src/app/services/questions.service';
 })
 export class QuestionListComponent implements OnInit {
 
-  questions: Array<Question>;
-  constructor(questionsSvc: QuestionsService) {
-    questionsSvc.questions$.subscribe(q => {
-      this.questions = q;
-    });
+  constructor() {
   }
 
   ngOnInit() {
   }
 
-
-  getQuestionId(index: number, item: Question): number {
-    return item.id;
-  }
 }

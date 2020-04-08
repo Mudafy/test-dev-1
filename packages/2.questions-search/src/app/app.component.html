@@ -1,5 +1,31 @@
+<!-- ============================================================== -->
+<!-- Navbar -->
+<!-- ============================================================== -->
 <app-navbar></app-navbar>
-<div class="content">
-  <router-outlet></router-outlet>
-</div>
-<app-footer></app-footer>
+
+<!-- ============================================================== -->
+<!-- Main Content -->
+<!-- ============================================================== -->
+ <mat-drawer-container class="example-container bc-grey h-100p"> 
+  <!-- ============================================================== -->
+  <!-- SideBar -->
+  <!-- ============================================================== -->
+
+  <mat-drawer *ngIf="open==true" class="sidebar h-100p" mode="side" opened><app-sidebar></app-sidebar></mat-drawer>
+
+  <!-- ============================================================== -->
+  <!-- Content -->
+  <!-- ============================================================== -->
+    <mat-drawer-content>
+      <div class="bc-grey content m-20 h-100p">
+        <app-breadcrumbs></app-breadcrumbs>
+        <router-outlet></router-outlet>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container> 
+<!-- ============================================================== -->
+<!-- Footer -->
+<!-- ============================================================== -->
+<!--
+<app-footer class="footer"></app-footer> 
+-->

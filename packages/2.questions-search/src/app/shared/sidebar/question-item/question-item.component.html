@@ -1,0 +1,22 @@
+<div class="b-b-b m-l-20 mw-200">
+  <div class="row m-l-10">
+        <h5 class="m-r-10 c-r">
+          {{question.id}}
+        </h5>
+        <a class=" m-l-n10" routerLink="/questions/modify/{{question.id}}">
+          <mat-icon matTooltip="Modificar">
+            edit
+          </mat-icon> 
+        </a> 
+      <!-- delete Column -->
+          <mat-icon matTooltip="Borrar" (click)="openSecureDelete(question)" class="m-r-10 c-r">
+            delete
+          </mat-icon>
+    <!-- Name Column -->
+      <a matTooltip="Detalle" class="m-l-n10" routerLink="/questions/{{question.id}}"> 
+      {{question.name}}
+      </a>
+  </div>
+
+
+</div>

@@ -10,7 +10,7 @@
   <ng-container matColumnDef="position">
     <th mat-header-cell  *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let question" >
-       <a class=" m-l-n10" routerLink="/questions/modify/{{question.id}}">
+       <a class=" m-l-n10" (click)="redirect(question.id)">
          <mat-icon matTooltip="Modificar">
           edit
         </mat-icon> 

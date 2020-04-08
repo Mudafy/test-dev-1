@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 // Models
 import { Question } from 'src/app/models/question';
@@ -5,8 +6,6 @@ import { QuestionsService } from 'src/app/services/data/questions.service';
 //table
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-
-
 //Delete
 import {MatDialog} from '@angular/material/dialog';
 import { SecureDeleteComponent } from '../secure-delete/secure-delete.component';
@@ -23,7 +22,7 @@ export class TableComponent implements OnInit {
   displayedColumns;
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(questionsSvc: QuestionsService, public dialog: MatDialog) {
+  constructor(private questionsSvc: QuestionsService, public dialog: MatDialog,private _router: Router) {
     questionsSvc.questions$.subscribe(q => {
       this.questions = q;
       this.displayedColumns = ['position', 'delete', 'name', 'phone', 'email', 'broker', 'message'];
@@ -41,15 +40,18 @@ export class TableComponent implements OnInit {
         width: '300px',
         data: question
       });
-      dialogRef.afterClosed().subscribe(result => {
-        // this.animal = result;
-      });
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  redirect(id){
+    this.questionsSvc.getById(id).subscribe(q=> {
+      this.questionsSvc.setQuestion(q);
+      this._router.navigate([`/questions/modify/${q.id}`])
+    });
+  }
 
   getQuestionId(index: number, item: Question): number {
     return item.id;

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { find, switchAll } from 'rxjs/operators';
 import { Question } from '../../models/question';
 import { QuestionStub } from '../../models/question-stub';
@@ -12,8 +12,12 @@ import { questions } from '../factory/questions';
 export class QuestionsService {
 
   questions$ = new BehaviorSubject<Array<Question>>(questions);
+  question$ = new Subject<Question>();
   constructor() { }
 
+  setQuestion(question: Question) {
+     this.question$.next(question);
+  }
   add(question: QuestionStub, broker: number) {
     const allQuestions = this.questions$.getValue();
     const lastId = Math.max(...allQuestions.map(q => q.id));

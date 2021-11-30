@@ -10,7 +10,7 @@ import { questions } from './questions';
   providedIn: 'root'
 })
 export class QuestionsService {
-
+  selectedQuestion: Question = new Question();
   questions$ = new BehaviorSubject<Array<Question>>(questions);
   constructor() { }
 

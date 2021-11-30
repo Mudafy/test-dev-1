@@ -35,4 +35,25 @@ Necesitás NodeJs 9 o más nuevo, Yarn, Angular CLI y seguir estos pasos:
 - `yarn start` para correrlo.
 - `ng generate` para generar componentes y otros.
 
+## :whale: Ejecución en entorno de desarrollo con Docker
 
+Se debe contar con **docker** y **docker-compose** instalados para poder realizar los siguientes pasos
+
+- `docker-compose up --build -d` en la raíz del proyecto
+- Ingresar a [Servidor Local](http://localhost:4201/) _(port: 4201)_
+- Todo cambio efectuado sobre la raíz del proyecto se encuentra compartida como _volumes_ con el container.
+
+## :fire: Ejecución en entorno de Firebase Hosting para desarrollo
+
+Para empezar a utilizar **Firebase** necesitamos instalar su CLI:
+- `yarn add firebase-tools`
+- Hay loguearse con una cuenta de Google usando `firebase login`.
+- Enlistamos nuestros proyectos con `firebase projects:list`
+- Seteamos nuestro ambiente de hosting con `firebase use <project_id>`
+
+Ya estamos listos para iniciar el hosting del Firebase:
+-	Ejecutamos `yarn install` en la raiz del proyecto para contar con las dependencias.
+- 	Y por ultimo ejecutamos `yarn firedev` para iniciar nuestro [Servidor Local](http://localhost:5000/) _(port: 5000)_
+
+### Deployando la aplicación con acceso online
+- Utilizando el comando `yarn firedev:deploy` se publicará aplicación en el proyecto seleccionado. `https://<project_id>.firebaseapp.com`

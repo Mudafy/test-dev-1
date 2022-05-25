@@ -20,7 +20,7 @@ plac==0.9.6
 preshed==2.0.1
 ptvsd==4.2.3
 pycparser==2.19
-PyJWT==1.7.1
+PyJWT==2.4.0
 pytz==2018.9
 regex==2018.1.10
 requests==2.21.0

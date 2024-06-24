@@ -1,4 +1,21 @@
-<div>
-  <h4>{{question.id}} - {{question.name}}</h4>
-  <a [routerLink]="['/', 'questions', question.id]">Ir a la consulta {{question.id}}</a>
-</div>
+<!--<mat-card class="imagBackground">-->
+<mat-card class="mw-500">
+    <h4><span class="c-r">{{question.id}} </span>{{question.name}}</h4>
+    <mat-divider></mat-divider>
+    <br>
+    <div class="m-t-10">
+    <h6><span class="c-r">Telefono: </span>{{question.phone}} </h6>
+    <h6><span class="c-r">Email: </span>{{question.email}} </h6>
+    <h6><span class="c-r">Broker: </span>{{question.broker}} </h6>
+    </div>
+    <br>
+    <div *ngIf="question.message">
+        <mat-divider></mat-divider>
+        <br>
+        <h6><span class="c-r">Mensaje: </span></h6>
+        <p>{{question.message}}</p>
+    </div>
+    <button mat-button class="b-b" [routerLink]="['/', 'questions']">Volver
+    </button>
+
+</mat-card>

@@ -1,32 +1,110 @@
-
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
-// Plus imports for other components in your app.
-
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat-core();
-
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$test-questions-search-primary: mat-palette($mat-indigo);
-$test-questions-search-accent: mat-palette($mat-pink, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$test-questions-search-warn: mat-palette($mat-red);
-
-// Create the theme object (a Sass map containing all of the palettes).
-$test-questions-search-theme: mat-light-theme($test-questions-search-primary, $test-questions-search-accent, $test-questions-search-warn);
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($test-questions-search-theme);
-
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+    // Custom Theming for Angular Material
+    // For more information: https://material.angular.io/guide/theming
+    @import '~@angular/material/theming';
+    // Plus imports for other components in your app.
+    // Include the common styles for Angular Material. We include this here so that you only
+    // have to load a single css file for Angular Material in your app.
+    // Be sure that you only ever include this mixin once!
+    @include mat-core();
+    // Define the palettes for your theme using the Material Design palettes available in palette.scss
+    // (imported above). For each palette, you can optionally specify a default, lighter, and darker
+    // hue. Available color palettes: https://material.io/design/color/
+    $test-questions-search-primary: mat-palette($mat-indigo);
+    $test-questions-search-accent: mat-palette($mat-pink, A200, A100, A400);
+    // The warn palette is optional (defaults to red).
+    $test-questions-search-warn: mat-palette($mat-red);
+    // Create the theme object (a Sass map containing all of the palettes).
+    $test-questions-search-theme: mat-light-theme($test-questions-search-primary, $test-questions-search-accent, $test-questions-search-warn);
+    // Include theme styles for core and each component used in your app.
+    // Alternatively, you can import and @include the theme mixins for each component
+    // that you are using.
+    @include angular-material-theme($test-questions-search-theme);
+    /* You can add global styles to this file, and also import other style files */
+    
+    html,
+    body {
+        height: 100%;
+    }
+    
+    body {
+        margin: 0;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+    }
+    
+    .m-a {
+        margin: auto;
+    }
+    
+    .c-b {
+        color: black;
+    }
+    
+    .c-r {
+        color: #E74C3C;
+    }
+    
+    .bc-grey {
+        background-color: #fafafa;
+    }
+    
+    .center {
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+    }
+    
+    .m-20 {
+        margin: 20px;
+    }
+    
+    .m-t-20 {
+        margin-top: 20px;
+    }
+    
+    .color {
+        background: #E74C3C;
+        color: white
+    }
+    
+    .m-l-20 {
+        margin-left: 20px;
+    }
+    
+    .m-t-20 {
+        margin-top: 20px;
+    }
+    
+    .m-t-2 {
+        margin-top: 2px;
+    }
+    
+    .m-b-20 {
+        margin-bottom: 20px;
+    }
+    
+    .b-b {
+        border: 1px solid #300000;
+    }
+    
+    .imagBackground {
+        background-image: url(https://image.shutterstock.com/image-photo/happy-family-taking-keys-their-260nw-670537624.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    
+    .color2 {
+        background-color: rgba(245, 183, 177, 0.1);
+        color: white;
+    }
+    
+    .d-if {
+        display: inline-flex;
+    }
+    
+    .m-r-10 {
+        margin-right: 10px;
+    }
+    
+    .m-l-10 {
+        margin-left: 10px;
+    }
